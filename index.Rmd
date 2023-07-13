@@ -1,0 +1,19 @@
+---
+title : <span style="color:#034a94"> **Experiencia**</span>
+author: " "
+css: style.css
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = NA)
+library(summarytools)
+
+```
+
+</br></br>
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+knitr::include_graphics("img/banner_presentacion.png")
+```
+</br></br>
