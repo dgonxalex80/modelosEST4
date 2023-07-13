@@ -1,0 +1,20 @@
+name: "Modelos multivariados"
+output_dir: "docs"
+navbar:
+  title: "Modelos Estadísticos para la toma de decisiones"
+  left:
+    - text: "ACPrincipales"
+      menu:
+        - text: "Análisis de Componentes Principales"
+          href: recurso000.html
+    - text: "AConglomerados"
+      menu:
+        - text: "Análisis de Conglomerados"
+          href: recurso000.html
+    - text: "ACorrespondencia"
+      menu:
+        - text: "Análisis de Correspondencia"
+          href: recurso000.html          
+output:
+  html_document:
+    css: style.css
