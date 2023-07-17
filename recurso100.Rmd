@@ -1,0 +1,15 @@
+---
+title: "**Análisis de Componentes P^rincipales**"
+author: "Modelos Estadísticos para la toma de decisiones"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# **Conceptos**
+
+![](img/enconstruccion.jpg)

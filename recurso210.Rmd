@@ -1,0 +1,14 @@
+---
+title: "**Análisis de Conglomerados**"
+author: "Modelos Estadísticos para la toma de decisiones"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# **Ejemplo**
+
+![](img/enconstruccion.jpg)

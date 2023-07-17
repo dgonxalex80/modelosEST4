@@ -6,25 +6,25 @@ navbar:
     - text: "Conceptos"
       menu:
         - text: "Conceptos básicos"
-          href: recurso000.html 
+          href: recurso010.html 
     - text: "ACPrincipales"
       menu:
         - text: "Análisis de Componentes Principales"
-          href: recurso000.html
+          href: recurso100.html
         - text: "Ejemplo"
-          href: recurso000.html
+          href: recurso110.html
     - text: "AConglomerados"
       menu:
         - text: "Análisis de Conglomerados"
-          href: recurso000.html
+          href: recurso200.html
         - text: "Ejemplo"
-          href: recurso000.html          
+          href: recurso210.html          
     - text: "ACorrespondencia"
       menu:
         - text: "Análisis de Correspondencia"
-          href: recurso000.html
+          href: recurso300.html
         - text: "Ejemplo"
-          href: recurso000.html          
+          href: recurso310.html          
 output:
   html_document:
     css: style.css
