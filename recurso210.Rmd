@@ -19,7 +19,7 @@ library("factoextra") # visualizacion elegante en ggplot2
 par(mar = c(1,1,1,1) + 0.1)
 
 library(tidyverse)
-# library(paqueteMOD)
+library(paqueteMOD)
 data("creditos") 
 creditosZ= creditos[2:5] %>%
                  scale()
@@ -32,9 +32,180 @@ creditosZ= creditos[2:5] %>%
 
 </br>
 
+|id     | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   |
+|:------|:----|:----|:----|:----|:----|:----|:----|:----|
+|inv.pub| 16  | 12  | 10  | 12  | 45  | 50  | 45  | 50  |
+|ventas | 10  | 14  | 22  | 25  | 10  | 15  | 25  | 27  |
+
+
+</br>
+
 ```{r}
- 
- 123456
+id= 1:8
+empresa =data.frame(inv.pub = c(16,12,10,12,45,50,45,50),
+                    ventas =c(10,14,22,25,10,14,25,27) )
+rownames(empresa) = c("E1","E2","E3","E4","E5","E6","E7", "E8")
+```
+
+
+</br>
+
+Dado que los rangos de las variables son diferente y con fin de que estas diferencias en las dimensiones de las variables no afecte los cálculos de las distancias se aconseja estandarizar las variables (restar la media y dividir el resultado por la desviación estándar) antes de generar las cálculos de las distancias
+
+</br>
+
+$$
+z = \dfrac{\bar{x} - \mu}{\sigma}
+$$
+
+</br>
+
+
+```{r}
+empresa_z =scale(empresa)
+empresa_z = as.data.frame(empresa_z)
+empresa_z
+```
+</br></br>
+
+
+Las distancias correspondientes a los valores estandarizados serán:
+
+</br></br>
+
+### <span style="color:#034a94">**Distancias euclidianas**</span>
+
+```{r}
+dist(empresa_z, method = "euclidean")
+```
+</br></br>
+
+#### <span style="color:#034a94">**Distamcias de Manhattan**</span>
+
+```{r}
+dist(empresa_z, method = "manhattan")
+```
+
+</br></br>
+
+#### <span style="color:#034a94">**Distancias de Minkowski**</span>
+
+
+```{r}
+dist(empresa_z, method = "minkowski")
+```
+
+</br></br>
+
+### <span style="color:#034a94">**Distribución de los individuos por distancias**
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+# distancia euclidiana
+dist_emp <- dist(empresa_z, method = 'euclidean')
+
+# Cluster jerarquico con el método complete
+hc_emp <- hclust(dist_emp, method = 'complete')
+
+# Determinamos a dónde pertenece cada observación
+cluster_assigments <- cutree(hc_emp, k = 4)
+
+# asignamos los clusters
+assigned_cluster <- empresa_z %>% mutate(cluster = as.factor(cluster_assigments))
+
+
+# gráfico de puntos
+ggplot(assigned_cluster, aes(x = inv.pub, y = ventas, color = cluster)) +
+  geom_point(size = 4) +
+  geom_text(aes(label = cluster), vjust = -.8) + # Agregar etiquetas del clúster
+  theme_classic()
+```
+
+</br></br>
+
+```{r}
+plot(hc_emp, cex = 0.6, main = "Dendograma de Empresas", las=1,
+ylab = "Distancia euclidiana", xlab = "Grupos")
+rect.hclust(hc_emp, k = 2, border = 2:5)
+```
+
+</br>
+
+En este diagrama se observa que al inicio los individuos que más se parecen (menor distancia euclidea) son los individuos `E7`, `E8`, `E3`y `E4` (`d(E7, E8) = 0.3863837`) `d(E3, E4) = 0.4350355`) , conformando estas cuatro empresas un primer cluster y el resto un segundo grupo o cluster a una distancia de `2.5`.
+
+En el caso de tener hipótesis de la existencia de de 4 grupos podemos reducir la distancia `1.0` y se obtienen cuarto conglomerados
+
+
+
+</br></br>
+
+
+
+### <span style="color:#034a94">**Clasificación de las empresas**</span>
+
+```{r}
+dendograma <- hclust(dist_emp, method = "average")
+grp <- cutree(dendograma, k = 4)
+grp
+```
+
+
+</br></br>
+
+
+### <span style="color:#034a94">**Elección del número de conglomerados**</span>
+
+</br>
+
+Elegir el número óptimo de clusters o grupos  es una decisión subjetiva, sin embargo puede tomarse el criterio del mayor salto de nodo a nodo de las distancias euclidianas: Observando el dendograma vemos que el mayor incremento de las distancias se dio en $1$, por lo que si trazamos una linea se hará un corte y tendremos cuatros nodos, el conformado por `(E1,E2)`, `(E5, E6)`, `(E7, E8)` y `(E3, E4)`. 
+
+</br>
+
+```{r message = FALSE}
+library(factoextra)
+
+dist_emp <- dist(empresa_z, method = "euclidean")
+dendograma <- hclust(dist_emp, method = "average")
+# plot(dendograma, cex = 0.6, hang = -1) 
+barplot(sort(dendograma$height, decreasing = TRUE), horiz = TRUE, 
+main = "Agregaciones (distancias euclidianas)",
+col = "lightblue", ylab = "Nodo", xlab = "Peso", xlim = c(0, 2.5))
+```
+
+</br>
+
+Por último se mide el indice de Silhouette promedio con el fin de valorar la mejor alternativa para la elección del número de conglomerados
+
+</br>
+
+```{r , warning=FALSE,message=FALSE}
+
+library(tidyverse)
+library(cluster)
+# distancia euclidiana
+dist_emp <- dist(empresa_z, method = 'euclidean')
+
+# Cluster jerarquico con el método complete
+hc_emp <- hclust(dist_emp, method = 'complete')
+
+# Determinamos a dónde pertenece cada observación
+cluster_assigments <- cutree(hc_emp, k = 4)
+
+# Calcular el coeficiente de Silhouette
+sil <- silhouette(cluster_assigments, dist(empresa_z))
+sil_avg <- mean(sil[,3])
+
+# Imprimir el coeficiente de Silhouette promedio
+cat("Coeficiente de Silhouette promedio k=4 : ", sil_avg)
 
 ```
+
+
+</br></br>
+
+Estos resultados indican una mejor agrupación cuando se eligen k=4 conglomerados. (valores más cercanos a 1 indican un agrupamiento más coherente)
+
+
+
+
 

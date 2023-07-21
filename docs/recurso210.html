@@ -324,8 +324,220 @@ $(document).ready(function () {
 <div id="ejemplo" class="section level3">
 <h3><span style="color:#FF7F00"> <strong>Ejemplo</strong></span></h3>
 <p></br></p>
-<pre class="r"><code> 123456</code></pre>
-<pre><code>[1] 123456</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">id</th>
+<th align="left">1</th>
+<th align="left">2</th>
+<th align="left">3</th>
+<th align="left">4</th>
+<th align="left">5</th>
+<th align="left">6</th>
+<th align="left">7</th>
+<th align="left">8</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">inv.pub</td>
+<td align="left">16</td>
+<td align="left">12</td>
+<td align="left">10</td>
+<td align="left">12</td>
+<td align="left">45</td>
+<td align="left">50</td>
+<td align="left">45</td>
+<td align="left">50</td>
+</tr>
+<tr class="even">
+<td align="left">ventas</td>
+<td align="left">10</td>
+<td align="left">14</td>
+<td align="left">22</td>
+<td align="left">25</td>
+<td align="left">10</td>
+<td align="left">15</td>
+<td align="left">25</td>
+<td align="left">27</td>
+</tr>
+</tbody>
+</table>
+<p></br></p>
+<pre class="r"><code>id= 1:8
+empresa =data.frame(inv.pub = c(16,12,10,12,45,50,45,50),
+                    ventas =c(10,14,22,25,10,14,25,27) )
+rownames(empresa) = c(&quot;E1&quot;,&quot;E2&quot;,&quot;E3&quot;,&quot;E4&quot;,&quot;E5&quot;,&quot;E6&quot;,&quot;E7&quot;, &quot;E8&quot;)</code></pre>
+<p></br></p>
+<p>Dado que los rangos de las variables son diferente y con fin de que
+estas diferencias en las dimensiones de las variables no afecte los
+cálculos de las distancias se aconseja estandarizar las variables
+(restar la media y dividir el resultado por la desviación estándar)
+antes de generar las cálculos de las distancias</p>
+<p></br></p>
+<p><span class="math display">\[
+z = \dfrac{\bar{x} - \mu}{\sigma}
+\]</span></p>
+<p></br></p>
+<pre class="r"><code>empresa_z =scale(empresa)
+empresa_z = as.data.frame(empresa_z)
+empresa_z</code></pre>
+<pre><code>      inv.pub     ventas
+E1 -0.7417009 -1.1779013
+E2 -0.9536155 -0.6153216
+E3 -1.0595728  0.5098379
+E4 -0.9536155  0.9317727
+E5  0.7946796 -1.1779013
+E6  1.0595728 -0.6153216
+E7  0.7946796  0.9317727
+E8  1.0595728  1.2130625</code></pre>
+<p></br></br></p>
+<p>Las distancias correspondientes a los valores estandarizados
+serán:</p>
+<p></br></br></p>
+</div>
+<div id="distancias-euclidianas" class="section level3">
+<h3><span style="color:#034a94"><strong>Distancias
+euclidianas</strong></span></h3>
+<pre class="r"><code>dist(empresa_z, method = &quot;euclidean&quot;)</code></pre>
+<pre><code>          E1        E2        E3        E4        E5        E6        E7
+E2 0.6011686                                                            
+E3 1.7174126 1.1301375                                                  
+E4 2.1202905 1.5470942 0.4350355                                        
+E5 1.5363805 1.8365815 2.5073323 2.7399379                              
+E6 1.8870832 2.0131883 2.3993252 2.5389816 0.6218234                    
+E7 2.6098255 2.3345313 1.9016521 1.7482951 2.1096739 1.5696079          
+E8 2.9935422 2.7195432 2.2327792 2.0327447 2.4055927 1.8283841 0.3863837</code></pre>
+<p></br></br></p>
+<div id="distamcias-de-manhattan" class="section level4">
+<h4><span style="color:#034a94"><strong>Distamcias de
+Manhattan</strong></span></h4>
+<pre class="r"><code>dist(empresa_z, method = &quot;manhattan&quot;)</code></pre>
+<pre><code>          E1        E2        E3        E4        E5        E6        E7
+E2 0.7744943                                                            
+E3 2.0056110 1.2311167                                                  
+E4 2.3215885 1.5470942 0.5278921                                        
+E5 1.5363805 2.3108748 3.5419915 3.8579690                              
+E6 2.3638534 2.0131883 3.2443050 3.5602825 0.8274729                    
+E7 3.6460545 3.2953893 2.2761871 1.7482951 2.1096739 1.8119874          
+E8 4.1922375 3.8415724 2.8223702 2.2944781 2.6558570 1.8283841 0.5461831</code></pre>
+<p></br></br></p>
+</div>
+<div id="distancias-de-minkowski" class="section level4">
+<h4><span style="color:#034a94"><strong>Distancias de
+Minkowski</strong></span></h4>
+<pre class="r"><code>dist(empresa_z, method = &quot;minkowski&quot;)</code></pre>
+<pre><code>          E1        E2        E3        E4        E5        E6        E7
+E2 0.6011686                                                            
+E3 1.7174126 1.1301375                                                  
+E4 2.1202905 1.5470942 0.4350355                                        
+E5 1.5363805 1.8365815 2.5073323 2.7399379                              
+E6 1.8870832 2.0131883 2.3993252 2.5389816 0.6218234                    
+E7 2.6098255 2.3345313 1.9016521 1.7482951 2.1096739 1.5696079          
+E8 2.9935422 2.7195432 2.2327792 2.0327447 2.4055927 1.8283841 0.3863837</code></pre>
+<p></br></br></p>
+</div>
+</div>
+<div id="distribución-de-los-individuos-por-distancias"
+class="section level3">
+<h3><span style="color:#034a94"><strong>Distribución de los individuos
+por distancias</strong></h3>
+<pre class="r"><code>library(tidyverse)
+# distancia euclidiana
+dist_emp &lt;- dist(empresa_z, method = &#39;euclidean&#39;)
+
+# Cluster jerarquico con el método complete
+hc_emp &lt;- hclust(dist_emp, method = &#39;complete&#39;)
+
+# Determinamos a dónde pertenece cada observación
+cluster_assigments &lt;- cutree(hc_emp, k = 4)
+
+# asignamos los clusters
+assigned_cluster &lt;- empresa_z %&gt;% mutate(cluster = as.factor(cluster_assigments))
+
+
+# gráfico de puntos
+ggplot(assigned_cluster, aes(x = inv.pub, y = ventas, color = cluster)) +
+  geom_point(size = 4) +
+  geom_text(aes(label = cluster), vjust = -.8) + # Agregar etiquetas del clúster
+  theme_classic()</code></pre>
+<p><img src="recurso210_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p></br></br></p>
+<pre class="r"><code>plot(hc_emp, cex = 0.6, main = &quot;Dendograma de Empresas&quot;, las=1,
+ylab = &quot;Distancia euclidiana&quot;, xlab = &quot;Grupos&quot;)
+rect.hclust(hc_emp, k = 2, border = 2:5)</code></pre>
+<p><img src="recurso210_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p></br></p>
+<p>En este diagrama se observa que al inicio los individuos que más se
+parecen (menor distancia euclidea) son los individuos <code>E7</code>,
+<code>E8</code>, <code>E3</code>y <code>E4</code>
+(<code>d(E7, E8) = 0.3863837</code>) <code>d(E3, E4) = 0.4350355</code>)
+, conformando estas cuatro empresas un primer cluster y el resto un
+segundo grupo o cluster a una distancia de <code>2.5</code>.</p>
+<p>En el caso de tener hipótesis de la existencia de de 4 grupos podemos
+reducir la distancia <code>1.0</code> y se obtienen cuarto
+conglomerados</p>
+<p></br></br></p>
+</div>
+<div id="clasificación-de-las-empresas" class="section level3">
+<h3><span style="color:#034a94"><strong>Clasificación de las
+empresas</strong></span></h3>
+<pre class="r"><code>dendograma &lt;- hclust(dist_emp, method = &quot;average&quot;)
+grp &lt;- cutree(dendograma, k = 4)
+grp</code></pre>
+<pre><code>E1 E2 E3 E4 E5 E6 E7 E8 
+ 1  1  2  2  3  3  4  4 </code></pre>
+<p></br></br></p>
+</div>
+<div id="elección-del-número-de-conglomerados" class="section level3">
+<h3><span style="color:#034a94"><strong>Elección del número de
+conglomerados</strong></span></h3>
+<p></br></p>
+<p>Elegir el número óptimo de clusters o grupos es una decisión
+subjetiva, sin embargo puede tomarse el criterio del mayor salto de nodo
+a nodo de las distancias euclidianas: Observando el dendograma vemos que
+el mayor incremento de las distancias se dio en <span
+class="math inline">\(1\)</span>, por lo que si trazamos una linea se
+hará un corte y tendremos cuatros nodos, el conformado por
+<code>(E1,E2)</code>, <code>(E5, E6)</code>, <code>(E7, E8)</code> y
+<code>(E3, E4)</code>.</p>
+<p></br></p>
+<pre class="r"><code>library(factoextra)
+
+dist_emp &lt;- dist(empresa_z, method = &quot;euclidean&quot;)
+dendograma &lt;- hclust(dist_emp, method = &quot;average&quot;)
+# plot(dendograma, cex = 0.6, hang = -1) 
+barplot(sort(dendograma$height, decreasing = TRUE), horiz = TRUE, 
+main = &quot;Agregaciones (distancias euclidianas)&quot;,
+col = &quot;lightblue&quot;, ylab = &quot;Nodo&quot;, xlab = &quot;Peso&quot;, xlim = c(0, 2.5))</code></pre>
+<p><img src="recurso210_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p></br></p>
+<p>Por último se mide el indice de Silhouette promedio con el fin de
+valorar la mejor alternativa para la elección del número de
+conglomerados</p>
+<p></br></p>
+<pre class="r"><code>library(tidyverse)
+library(cluster)
+# distancia euclidiana
+dist_emp &lt;- dist(empresa_z, method = &#39;euclidean&#39;)
+
+# Cluster jerarquico con el método complete
+hc_emp &lt;- hclust(dist_emp, method = &#39;complete&#39;)
+
+# Determinamos a dónde pertenece cada observación
+cluster_assigments &lt;- cutree(hc_emp, k = 4)
+
+# Calcular el coeficiente de Silhouette
+sil &lt;- silhouette(cluster_assigments, dist(empresa_z))
+sil_avg &lt;- mean(sil[,3])
+
+# Imprimir el coeficiente de Silhouette promedio
+cat(&quot;Coeficiente de Silhouette promedio k=4 : &quot;, sil_avg)</code></pre>
+<pre><code>Coeficiente de Silhouette promedio k=4 :  0.690995</code></pre>
+<p></br></br></p>
+<p>Estos resultados indican una mejor agrupación cuando se eligen k=4
+conglomerados. (valores más cercanos a 1 indican un agrupamiento más
+coherente)</p>
 </div>
 
 

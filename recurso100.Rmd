@@ -1,5 +1,5 @@
 ---
-title: "**Análisis de Componentes Principales**"
+title: <span style="color:#034a94">**Análisis de Componentes Principales**</span>
 author: "Modelos Estadísticos para la toma de decisiones"
 date: " "
 output: html_document
