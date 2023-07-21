@@ -1,5 +1,5 @@
 ---
-title: "**Conceptos básicos**"
+title: <span style="color:#034a94">**Introducción**</span>
 author: "Modelos Estadísticos para la toma de decisiones"
 date: " "
 output: html_document
@@ -30,13 +30,21 @@ vivienda1 <-vivienda[ids,]
 
 <br/><br/>
 
-# **Introducción**
 
-<br/>
+Por los general en el aprendizaje de las Estadística se trabaja con datos en una sola dimensión (univariado), se revisan tando indicadores como la representación gráfica de las variables una a una. En ocaciones se pasa a estudiar grupos de variables de manera bivariada. Para ello se construyen tablas cruzadas y se grafican las dos variables en un plano de tal forma que permite identificar relacines entre ellas.  
+
+En esta unidad trataremos el caso multivariado que consiste en tomar la información contenida en un grupo de variables  (m>2) que permita dar valor a un conjunto de variables y registros, pudiendo identificar patrones y realizar agrupaciones.
+
+Para hacernos una idea empesaremos lo univariado a lo multivariado
+
+<br/><br/>
+
+## <span style="color:#034a94">**Análisis estadístico univariado**</span>
 
 Supongamos que tenemos información de un grupo de 1000 viviendas de las cuales contamos con su valor comercial. A partir de esta información podemos realizar un **análisis univariado** como se presentó en el curso anterior, mostrandonos de manera parcial el comportamiento de los precios de las viviendas.
 
 <br/>
+
 
 :::: {style="display: flex;"}
 ::: {}
@@ -45,6 +53,8 @@ Supongamos que tenemos información de un grupo de 1000 viviendas de las cuales 
 <!-- summarytools::descr(vivienda1$preciom) -->
 
 <!-- ``` -->
+
+
 <pre>
 
 
@@ -80,20 +90,24 @@ N: 1000
 :::
 ```{r,echo=FALSE, fig.align='center', fig.width=4.5, fig.height=6}
 
-boxplot(vivienda1$preciom, horizontal=FALSE, las=1, col = c1)
+boxplot(vivienda1$preciom, horizontal=FALSE, las=1, col = "#FF7F00")
 ```
 
 :::
+
 
 Es posible que este análisis se quede corto para entender el comportamiento de los precios de la vivienda, su alta variación y asimetria.
 
 <br/><br/>
 
+
+## <span style="color:#034a94">**Análisis estadístico bivariado**</span>
+
 Una segunda opción es la de analizar dos variables al tiempo (**análisis bivariado**) y medir la relación que puede existir entre ellas, presentandose las siguientes posibiblidades:
 
 <br/>
 
-### **1. cualitativa - cualitativa** : 
+### <span style="color:#FF7F00">**1. cualitativa - cualitativa**</span> : 
 
 En este caso se emplean las tablas de contingencia o de doble entrada, las cuales se pueden representar mediante un diagrama de barras. Para determinar si existe relación o no entre las dos variables se utiliza una prueba de hipotesis Chi-cuadrado para tablas de contingencia.
 
@@ -132,7 +146,7 @@ El resultado obtenido (p-value: 0.000), indica que las variables no son independ
 
 <br/><br/>
 
-### **2. cualitativa - cuantitativa**: 
+### <span style="color:#FF7F00">**2. cualitativa - cuantitativa**</span>: 
 
 <!-- ```{r, echo=FALSE, warning=FALSE, message=FALSE} -->
 <!-- library(psych) -->
@@ -179,10 +193,10 @@ Los resultados indican que existen diferencias significativas entre los valores 
 
 <br/><br/>
 
-### **3. cuantitativa - cuantitativa** : 
+### <span style="color:#FF7F00">**3. cuantitativa - cuantitativa**</span> : 
 
 
-Cuando tenemos dos variables cuantitavivas se pueden medir indicadores conjuntos como son la covarianza y la correlación, esta última mide la fuerza de la relación lineal entre las dos variables
+Cuando tenemos dos variables cuantitavivas se pueden medir indicadores conjuntos como son la covarianza y la correlación, esta última mide la fuerza de la relación lineal entre las dos variables. 
 
 
 ```{r, echo=FALSE}
@@ -193,7 +207,7 @@ cat("Cov(precio, area construida) = ",cov(vivienda1$preciom, vivienda1$areaconst
 cat("Cor(precio, area construida) = ",cor(vivienda1$preciom, vivienda1$areaconst))
 ```
 
-Los resultados indican una leve relación  lineal positiva entre el área construida de la vivienda y su valor comercial
+Los resultados indican una leve relación  lineal positiva entre el área construida de la vivienda y su valor comercial (a mayor área de construcción de la vivienda, mayor pecio).
 
 ```{r, echo=FALSE, fig.align='center'}
 plot(vivienda1$preciom, vivienda1$areaconst, las=1,
@@ -205,38 +219,44 @@ plot(vivienda1$preciom, vivienda1$areaconst, las=1,
 
 <br/><br/>
 
-Aunque este analisis es mas amplio que el anterior es limitado 
-
-Los metodos multivariados pueden tener diferentes propositos
-
-* **resumir en pocas variables** :  componentes principales 
-* **visualizar patrones** - **clasificar** : anális de conglomerados, análisis de correspondencia
 
 
-# **Conceptos** 
+## <span style="color:#034a94">**Análisis estadístico multivariado**</span>
 
-![](img/enconstruccion.jpg)
+<br/>
+
+Aunque este analisis es más amplio que los anteriores está menos difundido y utilizado que los dos anteriores 
+
+Los metodos multivariados pueden tener diferentes propositos como: 
+
+<br/>
+
+* **resumir un conjunto datos con muchas variables en unas pocas** :  Análisis de Componentes Principales
+  
+<br/>
+
+* **visualizar patrones** - **clasificar** :  Análisis de Conglomerados, 
+
+<br/>
+
+* **realizar predicciones** :  Regresión Lineal
+
+<br/>
+
+* **asociación entre variables** : Análisis de Correspondencia
+
+
+<br/><br/><br/>
 
 <br/> <br/>
+```{r, echo=FALSE, out.width="110%", fig.align='center'}
+knitr::include_graphics("img/acp12.png")
+```
 
-<!-- ```{r} -->
-<!-- head(vivienda1) -->
-<!-- ``` -->
- 
- <pre>
- head(vivienda1)
-# A tibble: 6 × 13
-     id zona         piso estrato preciom areaconst parqueaderos baños habitac.  tipo          barrio
-1    79 Zona Oriente  NA    3      215      154           NA      2        5     Casa          el guabal
-2  6439 Zona Sur      4     4      355      159           2       5        4     Apartamento   el ingenio
-3  4852 Zona Sur      7     6      365       96           2       2        2     Apartamento   el peñon
-4   415 Zona Norte    NA    5      390       84           1       2        3     Casa          los álamos
-5  7032 Zona Sur      2     4      470      228           2       4        4     Apartamento   la alianza  
-6  2292 Zona Sur      5     4      170       72           1       2        3     Apartamento   normandía  
- </pre>
- 
- 
- # **Conceptos básicos**
+
+En esta unidad se tratan algunos de estos métodos
+
+
  
  
  

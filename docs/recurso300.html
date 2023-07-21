@@ -313,17 +313,196 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore"><strong>Análisis de
-Correspondencia</strong></h1>
+<h1 class="title toc-ignore"><span
+style="color:#034a94"><strong>Análisis de
+Correspondencia</strong></span></h1>
 <h4 class="author">Modelos Estadísticos para la toma de decisiones</h4>
 
 </div>
 
 
-<div id="conceptos" class="section level1">
-<h1><strong>Conceptos</strong></h1>
-<p><img src="img/enconstruccion.jpg" /></p>
-</div>
+<p></br></p>
+<p>El Análisis de Corespondencia es un método estadístico utilizado para
+representar posibles asociaciones entre variables categóticas, es decir
+la asociación entre sus cagorías, con el fin establecer si existe,
+patromes o estructuras en los datos</p>
+<p></br></p>
+<p>Este método estadístico es de tipo exploratorio y complementario de
+otros tipos de análisis como los modelos de regresión logistico.</p>
+<p></br></p>
+<p>La creación de esta herramienta estadistica se le atribulle al
+matemático y estadíostico francés Jean-Paul Benzécri al final de la
+décade de los noventa. A lo largo del tiempo este método se ha empleado
+por varios campos del conocimiento con diversos nombres como :
+Escalonamiento óptimo, Análisis canónico, Método de los promedios
+recíprocos, Puntuaciones aditivas, Puntuaciones apropiadas,
+Ponderaciones de Guttman, Teoria de cuantificación de Hayashi, Regresión
+lineal simultánea, Análisis factorial de correspondencia, Biplot,
+Escalado dual.</p>
+<p></br></p>
+<p>Iniciaremos la explicación del método asociandolo con el caso de dos
+variables A y B y un test de independencia para tablas de contingencia
+chi-cuadrado, la cual consiste en obtener el estadístico de prueba
+mediente la sumatoria de la razón de las diferencias al cuadrado de los
+valores esperados y los valores observados y los valores observados,
+llamada tambien distancia de Pearson :</p>
+<p></br></br></p>
+<p><span class="math display">\[\lambda = \sum_{i=1}^{m} \sum_{j=1}^{n}
+\dfrac{(n_{ij} - n_{i.} n_{.j}/n)^2}{n_{i.}n_{.j}/n}\]</span> </br></p>
+<p>Donde</p>
+<center>
+<img src="img/tablaab.png" style="width:60.0%" />
+</center>
+<p></br></br></p>
+<p>Supongamos que tenemos la siguiente tabla de contingencia, como
+resultado de una encuesta que contenia dos preguntas: su actividad
+laboral y si habian sufrido o no de alguna enfermedad relacionadas con
+el estrés.</p>
+<center>
+<img src="img/tabla2.png" style="width:35.0%" />
+</center>
+<p>Con esta información podremos obtener una metrica que nos permita
+agrupar las profesiones conformando grupos semejantes</p>
+<center>
+<img src="img/tabla3.png" style="width:35.0%" />
+</center>
+<p></br></br></p>
+<center>
+<img src="img/pocisiones.png" style="width:100.0%" />
+</center>
+<p>La representación gráfica de estos valores permite visualizar que
+podrían existir tres grupos en cuanto a enfermedades relacionadas con el
+estrés :</p>
+<ul>
+<li>Empleado público, empreado estatal y ama de casa</li>
+<li>Docente</li>
+<li>Empleado bancario</li>
+</ul>
+<p>Ahora utilicemos la metrica <span
+class="math inline">\(\lambda\)</span> de Pearson para identificar si
+existe asociacion entre las variables <span
+class="math inline">\(A\)</span> y <span
+class="math inline">\(B\)</span></p>
+<p></br></br></p>
+<center>
+<img src="img/tablaAB.png" style="width:50.0%" />
+</center>
+<pre class="r"><code>library(tidyr)
+m &lt;- c(50,9,41,4,315,40,147,11,24,6,14,1,4012,459,1539,124) %&gt;%
+      matrix(., ncol=4) 
+colnames(m) &lt;- c( &quot;b1&quot;, &quot;b2&quot;, &quot;b3&quot;, &quot;b4&quot;)
+rownames(m) &lt;- c( &quot;a1&quot;, &quot;a2&quot;, &quot;a3&quot;, &quot;a4&quot;)
+m</code></pre>
+<pre><code>##    b1  b2 b3   b4
+## a1 50 315 24 4012
+## a2  9  40  6  459
+## a3 41 147 14 1539
+## a4  4  11  1  124</code></pre>
+<pre class="r"><code>chisq.test(m)</code></pre>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  m
+## X-squared = 21.359, df = 9, p-value = 0.01115</code></pre>
+<pre class="r"><code>chisq.test(m)$observed</code></pre>
+<pre><code>##    b1  b2 b3   b4
+## a1 50 315 24 4012
+## a2  9  40  6  459
+## a3 41 147 14 1539
+## a4  4  11  1  124</code></pre>
+<pre class="r"><code>chisq.test(m)$expected</code></pre>
+<pre><code>##           b1        b2         b3        b4
+## a1 67.349029 332.21204 29.1414067 3972.2975
+## a2  7.865803  38.79959  3.4034726  463.9311
+## a3 26.642731 131.42039 11.5281048 1571.4088
+## a4  2.142437  10.56798  0.9270159  126.3626</code></pre>
+<pre class="r"><code>Obs &lt;- chisq.test(m)$observed
+Esp &lt;- chisq.test(m)$expected
+Discrepancias &lt;- (Obs-Esp)^2/Esp
+Discrepancias</code></pre>
+<pre><code>##           b1         b2         b3         b4
+## a1 4.4690890 0.89176239 0.90709633 0.39681979
+## a2 0.1635436 0.03713929 1.98090454 0.05241317
+## a3 7.7368635 1.84692881 0.53003214 0.66839920
+## a4 1.6105686 0.01766092 0.00574605 0.04417225</code></pre>
+<pre class="r"><code>sum(Discrepancias)</code></pre>
+<pre><code>## [1] 21.35914</code></pre>
+<p>Ahora fijaremos como propósito determinar dos coordenadas para cada
+una de las clases de las dos variables (a1,a2,a3,a4,b1,b2,b3 y b4) a
+partir de la matriz de discrepancias que llamaremos
+<strong>C</strong>.</p>
+<p>Podemos factorizar esta matriz como :</p>
+<p><span class="math display">\[C = U \hspace{.2cm} D \hspace{.2cm}
+V^{t}\]</span></p>
+<pre class="r"><code>C &lt;- Discrepancias
+U &lt;- eigen(C%*%t(C))$vectors
+U</code></pre>
+<pre><code>##             [,1]        [,2]        [,3]       [,4]
+## [1,] -0.49483693  0.20950101  0.24857755  0.8058877
+## [2,] -0.04024879  0.96276950 -0.03063301 -0.2655495
+## [3,] -0.85185428 -0.15185194 -0.32185800 -0.3843081
+## [4,] -0.16691535 -0.07826375  0.91305983 -0.3637799</code></pre>
+<pre class="r"><code>V &lt;- eigen(t(C) %*% C)$vectors
+V</code></pre>
+<pre><code>##            [,1]        [,2]         [,3]        [,4]
+## [1,] 0.96744006  0.10215951  0.229362467 -0.03187520
+## [2,] 0.21517830  0.02922188 -0.951134440 -0.21951688
+## [3,] 0.10455668 -0.99423843 -0.001451151 -0.02357428
+## [4,] 0.08261924 -0.01412327 -0.206722109  0.97480283</code></pre>
+<pre class="r"><code>a &lt;- sqrt(eigen(C%*%t(C))$values)
+a</code></pre>
+<pre><code>## [1] 9.38307393 2.02794007 0.37617070 0.03378498</code></pre>
+<pre class="r"><code>D &lt;- diag(a)
+D</code></pre>
+<pre><code>##          [,1]    [,2]      [,3]       [,4]
+## [1,] 9.383074 0.00000 0.0000000 0.00000000
+## [2,] 0.000000 2.02794 0.0000000 0.00000000
+## [3,] 0.000000 0.00000 0.3761707 0.00000000
+## [4,] 0.000000 0.00000 0.0000000 0.03378498</code></pre>
+<pre class="r"><code>-U%*%D%*%t(V)</code></pre>
+<pre><code>##           [,1]       [,2]        [,3]       [,4]
+## [1,] 4.4279304 1.08159250 0.908651422 0.38239826
+## [2,] 0.1682577 0.01128016 1.980448096 0.06514001
+## [3,] 7.7915752 1.61091402 0.529068579 0.64365541
+## [4,] 1.4522285 0.66563043 0.006163424 0.21013766</code></pre>
+<pre class="r"><code>C</code></pre>
+<pre><code>##           b1         b2         b3         b4
+## a1 4.4690890 0.89176239 0.90709633 0.39681979
+## a2 0.1635436 0.03713929 1.98090454 0.05241317
+## a3 7.7368635 1.84692881 0.53003214 0.66839920
+## a4 1.6105686 0.01766092 0.00574605 0.04417225</code></pre>
+<pre class="r"><code>udvt=svd(Discrepancias)
+U &lt;-udvt$u
+D &lt;-udvt$d
+V &lt;-udvt$v</code></pre>
+<pre class="r"><code>U</code></pre>
+<pre><code>##             [,1]        [,2]        [,3]       [,4]
+## [1,] -0.49483693 -0.20950101  0.24857755 -0.8058877
+## [2,] -0.04024879 -0.96276950 -0.03063301  0.2655495
+## [3,] -0.85185428  0.15185194 -0.32185800  0.3843081
+## [4,] -0.16691535  0.07826375  0.91305983  0.3637799</code></pre>
+<pre class="r"><code>D</code></pre>
+<pre><code>## [1] 9.38307393 2.02794007 0.37617070 0.03378498</code></pre>
+<pre class="r"><code>V</code></pre>
+<pre><code>##             [,1]        [,2]         [,3]        [,4]
+## [1,] -0.96744006  0.10215951  0.229362467  0.03187520
+## [2,] -0.21517830  0.02922188 -0.951134440  0.21951688
+## [3,] -0.10455668 -0.99423843 -0.001451151  0.02357428
+## [4,] -0.08261924 -0.01412327 -0.206722109 -0.97480283</code></pre>
+<pre class="r"><code>coord_filas &lt;- U %*% sqrt(D)
+coord_filas</code></pre>
+<pre><code>##            [,1]
+## [1,] -1.8097845
+## [2,] -1.4643068
+## [3,] -2.5199033
+## [4,]  0.2270303</code></pre>
+<pre class="r"><code>coord_columnas &lt;- t(V) %*% sqrt(D)
+coord_columnas</code></pre>
+<pre><code>##            [,1]
+## [1,] -3.3491832
+## [2,] -0.2578431
+## [3,] -0.6907786
+## [4,]  0.2455275</code></pre>
 
 
 

@@ -1,14 +1,40 @@
 ---
-title: "**Análisis de Conglomerados**"
+title: <span style="color:#034a94">**Ejemplo - Análisis de Conglomerados**</span>
 author: "Modelos Estadísticos para la toma de decisiones"
 date: " "
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, comment = NA)
+
+# colores
+c1="#FF7F00"
+c2="#=EB0C6"
+c3="#034A94"
+c4="#686868"
+
+# devtools::install_github("kassambara/factoextra") # ultima version
+library("factoextra") # visualizacion elegante en ggplot2
+par(mar = c(1,1,1,1) + 0.1)
+
+library(tidyverse)
+# library(paqueteMOD)
+data("creditos") 
+creditosZ= creditos[2:5] %>%
+                 scale()
 ```
 
-# **Ejemplo**
+<br/>
 
-![](img/enconstruccion.jpg)
+
+### <span style="color:#FF7F00"> **Ejemplo**</span> 
+
+</br>
+
+```{r}
+ 
+ 123456
+
+```
+

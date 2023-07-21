@@ -1,5 +1,5 @@
 ---
-title: "**Ejemplo - Análisis de Correspondencia**"
+title: "**En construcción**"
 author: "Modelos Estadísticos para la toma de decisiones"
 date: " "
 output: html_document
@@ -8,7 +8,6 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 
 
 ![](img/enconstruccion.jpg)
