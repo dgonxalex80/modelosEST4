@@ -15,14 +15,11 @@ library(scatterplot3d)
 
 id= 1:8
 empresa =data.frame(inv.pub = c(16,12,10,12,45,50,45,50),
-                     ventas =c(10,14,22,25,10,14,25,27) )
+ventas =c(10,14,22,25,10,14,25,27) )
 rownames(empresa) = c("E1","E2","E3","E4","E5","E6","E7", "E8")
 empresa_z =scale(empresa)
 empresa_z = as.data.frame(empresa_z)
 ```
-
-# **Conceptos**
-
 
 
 </br></br>
@@ -31,7 +28,7 @@ empresa_z = as.data.frame(empresa_z)
 
 </br>
 
-El análisis de conglomerados, también conocido como **clustering**, es un método estadístico usado para agrupar objetos similares en función de sus características. Mediante este análisis se logra identificar grupos muy parecidos (homogéneos) de objetos o individuos. Dentro de cada grupo los objetos son más similares entre sí que con los de otros grupos. El análisis de conglomerados implica la selección de un conjunto de variables para medir las características de los objetos o individuos, y luego aplicar un algoritmo de agrupamiento para clasificarlos en conglomerados.  Los algoritmos de agrupamiento utilizados pueden ser jerárquicos o no jerárquicos, dependiendo de si los grupos se construyen de forma iterativa a partir de subgrupos más pequeños.
+El análisis de conglomerados, también conocido como **clustering**, es un método estadístico usado para agrupar objetos similares en función de sus características. Mediante este análisis se logra identificar grupos muy parecidos (homogéneos) de objetos o individuos. Dentro de cada grupo los objetos son más similares entre sí que con los de otros grupos. El análisis de conglomerados implica la selección de un conjunto de variables para medir las características de los objetos o individuos, y luego aplicar un algoritmo de agrupamiento para clarificarlos en conglomerados.  Los algoritmos de agrupamiento utilizados pueden ser jerárquicos o no jerárquicos, dependiendo de si los grupos se construyen de forma iterativa a partir de subgrupos más pequeños.
 
 </br></br>
 
@@ -39,7 +36,7 @@ El análisis de conglomerados, también conocido como **clustering**, es un mét
 
 </br>
 
-El análisis de conglomerados se basa en calcular distancias entre los individuos metricas  a partir de la matriz de datos $X$. Una vez encontrados los conglomerados o grupos se procede a representarlos en un plano factorial. Supone por tanto el conocimiento previo de la presencia de conglomerados o por lo menos sospecha de presencia de grupos, aunque no se tenga claramente una distribución a priori.
+El análisis de conglomerados se basa en calcular distancias entre los individuos métricas  a partir de la matriz de datos $X$. Una vez encontrados los conglomerados o grupos se procede a representarlos en un plano factorial. Supone por tanto el conocimiento previo de la presencia de conglomerados o por lo menos sospecha de presencia de grupos, aunque no se tenga claramente una distribución a priori.
 
 </br></br>
 
@@ -50,7 +47,7 @@ El análisis de conglomerados se basa en calcular distancias entre los individuo
 
 ### <span style="color:#034a94">**Estandarización**</span>
 
-Debido a la diferencias en las escalas de las variables empleadas en el análisis, es necesario colocarlas en una sola escala, para lo cual  a cada variables se le resta el valor de su media y el resultado se divide por su desviación estandar. El producto de esta trasformación es una variable con media $0$ y varianza $1$.
+Debido a la diferencias en las escalas de las variables empleadas en el análisis, es necesario colocarlas en una sola escala, para lo cual  a cada variables se le resta el valor de su media y el resultado se divide por su desviación estándar. El producto de esta trasformación es una variable con media $0$ y varianza $1$.
 
 
 $$
@@ -97,7 +94,7 @@ Utilizados para evaluar la bondad del agrupamiento resultante del análisis. Alg
 
 </br>
 
-* **Suma de cuadrados entre clusters** ($SSB$), que mide la variavilidad entre los conglomerados,permitiendo valorar la calidad del agrupamiento.   
+* **Suma de cuadrados entre clusters** ($SSB$), que mide la variabilidad entre los conglomerados,permitiendo valorar la calidad del agrupamiento.   
 
 </br>
 
@@ -114,7 +111,7 @@ Es la media de los valores de las variables de todos los objetos o casos de cada
 
 ### <span style="color:#034a94">**Dendograma**</span>
 
-Corresponde a la representación grafica de los resultados obtenidos en el AC, en un plano donde el eje vertical indica las distancias en las que se unen o separan los conglomerados y en el eje horizontal los objetos o individuos.
+Corresponde a la representación gráfica de los resultados obtenidos en el AC, en un plano donde el eje vertical indica las distancias en las que se unen o separan los conglomerados y en el eje horizontal los objetos o individuos.
 
 
 </br></br>
@@ -134,7 +131,7 @@ Existen dos tipos de clasificación automática: los **métodos no jerárquicos*
 
 </br>
 
-Mediante el análisis de conglomerados se desea clasificar a los distintos individuos u observaciones en grupos muy homogéneos, pero heterogeneos entre ellos. Para realizar este objetivo se utilizan métricas que perminten calcular el grado de asociación (similitud o disimilitud) entre dos observaciones, dentro de las  más usada  está la **distancia euclidiana** entre los dos puntos, la cual está dado por:
+Mediante el análisis de conglomerados se desea clasificar a los distintos individuos u observaciones en grupos muy homogéneos, pero heterogéneos entre ellos. Para realizar este objetivo se utilizan métricas que permiten calcular el grado de asociación (similitud o disimilitud) entre dos observaciones, dentro de las  más usada  está la **distancia euclidiana** entre los dos puntos, la cual está dado por:
 
 </br>
 

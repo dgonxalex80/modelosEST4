@@ -14,7 +14,7 @@ c2="#=EB0C6"
 c3="#034A94"
 c4="#686868"
 
-# devtools::install_github("kassambara/factoextra") # ultima version
+# devtools::install_github("kassambara/factoextra") # ultima versión
 library("factoextra") # visualizacion elegante en ggplot2
 par(mar = c(1,1,1,1) + 0.1)
 
@@ -22,7 +22,7 @@ library(tidyverse)
 library(paqueteMOD)
 data("creditos") 
 creditosZ= creditos[2:5] %>%
-                 scale()
+scale()
 ```
 
 <br/>
@@ -43,7 +43,7 @@ creditosZ= creditos[2:5] %>%
 ```{r}
 id= 1:8
 empresa =data.frame(inv.pub = c(16,12,10,12,45,50,45,50),
-                    ventas =c(10,14,22,25,10,14,25,27) )
+ventas =c(10,14,22,25,10,14,25,27) )
 rownames(empresa) = c("E1","E2","E3","E4","E5","E6","E7", "E8")
 ```
 
@@ -116,9 +116,9 @@ assigned_cluster <- empresa_z %>% mutate(cluster = as.factor(cluster_assigments)
 
 # gráfico de puntos
 ggplot(assigned_cluster, aes(x = inv.pub, y = ventas, color = cluster)) +
-  geom_point(size = 4) +
-  geom_text(aes(label = cluster), vjust = -.8) + # Agregar etiquetas del clúster
-  theme_classic()
+geom_point(size = 4) +
+geom_text(aes(label = cluster), vjust = -.8) + # Agregar etiquetas del clúster
+theme_classic()
 ```
 
 </br></br>
@@ -131,7 +131,7 @@ rect.hclust(hc_emp, k = 2, border = 2:5)
 
 </br>
 
-En este diagrama se observa que al inicio los individuos que más se parecen (menor distancia euclidea) son los individuos `E7`, `E8`, `E3`y `E4` (`d(E7, E8) = 0.3863837`) `d(E3, E4) = 0.4350355`) , conformando estas cuatro empresas un primer cluster y el resto un segundo grupo o cluster a una distancia de `2.5`.
+En este diagrama se observa que al inicio los individuos que más se parecen (menor distancia euclidiana) son los individuos `E7`, `E8`, `E3`y `E4` (`d(E7, E8) = 0.3863837`) `d(E3, E4) = 0.4350355`) , conformando estas cuatro empresas un primer cluster y el resto un segundo grupo o cluster a una distancia de `2.5`.
 
 En el caso de tener hipótesis de la existencia de de 4 grupos podemos reducir la distancia `1.0` y se obtienen cuarto conglomerados
 

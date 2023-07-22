@@ -11,19 +11,19 @@ knitr::opts_chunk$set(echo = TRUE, comment = NA)
 
 </br>
 
-El Análisis de Corespondencia es un método estadístico utilizado para representar posibles asociaciones entre  variables categóticas, es decir la asociación entre sus cagorías, con el fin establecer si existe, patromes o estructuras en los datos 
+El Análisis de Correspondencia es un método estadístico utilizado para representar posibles asociaciones entre  variables categóricas, es decir la asociación entre sus cagarías, con el fin establecer si existe, patrones o estructuras en los datos 
 
 </br>
 
-Este método estadístico es de tipo exploratorio y complementario de otros tipos de análisis como los modelos de regresión logistico.
+Este método estadístico es de tipo exploratorio y complementario de otros tipos de análisis como los modelos de regresión logístico.
 
 </br>
 
-La creación de esta herramienta estadistica se le atribulle al matemático y estadíostico francés  Jean-Paul Benzécri al final de la décade de los noventa. A lo largo del tiempo este método se ha empleado por varios campos del conocimiento con diversos nombres como : Escalonamiento óptimo, Análisis canónico, Método de los promedios recíprocos, Puntuaciones aditivas, Puntuaciones apropiadas, Ponderaciones de Guttman, Teoria de cuantificación de Hayashi, Regresión lineal simultánea, Análisis factorial de correspondencia, Biplot, Escalado dual.
+La creación de esta herramienta estadística se le atribuye al matemático y estadístico francés  Jean-Paul Benzécri al final de la década de los noventa. A lo largo del tiempo este método se ha empleado por varios campos del conocimiento con diversos nombres como : Escalonamiento óptimo, Análisis canónico, Método de los promedios recíprocos, Puntuaciones aditivas, Puntuaciones apropiadas, Ponderaciones de Guttman, Teoría de cuantificación de Hayashi, Regresión lineal simultánea, Análisis factorial de correspondencia, Biplot, Escalado dual.
 
 </br>
 
-Iniciaremos la explicación del método asociandolo con el caso de dos variables A y B y un test de independencia para tablas de contingencia chi-cuadrado, la cual consiste en obtener el estadístico de prueba mediente la sumatoria de  la razón de las diferencias al cuadrado de los valores esperados y los valores observados y los valores observados, llamada tambien distancia de Pearson  :
+Iniciaremos la explicación del método asociándolo con el caso de dos variables A y B y un test de independencia para tablas de contingencia chi-cuadrado, la cual consiste en obtener el estadístico de prueba mediante la sumatoria de  la razón de las diferencias al cuadrado de los valores esperados y los valores observados y los valores observados, llamada también distancia de Pearson  :
 
 </br></br>
 
@@ -39,7 +39,7 @@ Donde
 </br></br>
 
 
-Supongamos que tenemos la siguiente tabla de contingencia, como resultado de una  encuesta que contenia dos preguntas: su actividad laboral y si habian sufrido o no de alguna enfermedad relacionadas con el estrés. 
+Supongamos que tenemos la siguiente tabla de contingencia, como resultado de una  encuesta que contenía dos preguntas: su actividad laboral y si habían sufrido o no de alguna enfermedad relacionadas con el estrés. 
 
 
 
@@ -47,7 +47,7 @@ Supongamos que tenemos la siguiente tabla de contingencia, como resultado de una
 ![](img/tabla2.png){width=33%}
 </center>
 
-Con esta información podremos obtener una metrica que nos permita agrupar las profesiones conformando grupos semejantes
+Con esta información podremos obtener una métrica que nos permita agrupar las profesiones conformando grupos semejantes
 
 
 <center>
@@ -65,7 +65,7 @@ Con esta información podremos obtener una metrica que nos permita agrupar las p
 
 La representación gráfica de estos valores permite visualizar que podrían existir tres grupos en cuanto a enfermedades relacionadas con el estrés :
 
-* Empleado público, empreado estatal y ama de casa
+* Empleado público, empleado estatal y ama de casa
 * Docente
 * Empleado bancario
 
@@ -75,7 +75,7 @@ La representación gráfica de estos valores permite visualizar que podrían exi
 
 </br>
 
-Ahora utilicemos la metrica $\lambda$ de Pearson para identificar si existe asociacion entre las variables $A$ y $B$. Para ello se parte de una tabla cruzada o de doble entrada donde se visializan las frecuencias conjuntas para todas las combinaciones posibles entre las categorias de ambas variables.
+Ahora utilicemos la métrica $\lambda$ de Pearson para identificar si existe asociación entre las variables $A$ y $B$. Para ello se parte de una tabla cruzada o de doble entrada donde se visializan las frecuencias conjuntas para todas las combinaciones posibles entre las categorías de ambas variables.
 
 </br></br>
 
@@ -87,20 +87,20 @@ Ahora utilicemos la metrica $\lambda$ de Pearson para identificar si existe asoc
 ```{r, warning=FALSE, message=FALSE}
 library(tidyr)
 m <- c(50,9,41,4,315,40,147,11,24,6,14,1,4012,459,1539,124) %>%
-      matrix(., ncol=4) 
+matrix(., ncol=4) 
 colnames(m) <- c( "b1", "b2", "b3", "b4")
 rownames(m) <- c( "a1", "a2", "a3", "a4")
 m
 ```
 
-Mediante la prueba chi.cuadrado se obtienen dos matrices con las que posteriormente se construiran las coordenadas que serán representadas en un plano cartesiano para permitir ver la cercania o no entre las categorias de ambas variables
+Mediante la prueba chi.cuadrado se obtienen dos matrices con las que posteriormente se construirán las coordenadas que serán representadas en un plano cartesiano para permitir ver la cercania o no entre las categorias de ambas variables
 
 
 ```{r, warning=FALSE}
 chisq.test(m)
 ```
 
-Los resultados de la prueba indican que las variables **A** y **B** no son independientes y que por tanto existen relaciones entre sus categorias. 
+Los resultados de la prueba indican que las variables **A** y **B** no son independientes y que por tanto existen relaciones entre sus categorías. 
 
 
 Iniciaremos visualizando la matriz de valores observados 
@@ -110,7 +110,7 @@ chisq.test(m)$observed
 ```
 
 
-Y la matriz de valores esperados. Estos valores corresponde a los valores esperados en caso de que se cumpla la hipotesis nula que afirma que las dos variables son independientes haciendo que se cumpla que :
+Y la matriz de valores esperados. Estos valores corresponde a los valores esperados en caso de que se cumpla la hipótesis nula que afirma que las dos variables son independientes haciendo que se cumpla que :
 
 
 $$n_{11} = \dfrac{n_{.1} \times n_{1.} }{n} = \dfrac{4401 \times 104}{6796} = 67.34903$$
@@ -134,7 +134,7 @@ Discrepancias
 
 <br/>
 
-La suma total de los valores de la matriz de discrepacias constituye el valor del estadisco chi-cuadrado ($\lambda = 21.359$)
+La suma total de los valores de la matriz de discrepancias constituye el valor del esta disco chi-cuadrado ($\lambda = 21.359$)
 
 
 ```{r}
@@ -211,4 +211,5 @@ coord_columnas <- t(V) %*% sqrt(D)
 coord_columnas
 ```
 
-Finalmente se representa los resultados obtenidos en un plano cartesiano donde se pueden visualizar las relaciones entre las categorias de las dos variables
+Finalmente se representa los resultados obtenidos en un plano cartesiano donde se pueden visualizar las relaciones entre las categorías de las dos variables
+

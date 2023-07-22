@@ -32,7 +32,7 @@ knitr::include_graphics("img/acp12.png")
 
 </br>
 
-Este análisis consiste en describir la variación producida por las observaciones de $p$ variables aleatorias, mediante un conjunto de nuevas variables que estan correlacionadas entre si, denominadas **componentes** y que estan conformadas por combinación lineal de las variables originales. 
+Este análisis consiste en describir la variación producida por las observaciones de $p$ variables aleatorias, mediante un conjunto de nuevas variables que están correlacionadas entre si, denominadas **componentes** y que están conformadas por combinación lineal de las variables originales. 
 
 Se utiliza como complemento de los análisis descriptivos y para contribución en modelos predictivos, reduciendo el número de variables empleadas en el modelo.
 
@@ -120,14 +120,14 @@ Para determinar la porción de la varianza total de la data explicada por el com
 $$
 \Sigma =
 \begin{equation}
-\left(
-\begin{array}{cccc}
-\sigma^2_1 & \sigma_{12} & \cdots & \sigma_{1p} \\
-\sigma_{21} & \sigma^2_2 & \cdots & \sigma_{2p} \\
-\vdots & \vdots & \ddots & \vdots \\
-\sigma_{p1} & \sigma_{2p} & \cdots & \sigma^2_p
-\end{array}
-\right)
+	\left(
+	\begin{array}{cccc}
+		\sigma^2_1 & \sigma_{12} & \cdots & \sigma_{1p} \\
+		\sigma_{21} & \sigma^2_2 & \cdots & \sigma_{2p} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\sigma_{p1} & \sigma_{2p} & \cdots & \sigma^2_p
+	\end{array}
+	\right)
 \end{equation}
 $$
 
@@ -184,10 +184,6 @@ $$\dfrac{\lambda_{1} + \lambda_2 + \lambda_3}{\displaystyle\sum_{i=1}^p \lambda_
 
 Si los dos componentes principales explican un porcentaje grande de los datos nos permite representar los registros de la data en un plano cartesiano, pudiendo de esta forma identificar relaciones y patrones en los datos.
 
-Para darle sentido al gráfico obtenido debemos se analizan los pesos del grupo de variables en la convinación lineal que conforma cada componente principal acompañado de la visualización de puntos extremos que ayudan a identificar sus principales caracteristicas
-
-
-
-
+Para darle sentido al gráfico obtenido debemos se analizan los pesos del grupo de variables en la convinación lineal que conforma cada componente principal acompañado de la visualización de puntos extremos que ayudan a identificar sus principales características
 
 

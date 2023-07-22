@@ -7,6 +7,9 @@ navbar:
       menu:
         - text: "Conceptos básicos"
           href: recurso010.html 
+        - text: "Matrices de datos y VC"
+          href: recurso020.html           
+          
     - text: "ACPrincipales"
       menu:
         - text: "Análisis de Componentes Principales"

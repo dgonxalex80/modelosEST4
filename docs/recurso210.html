@@ -254,6 +254,9 @@ $(document).ready(function () {
     <li>
       <a href="recurso010.html">Conceptos básicos</a>
     </li>
+    <li>
+      <a href="recurso020.html">Matrices de datos y VC</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -366,7 +369,7 @@ $(document).ready(function () {
 <p></br></p>
 <pre class="r"><code>id= 1:8
 empresa =data.frame(inv.pub = c(16,12,10,12,45,50,45,50),
-                    ventas =c(10,14,22,25,10,14,25,27) )
+ventas =c(10,14,22,25,10,14,25,27) )
 rownames(empresa) = c(&quot;E1&quot;,&quot;E2&quot;,&quot;E3&quot;,&quot;E4&quot;,&quot;E5&quot;,&quot;E6&quot;,&quot;E7&quot;, &quot;E8&quot;)</code></pre>
 <p></br></p>
 <p>Dado que los rangos de las variables son diferente y con fin de que
@@ -458,9 +461,9 @@ assigned_cluster &lt;- empresa_z %&gt;% mutate(cluster = as.factor(cluster_assig
 
 # gráfico de puntos
 ggplot(assigned_cluster, aes(x = inv.pub, y = ventas, color = cluster)) +
-  geom_point(size = 4) +
-  geom_text(aes(label = cluster), vjust = -.8) + # Agregar etiquetas del clúster
-  theme_classic()</code></pre>
+geom_point(size = 4) +
+geom_text(aes(label = cluster), vjust = -.8) + # Agregar etiquetas del clúster
+theme_classic()</code></pre>
 <p><img src="recurso210_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p></br></br></p>
 <pre class="r"><code>plot(hc_emp, cex = 0.6, main = &quot;Dendograma de Empresas&quot;, las=1,
@@ -469,7 +472,7 @@ rect.hclust(hc_emp, k = 2, border = 2:5)</code></pre>
 <p><img src="recurso210_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p></br></p>
 <p>En este diagrama se observa que al inicio los individuos que más se
-parecen (menor distancia euclidea) son los individuos <code>E7</code>,
+parecen (menor distancia euclidiana) son los individuos <code>E7</code>,
 <code>E8</code>, <code>E3</code>y <code>E4</code>
 (<code>d(E7, E8) = 0.3863837</code>) <code>d(E3, E4) = 0.4350355</code>)
 , conformando estas cuatro empresas un primer cluster y el resto un

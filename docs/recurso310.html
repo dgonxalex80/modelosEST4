@@ -254,6 +254,9 @@ $(document).ready(function () {
     <li>
       <a href="recurso010.html">Conceptos básicos</a>
     </li>
+    <li>
+      <a href="recurso020.html">Matrices de datos y VC</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -320,7 +323,112 @@ Correspondencia</strong></h1>
 </div>
 
 
-<p>Tomaremos la base vivienda</p>
+<p><br/></p>
+<p>Para ilustrar los pasos para realizar un análisis de correspondencia
+se toma una muestra de la base de datos vivienda contenida en
+paqueteMOD</p>
+<p><br/></p>
+<pre class="r"><code>set.seed(1234)
+vivienda.24 &lt;- sample_n(vivienda24, 4000) 
+vivienda.24$estrato &lt;- as.factor(vivienda.24$estrato)</code></pre>
+<p><br/><br/></p>
+<p>Inicialmente se revisa si la base tiene datos faltantes</p>
+<pre class="r"><code>library(mice)</code></pre>
+<pre><code>
+Attaching package: &#39;mice&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:stats&#39;:
+
+    filter</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
+
+    cbind, rbind</code></pre>
+<pre class="r"><code>md.pattern(vivienda.24, rotate.names = TRUE)</code></pre>
+<p><img src="recurso310_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre><code>     zona estrato  
+3999    1       1 0
+1       0       0 2
+        1       1 2</code></pre>
+<p><br/></p>
+<p>La muestra seleccionada contiene un registro con datos faltantes para
+ambas variables, de tal forma que se procede a eliminarlas, para
+posteriormente constatar que se han eliminado se utiliza la función
+md.pattern del paquete mice</p>
+<p><br/></p>
+<pre class="r"><code>library(mice)
+vivienda.24 &lt;- na.omit(vivienda.24)
+grafico &lt;-md.pattern(vivienda.24, rotate.names = TRUE)</code></pre>
+<p><img src="img/vivienda24.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><br/></p>
+<p>Se construye entonces una tabla cruzada con las variables
+involucradas en el análisis :</p>
+<ul>
+<li>Zona : Centro, Norte, Oeste, Oriente, Sur</li>
+<li>Estrato : 3,4,5,6</li>
+</ul>
+<p><br/></p>
+<pre class="r"><code>library(FactoMineR)</code></pre>
+<pre><code>
+Attaching package: &#39;FactoMineR&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:ade4&#39;:
+
+    reconst</code></pre>
+<pre class="r"><code>tabla &lt;- table(vivienda.24$zona, vivienda.24$estrato)
+tabla</code></pre>
+<pre><code>              
+                 3   4   5   6
+  Zona Centro   46   8   2   1
+  Zona Norte   279 194 382  86
+  Zona Oeste    26  41 126 358
+  Zona Oriente 178   3   1   0
+  Zona Sur     186 798 781 503</code></pre>
+<p><br/></p>
+<pre class="r"><code>chisq.test(tabla)</code></pre>
+<pre><code>
+    Pearson&#39;s Chi-squared test
+
+data:  tabla
+X-squared = 1868.9, df = 12, p-value &lt; 2.2e-16</code></pre>
+<p><br/></p>
+<p>El resultado indica que se rechaza la hipótesis de independencia de
+las variables (p-value: 0.0000), indicando grado tipo de relación entre
+ellas.</p>
+<p><br/></p>
+<p>Finalmente se procede a realizar el análisis de correspondencia que
+consistes en estimar las coordenadas para cada uno de los niveles de
+ambas variables y representarlas en un plano cartesiano</p>
+<p><br/></p>
+<pre class="r"><code>library(FactoMineR)
+library(factoextra)
+library(gridExtra)
+resultados_ac &lt;- CA(tabla)</code></pre>
+<p><img src="recurso310_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><br/></p>
+<p>El gráfico nos permite establecer relaciones y validarlas como
+son:</p>
+<ul>
+<li>El estrato 6 se encuentra ubicado en la Zona Oeste</li>
+<li>Los estratos 4 y 5 están ubicados principalmente en la Zona Sur y
+Norte</li>
+<li>El estrato 3 está presente en las Zonas Oriente y Centro</li>
+</ul>
+<p><br/><br/></p>
+<div id="código" class="section level3">
+<h3><strong>Código</strong></h3>
+<pre class="r"><code>library(paqueteMOD)
+data(vivienda)
+vivienda.24 &lt;- vivienda[, c(2,4)]
+
+library(dplyr)
+set.seed(1234)
+vivienda.24 &lt;- sample_n(vivienda.24, 4000) 
+md.pattern(vivienda.24, rotate.names = TRUE)
+
+library(mice)
+library(FactoMineR)
+vivienda.24 &lt;- na.omit(vivienda.24)
+tabla &lt;- table(vivienda.24$zona, vivienda.24$estrato)
+resultados_ac &lt;- CA(tabla)</code></pre>
+</div>
 
 
 

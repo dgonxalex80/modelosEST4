@@ -254,6 +254,9 @@ $(document).ready(function () {
     <li>
       <a href="recurso010.html">Conceptos básicos</a>
     </li>
+    <li>
+      <a href="recurso020.html">Matrices de datos y VC</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -323,9 +326,9 @@ $(document).ready(function () {
 <p><br/></p>
 <p>La siguiente base de datos corresponde a información relacionada con
 el comportamiento crediticio de un grupo de 780 clientes de un banco</p>
-<p>Se requiere resumir las variables cuantitativas (antiguedad, edad,
+<p>Se requiere resumir las variables cuantitativas (antigüedad, edad,
 cuota e ingresos) en por lo menos dos variables (componentes
-principales) y poder asi adicionar elementos al análisis</p>
+principales) y poder así adicionar elementos al análisis</p>
 <p><br/></p>
 <pre class="r"><code>library(paqueteMOD)
 data(&quot;creditos&quot;)                # base de datos
@@ -335,11 +338,11 @@ str(creditos)</code></pre>
 <pre>
 Show in New Window
 tibble [780 × 5] (S3: tbl_df/tbl/data.frame)
- $ default   : num [1:780] 1 1 1 1 1 1 1 1 1 1 ...
- $ antiguedad: num [1:780] 37.32 37.32 30.98 9.73 8.44 ...
- $ edad      : num [1:780] 77 73.8 78.9 51.5 39 ...
- $ cuota     : num [1:780] 3020519 1766552 1673786 668479 1223559 ...
- $ ingresos  : num [1:780] 8155593 6181263 4328075 5290910 5333818 ...
+$ default   : num [1:780] 1 1 1 1 1 1 1 1 1 1 ...
+$ antiguedad: num [1:780] 37.32 37.32 30.98 9.73 8.44 ...
+$ edad      : num [1:780] 77 73.8 78.9 51.5 39 ...
+$ cuota     : num [1:780] 3020519 1766552 1673786 668479 1223559 ...
+$ ingresos  : num [1:780] 8155593 6181263 4328075 5290910 5333818 ...
 
 </pre>
 <p></br></br></p>
@@ -355,11 +358,11 @@ realiza la estandarización de las variables antes de proceder a realizar
 el proceso de estimación de los componentes principales.</p>
 <pre class="r"><code>library(tidyverse)
 creditosZ= creditos[2:5] %&gt;%
-                 scale()
+scale()
 head(creditosZ) # primeros 6 registros</code></pre>
 <p></br></br></p>
 <pre>
-       antiguedad         edad        cuota      ingresos
+antiguedad         edad        cuota      ingresos
 [1,]    1.6150493    1.5992045    2.8847306    1.05164674
 [2,]    1.6150493    1.3426559    1.1906667    0.30723062
 [3,]    1.0840529    1.7554121    1.0653432   -0.39150920
@@ -399,25 +402,25 @@ variables se puede resumir gran parte de la variabilidad que contiene la
 base de datos.</p>
 <p></br></br></p>
 <pre class="r"><code>fviz_pca_var(res.pca,
-             col.var = &quot;contrib&quot;, # Color by contributions to the PC
-             gradient.cols = c(&quot;#FF7F00&quot;,  &quot;#034D94&quot;),
-             repel = TRUE     # Avoid text overlapping
-             )</code></pre>
+col.var = &quot;contrib&quot;, # Color by contributions to the PC
+gradient.cols = c(&quot;#FF7F00&quot;,  &quot;#034D94&quot;),
+repel = TRUE     # Avoid text overlapping
+)</code></pre>
 <p><img src="recurso110_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Al visualizar las variables en el plano de los componentes
 principales permite identificar el sentido y la caracterización de los
-componentes (caracteristica capturada por los vectores propios de <span
+componentes (característica capturada por los vectores propios de <span
 class="math inline">\(\Sigma\)</span>). En este ejercicio el primer
-componente principal está asociado principalmete con la variables
-<strong>edad</strong> y <strong>antiguedad</strong>, mientras que el
+componente principal está asociado principalmente con la variables
+<strong>edad</strong> y <strong>antigüedad</strong>, mientras que el
 segundo componente se puede asociar a la variable
 <strong>cuota</strong></p>
 <p>Para explicar el sentido de los ejes, se escogen cuatro casos
 extremos conformados por los siguientes clientes</p>
 <pre class="r"><code>datos&lt;- rbind(creditos[98,], # ok
-              creditos[778,],
-              creditos[6,],
-              creditos[462,])
+creditos[778,],
+creditos[6,],
+creditos[462,])
 
 datos &lt;- as.data.frame(datos)
 rownames(datos) = c(&quot;Cliente 098&quot;,&quot;Cliente 778&quot;,&quot;Cliente 006&quot;,&quot;Cliente 462&quot;)
@@ -437,13 +440,13 @@ rownames(casos2) = c(&quot;6&quot;,&quot;190&quot;)
 casos2 &lt;- as.data.frame(casos2)
 
 fviz_pca_ind(res.pca, col.ind = &quot;#DEDEDE&quot;, gradient.cols = c(&quot;#00AFBB&quot;, &quot;#E7B800&quot;, &quot;#FC4E07&quot;)) +
-  geom_point(data = casos1, aes(x = PC1, y = PC2), color = &quot;red&quot;, size = 3) +
-  geom_point(data = casos2, aes(x = PC1, y = PC2), color = &quot;blue&quot;, size = 3)</code></pre>
+geom_point(data = casos1, aes(x = PC1, y = PC2), color = &quot;red&quot;, size = 3) +
+geom_point(data = casos2, aes(x = PC1, y = PC2), color = &quot;blue&quot;, size = 3)</code></pre>
 <p><img src="recurso110_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p></br></br></p>
 <pre>
 
-              default   antiguedad       edad     cuota   ingresos
+default   antiguedad       edad     cuota   ingresos
 Cliente 098         0    27.358904   74.30685    170024   20924813
 Cliente 778         0     1.517808   26.61370      9256    2473929
 
@@ -459,7 +462,7 @@ componente principal (Dim1).</p>
 <p></br> Aun más dado que el primer componente no solo está conformado
 por la variable ingresos, sino que se trata de una combinación lineal de
 todas las variables donde se destaca (presenta mayor pesos) los ingresos
-se puede analizara que mientras el cliente 098 presenta una realción
+se puede analizara que mientras el cliente 098 presenta una relación
 cuota/ingresos de $170.024/$20’924.813 = 0.008125473 , el cliente 299
 que se encuentra al otro extremo de la recta presenta una relación
 $727.995 / 848.487 = 0.8579919 .</p>
@@ -468,9 +471,9 @@ $727.995 / 848.487 = 0.8579919 .</p>
 $3’517.756) con <strong>cliente190</strong> (cuota = $103.855)</p>
 <p></br></br></p>
 <pre class="r"><code>datos&lt;- rbind(creditos[98,],
-              creditos[293,],
-              creditos[6,],
-              creditos[190,])
+creditos[293,],
+creditos[6,],
+creditos[190,])
 datos</code></pre>
 <pre><code># A tibble: 4 × 5
   default antiguedad  edad   cuota ingresos
@@ -481,16 +484,16 @@ datos</code></pre>
 4       0      27.8   54.0  103855 12303025</code></pre>
 <p></br></br></p>
 <pre class="r"><code>fviz_pca_biplot(res.pca, 
-                repel = TRUE,
-                habillage = creditos$default,
-                col.var = &quot;#034A94&quot;, # Variables color
-                col.ind = c(&quot;#DEDEDE&quot;, &quot;#034A94&quot;)  # Individuals color
-                )</code></pre>
+repel = TRUE,
+habillage = creditos$default,
+col.var = &quot;#034A94&quot;, # Variables color
+col.ind = c(&quot;#DEDEDE&quot;, &quot;#034A94&quot;)  # Individuals color
+)</code></pre>
 <p><img src="recurso110_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><br/><br/></p>
 <p>La representación gráfica de los dos primeros componentes principales
 nos permite observar la relación existente entre las variables : edad y
-antiguedad, formando un grupo que presenta un mayor efecto sobre el
+antigüedad, formando un grupo que presenta un mayor efecto sobre el
 primer componente, mientras que la variable cuota presenta un mayor
 efecto sobre el segundo componente.</p>
 </div>

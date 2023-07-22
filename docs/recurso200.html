@@ -254,6 +254,9 @@ $(document).ready(function () {
     <li>
       <a href="recurso010.html">Conceptos básicos</a>
     </li>
+    <li>
+      <a href="recurso020.html">Matrices de datos y VC</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -321,10 +324,7 @@ Conglomerados</strong></span></h1>
 </div>
 
 
-<div id="conceptos" class="section level1">
-<h1><strong>Conceptos</strong></h1>
 <p></br></br></p>
-</div>
 <div id="introducción" class="section level1">
 <h1><span
 style="color:#034a94"><strong>Introducción</strong></span></h1>
@@ -337,7 +337,7 @@ objetos o individuos. Dentro de cada grupo los objetos son más similares
 entre sí que con los de otros grupos. El análisis de conglomerados
 implica la selección de un conjunto de variables para medir las
 características de los objetos o individuos, y luego aplicar un
-algoritmo de agrupamiento para clasificarlos en conglomerados. Los
+algoritmo de agrupamiento para clarificarlos en conglomerados. Los
 algoritmos de agrupamiento utilizados pueden ser jerárquicos o no
 jerárquicos, dependiendo de si los grupos se construyen de forma
 iterativa a partir de subgrupos más pequeños.</p>
@@ -348,7 +348,7 @@ iterativa a partir de subgrupos más pequeños.</p>
 requisitos</strong></span></h1>
 <p></br></p>
 <p>El análisis de conglomerados se basa en calcular distancias entre los
-individuos metricas a partir de la matriz de datos <span
+individuos métricas a partir de la matriz de datos <span
 class="math inline">\(X\)</span>. Una vez encontrados los conglomerados
 o grupos se procede a representarlos en un plano factorial. Supone por
 tanto el conocimiento previo de la presencia de conglomerados o por lo
@@ -366,7 +366,7 @@ style="color:#034a94"><strong>Estandarización</strong></span></h3>
 <p>Debido a la diferencias en las escalas de las variables empleadas en
 el análisis, es necesario colocarlas en una sola escala, para lo cual a
 cada variables se le resta el valor de su media y el resultado se divide
-por su desviación estandar. El producto de esta trasformación es una
+por su desviación estándar. El producto de esta trasformación es una
 variable con media <span class="math inline">\(0\)</span> y varianza
 <span class="math inline">\(1\)</span>.</p>
 <p><span class="math display">\[
@@ -421,7 +421,7 @@ conglomerado.</li>
 <p></br></p>
 <ul>
 <li><strong>Suma de cuadrados entre clusters</strong> (<span
-class="math inline">\(SSB\)</span>), que mide la variavilidad entre los
+class="math inline">\(SSB\)</span>), que mide la variabilidad entre los
 conglomerados,permitiendo valorar la calidad del agrupamiento.</li>
 </ul>
 <p></br></p>
@@ -447,7 +447,7 @@ casos de cada uno de los conglomerados</p>
 </div>
 <div id="dendograma" class="section level3">
 <h3><span style="color:#034a94"><strong>Dendograma</strong></span></h3>
-<p>Corresponde a la representación grafica de los resultados obtenidos
+<p>Corresponde a la representación gráfica de los resultados obtenidos
 en el AC, en un plano donde el eje vertical indica las distancias en las
 que se unen o separan los conglomerados y en el eje horizontal los
 objetos o individuos.</p>
@@ -475,8 +475,8 @@ que se usarán en el método no jerárquico.</p>
 <p></br></p>
 <p>Mediante el análisis de conglomerados se desea clasificar a los
 distintos individuos u observaciones en grupos muy homogéneos, pero
-heterogeneos entre ellos. Para realizar este objetivo se utilizan
-métricas que perminten calcular el grado de asociación (similitud o
+heterogéneos entre ellos. Para realizar este objetivo se utilizan
+métricas que permiten calcular el grado de asociación (similitud o
 disimilitud) entre dos observaciones, dentro de las más usada está la
 <strong>distancia euclidiana</strong> entre los dos puntos, la cual está
 dado por:</p>

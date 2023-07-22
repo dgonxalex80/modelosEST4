@@ -7,50 +7,118 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment = NA)
-library(paqueteMOD)
-library(paqueteMET)
-data(vivienda)
-
-```
-
-Tomaremos una muestra de la base vivienda contenida en paqueteMOD para el siguiente ejemplo:
-
-```{r}
 library(dplyr)
-set.seed(321)
-viviendaAC <-sample_n(vivienda, 2000)
+library(readr)
+vivienda <- read_csv("~/Documentos/Javeriana/Ms Ciencia de Datos/recursos/data/vivienda.csv")
+vivienda24 <- vivienda[, c(2,4)]
 ```
 
+<br/>
+
+Para ilustrar los pasos para realizar un análisis de correspondencia se toma una muestra de la base de datos vivienda contenida en paqueteMOD
+
+<br/>
+
+```{r}
+set.seed(1234)
+vivienda.24 <- sample_n(vivienda24, 4000) 
+vivienda.24$estrato <- as.factor(vivienda.24$estrato)
+```
+
+<br/><br/>
+
+Inicialmente se revisa si la base tiene datos faltantes
 
 ```{r}
 library(mice)
-md.pattern(viviendaAC, rotate.names = TRUE)
+md.pattern(vivienda.24, rotate.names = TRUE)
+
 ```
-```{r}
+<br/>
+
+La muestra seleccionada contiene un registro con datos faltantes para ambas variables, de tal forma que se procede a eliminarlas, para posteriormente constatar que se han eliminado se utiliza la función  md.pattern del paquete mice
+
+<br/>
+
+```{r, eval=FALSE}
 library(mice)
-# viviendaAC1 <-vivendaAC[,c(2,4)] 
-# md.pattern(viviendaAC1, rotate.names = TRUE)
-
+vivienda.24 <- na.omit(vivienda.24)
+grafico <-md.pattern(vivienda.24, rotate.names = TRUE)
 ```
 
-```{r}
-library(mice)
-viviendaAC1 <- na.omit(viviendaAC1)
-grafico <-md.pattern(viviendaAC1, rotate.names = TRUE)
+
+```{r, echo=FALSE, out.width="70%", fig.align = "center"}
+knitr::include_graphics("img/vivienda24.png")
 ```
 
-```{r}
-# str(viviendaAC1)
-```
+
+<br/>
+
+Se construye entonces una tabla cruzada con las variables involucradas en el análisis : 
+
+* Zona    : Centro, Norte, Oeste, Oriente, Sur
+* Estrato : 3,4,5,6
+
+<br/>
 
 ```{r}
 library(FactoMineR)
-tabla <- table(viviendaAC1$zona, viviendaAC1$estrato)
+tabla <- table(vivienda.24$zona, vivienda.24$estrato)
 tabla
 ```
 
+<br/>
 
 
+```{r}
+chisq.test(tabla)
+```
+
+<br/>
+
+El resultado indica que se rechaza la hipótesis de independencia de las variables (p-value: 0.0000), indicando grado tipo de relación entre ellas.
+
+<br/>
+
+Finalmente se procede a realizar el análisis de correspondencia que consistes en estimar las coordenadas para cada uno de los niveles de ambas variables y representarlas en un plano cartesiano
+
+<br/>
+
+```{r, warning=FALSE, message=FALSE}
+library(FactoMineR)
+library(factoextra)
+library(gridExtra)
+resultados_ac <- CA(tabla)
+```
+
+<br/>
+
+El gráfico nos permite establecer relaciones y validarlas como son:
+
+* El estrato 6 se encuentra ubicado en la Zona Oeste
+* Los estratos 4 y 5 están ubicados principalmente en la Zona Sur y Norte
+* El estrato 3 está presente en las Zonas Oriente y Centro
 
 
+<br/><br/>
 
+### **Código**
+
+```{r, eval=FALSE}
+
+library(paqueteMOD)
+data(vivienda)
+vivienda.24 <- vivienda[, c(2,4)]
+
+library(dplyr)
+set.seed(1234)
+vivienda.24 <- sample_n(vivienda.24, 4000) 
+md.pattern(vivienda.24, rotate.names = TRUE)
+
+library(mice)
+library(FactoMineR)
+vivienda.24 <- na.omit(vivienda.24)
+tabla <- table(vivienda.24$zona, vivienda.24$estrato)
+resultados_ac <- CA(tabla)
+
+```

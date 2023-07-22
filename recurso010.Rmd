@@ -31,17 +31,17 @@ vivienda1 <-vivienda[ids,]
 <br/><br/>
 
 
-Por los general en el aprendizaje de las Estadística se trabaja con datos en una sola dimensión (univariado), se revisan tando indicadores como la representación gráfica de las variables una a una. En ocaciones se pasa a estudiar grupos de variables de manera bivariada. Para ello se construyen tablas cruzadas y se grafican las dos variables en un plano de tal forma que permite identificar relacines entre ellas.  
+Por los general en el aprendizaje de las Estadística se trabaja con datos en una sola dimensión (univariado), se revisan tanto indicadores como la representación gráfica de las variables una a una. En ocaciones se pasa a estudiar grupos de variables de manera bivariada. Para ello se construyen tablas cruzadas y se construye una gráfica de  las dos variables en un plano de tal forma que permite identificar relaciones entre ellas.  
 
 En esta unidad trataremos el caso multivariado que consiste en tomar la información contenida en un grupo de variables  (m>2) que permita dar valor a un conjunto de variables y registros, pudiendo identificar patrones y realizar agrupaciones.
 
-Para hacernos una idea empesaremos lo univariado a lo multivariado
+Para hacernos una idea empezaremos  por lo univariado a lo multivariado
 
 <br/><br/>
 
 ## <span style="color:#034a94">**Análisis estadístico univariado**</span>
 
-Supongamos que tenemos información de un grupo de 1000 viviendas de las cuales contamos con su valor comercial. A partir de esta información podemos realizar un **análisis univariado** como se presentó en el curso anterior, mostrandonos de manera parcial el comportamiento de los precios de las viviendas.
+Supongamos que tenemos información de un grupo de 1000 viviendas de las cuales contamos con su valor comercial. A partir de esta información podemos realizar un **análisis univariado** como se presentó en el curso anterior, mostrándonos de manera parcial el comportamiento de los precios de las viviendas.
 
 <br/>
 
@@ -63,23 +63,23 @@ Descriptive Statistics
 vivienda1$preciom  
 N: 1000  
 
-                    preciom
+preciom
 ----------------- ---------
-             Mean    457.38
-          Std.Dev    348.37
-              Min     65.00
-               Q1    220.00
-           Median    340.00
-               Q3    580.00
-              Max   1950.00
-              MAD    237.22
-              IQR    360.00
-               CV      0.76
-         Skewness      1.67
-      SE.Skewness      0.08
-         Kurtosis      2.72
-          N.Valid   1000.00
-        Pct.Valid    100.00
+Mean    457.38
+Std.Dev    348.37
+Min     65.00
+Q1    220.00
+Median    340.00
+Q3    580.00
+Max   1950.00
+MAD    237.22
+IQR    360.00
+CV      0.76
+Skewness      1.67
+SE.Skewness      0.08
+Kurtosis      2.72
+N.Valid   1000.00
+Pct.Valid    100.00
 
 </pre>
 
@@ -96,20 +96,20 @@ boxplot(vivienda1$preciom, horizontal=FALSE, las=1, col = "#FF7F00")
 :::
 
 
-Es posible que este análisis se quede corto para entender el comportamiento de los precios de la vivienda, su alta variación y asimetria.
+Es posible que este análisis se quede corto para entender el comportamiento de los precios de la vivienda, su alta variación y asimetría.
 
 <br/><br/>
 
 
 ## <span style="color:#034a94">**Análisis estadístico bivariado**</span>
 
-Una segunda opción es la de analizar dos variables al tiempo (**análisis bivariado**) y medir la relación que puede existir entre ellas, presentandose las siguientes posibiblidades:
+Una segunda opción es la de analizar dos variables al tiempo (**análisis bivariado**) y medir la relación que puede existir entre ellas, presentándose las siguientes posibilidades:
 
 <br/>
 
 ### <span style="color:#FF7F00">**1. cualitativa - cualitativa**</span> : 
 
-En este caso se emplean las tablas de contingencia o de doble entrada, las cuales se pueden representar mediante un diagrama de barras. Para determinar si existe relación o no entre las dos variables se utiliza una prueba de hipotesis Chi-cuadrado para tablas de contingencia.
+En este caso se emplean las tablas de contingencia o de doble entrada, las cuales se pueden representar mediante un diagrama de barras. Para determinar si existe relación o no entre las dos variables se utiliza una prueba de hipótesis Chi-cuadrado para tablas de contingencia.
 
 :::: {style="display: flex;"}
 ::: {}
@@ -125,12 +125,12 @@ t(tabla)
 
 ```{r, echo=FALSE, fig.align='center', fig.width=6}
 barplot(tabla, 
-        main = "Tipo de vivienda por Zona",
-        las = 1,
-        col = c("#FF7F00", "#034A94"), 
-        ylim = c(0,600),
-        names.arg=c("Centro","Norte","Oeste","Oriente", "Sur") 
-        )
+main = "Tipo de vivienda por Zona",
+las = 1,
+col = c("#FF7F00", "#034A94"), 
+ylim = c(0,600),
+names.arg=c("Centro","Norte","Oeste","Oriente", "Sur") 
+)
 # legend("topleft", legend = rownames(tabla))
 ```
 
@@ -153,7 +153,7 @@ El resultado obtenido (p-value: 0.000), indica que las variables no son independ
 <!-- psych::describe.by(vivienda1$preciom,vivienda1$tipo) -->
 <!-- ``` -->
 
-En este caso se puede realizar un análisis calculando los indicadores estadisticos (media, mediana, varianza...) de la variable cuantitavica para los diferentes grupos o categorías que conforman la variable cualitativa. Y tambien representarlas mediante un diagrama de cajas. 
+En este caso se puede realizar un análisis calculando los indicadores estadísticos (media, mediana, varianza...) de la variable cuantitativa para los diferentes grupos o categorías que conforman la variable cualitativa. Y también representarlas mediante un diagrama de cajas. 
 
 
 <pre>
@@ -177,13 +177,13 @@ precio  389   571.82   371.03    470     518.36    281.69  80       1900  1820  
 
 ```{r, echo=FALSE, fig.align='center', fig.width=6, fig.height=8}
 boxplot(vivienda1$preciom ~ vivienda1$tipo,
-        ylab = "precio de la vivienda (MM$)",
-        xlab = "tipo de vivienda",
-        las=1, 
-        col = c(c1,c4))
+ylab = "precio de la vivienda (MM$)",
+xlab = "tipo de vivienda",
+las=1, 
+col = c(c1,c4))
 ```
 
-Los resultados muestra una leve diferencia entre los dos grupos en cuanto a su media que puede ser confirmada mediante una prueba de hipotesis t.student para la comparación de medias
+Los resultados muestra una leve diferencia entre los dos grupos en cuanto a su media que puede ser confirmada mediante una prueba de hipótesis t.student para la comparación de medias
 
 ```{r, echo=FALSE}
 t.test(vivienda1$preciom ~ vivienda1$tipo)
@@ -196,7 +196,7 @@ Los resultados indican que existen diferencias significativas entre los valores 
 ### <span style="color:#FF7F00">**3. cuantitativa - cuantitativa**</span> : 
 
 
-Cuando tenemos dos variables cuantitavivas se pueden medir indicadores conjuntos como son la covarianza y la correlación, esta última mide la fuerza de la relación lineal entre las dos variables. 
+Cuando tenemos dos variables cuantitativas se pueden medir indicadores conjuntos como son la covarianza y la correlación, esta última mide la fuerza de la relación lineal entre las dos variables. 
 
 
 ```{r, echo=FALSE}
@@ -211,9 +211,9 @@ Los resultados indican una leve relación  lineal positiva entre el área constr
 
 ```{r, echo=FALSE, fig.align='center'}
 plot(vivienda1$preciom, vivienda1$areaconst, las=1,
-     pch=19, col = c1, 
-     ylab = "area construida de la vivienda",
-     xlab = "precio de la vivienda (MM$)")
+pch=19, col = c1, 
+ylab = "area construida de la vivienda",
+xlab = "precio de la vivienda (MM$)")
 ```
 
 
@@ -225,14 +225,14 @@ plot(vivienda1$preciom, vivienda1$areaconst, las=1,
 
 <br/>
 
-Aunque este analisis es más amplio que los anteriores está menos difundido y utilizado que los dos anteriores 
+Aunque este análisis es más amplio que los anteriores está menos difundido y utilizado que los dos anteriores 
 
-Los metodos multivariados pueden tener diferentes propositos como: 
+Los métodos multivariados pueden tener diferentes propósitos como: 
 
 <br/>
 
 * **resumir un conjunto datos con muchas variables en unas pocas** :  Análisis de Componentes Principales
-  
+
 <br/>
 
 * **visualizar patrones** - **clasificar** :  Análisis de Conglomerados, 
@@ -257,7 +257,3 @@ knitr::include_graphics("img/acp12.png")
 En esta unidad se tratan algunos de estos métodos
 
 
- 
- 
- 
- 

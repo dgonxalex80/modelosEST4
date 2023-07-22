@@ -11,3 +11,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ![](img/enconstruccion.jpg)
+
+
+```{r, echo=FALSE, out.width="70%", fig.align = "center"}
+# knitr::include_graphics("img/limpieza.png")
+```
