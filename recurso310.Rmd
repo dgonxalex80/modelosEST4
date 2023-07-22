@@ -6,9 +6,51 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, comment = NA)
+library(paqueteMOD)
+library(paqueteMET)
+data(vivienda)
+
+```
+
+Tomaremos una muestra de la base vivienda contenida en paqueteMOD para el siguiente ejemplo:
+
+```{r}
+library(dplyr)
+set.seed(321)
+viviendaAC <-sample_n(vivienda, 2000)
+```
+
+
+```{r}
+library(mice)
+md.pattern(viviendaAC, rotate.names = TRUE)
+```
+```{r}
+library(mice)
+# viviendaAC1 <-vivendaAC[,c(2,4)] 
+# md.pattern(viviendaAC1, rotate.names = TRUE)
+
+```
+
+```{r}
+library(mice)
+viviendaAC1 <- na.omit(viviendaAC1)
+grafico <-md.pattern(viviendaAC1, rotate.names = TRUE)
+```
+
+```{r}
+# str(viviendaAC1)
+```
+
+```{r}
+library(FactoMineR)
+tabla <- table(viviendaAC1$zona, viviendaAC1$estrato)
+tabla
 ```
 
 
 
-![](img/enconstruccion.jpg)
+
+
+

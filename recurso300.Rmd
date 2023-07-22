@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, comment = NA)
 ```
 
 </br>
@@ -33,7 +33,7 @@ $$\lambda = \sum_{i=1}^{m} \sum_{j=1}^{n} \dfrac{(n_{ij} - n_{i.} n_{.j}/n)^2}{n
 Donde 
 
 <center>
-![](img/tablaab.png){width=60%}
+![](img/tablaab.png){width=50%}
 </center>
 
 </br></br>
@@ -44,7 +44,7 @@ Supongamos que tenemos la siguiente tabla de contingencia, como resultado de una
 
 
 <center>
-![](img/tabla2.png){width=35%}
+![](img/tabla2.png){width=33%}
 </center>
 
 Con esta información podremos obtener una metrica que nos permita agrupar las profesiones conformando grupos semejantes
@@ -61,16 +61,21 @@ Con esta información podremos obtener una metrica que nos permita agrupar las p
 ![](img/pocisiones.png){width=100%}
 </center>
 
+</br></br>
+
 La representación gráfica de estos valores permite visualizar que podrían existir tres grupos en cuanto a enfermedades relacionadas con el estrés :
 
 * Empleado público, empreado estatal y ama de casa
 * Docente
 * Empleado bancario
 
+</br></br>
 
-Ahora utilicemos la metrica $\lambda$ de Pearson para identificar si existe asociacion entre las variables $A$ y $B$
+## **Análisis de correspondencia simple**
 
+</br>
 
+Ahora utilicemos la metrica $\lambda$ de Pearson para identificar si existe asociacion entre las variables $A$ y $B$. Para ello se parte de una tabla cruzada o de doble entrada donde se visializan las frecuencias conjuntas para todas las combinaciones posibles entre las categorias de ambas variables.
 
 </br></br>
 
@@ -79,7 +84,7 @@ Ahora utilicemos la metrica $\lambda$ de Pearson para identificar si existe asoc
 ![](img/tablaAB.png){width=50%}
 </center>
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(tidyr)
 m <- c(50,9,41,4,315,40,147,11,24,6,14,1,4012,459,1539,124) %>%
       matrix(., ncol=4) 
@@ -88,24 +93,36 @@ rownames(m) <- c( "a1", "a2", "a3", "a4")
 m
 ```
 
+Mediante la prueba chi.cuadrado se obtienen dos matrices con las que posteriormente se construiran las coordenadas que serán representadas en un plano cartesiano para permitir ver la cercania o no entre las categorias de ambas variables
+
+
 ```{r, warning=FALSE}
 chisq.test(m)
 ```
 
-```{r, warning=FALSE}
-```
+Los resultados de la prueba indican que las variables **A** y **B** no son independientes y que por tanto existen relaciones entre sus categorias. 
 
+
+Iniciaremos visualizando la matriz de valores observados 
 
 ```{r, warning=FALSE}
 chisq.test(m)$observed
 ```
 
 
+Y la matriz de valores esperados. Estos valores corresponde a los valores esperados en caso de que se cumpla la hipotesis nula que afirma que las dos variables son independientes haciendo que se cumpla que :
+
+
+$$n_{11} = \dfrac{n_{.1} \times n_{1.} }{n} = \dfrac{4401 \times 104}{6796} = 67.34903$$
+
 
 ```{r, warning=FALSE}
 chisq.test(m)$expected
 ```
 
+A partir de los valores observados y los valores esperados se calcula la matriz de discrepancias 
+
+$$ d_{11} = \dfrac{(50-67.349029)^2}{67.349029} = 4.469089$$
 
 
 ```{r, warning=FALSE}
@@ -115,14 +132,20 @@ Discrepancias <- (Obs-Esp)^2/Esp
 Discrepancias
 ```
 
+<br/>
+
+La suma total de los valores de la matriz de discrepacias constituye el valor del estadisco chi-cuadrado ($\lambda = 21.359$)
+
 
 ```{r}
 sum(Discrepancias)
 ```
 
-Ahora fijaremos como propósito determinar dos coordenadas para cada una de las clases de las dos variables (a1,a2,a3,a4,b1,b2,b3 y b4) a partir de la matriz de discrepancias que llamaremos **C**.
 
-Podemos factorizar esta matriz como :
+<br/>
+
+Ahora fijaremos como propósito determinar las **coordenadas** para cada una de las clases de las dos variables (a1,a2,a3,a4,b1,b2,b3 y b4) a partir de la matriz de discrepancias que llamaremos **C**. Para ello se debe realizar la factorización de la matriz **C** como .
+
 
 $$C = U \hspace{.2cm} D \hspace{.2cm} V^{t}$$
 
@@ -188,3 +211,4 @@ coord_columnas <- t(V) %*% sqrt(D)
 coord_columnas
 ```
 
+Finalmente se representa los resultados obtenidos en un plano cartesiano donde se pueden visualizar las relaciones entre las categorias de las dos variables

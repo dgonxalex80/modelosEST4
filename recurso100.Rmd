@@ -44,36 +44,36 @@ Las nuevas variables (llamadas componentes principales) se obtienen en orden de 
 
 <br/>
 
-### <span style="color:#FF7F00">**Matriz de datos** </span>
+### **Matriz de datos** 
 Los datos conforman una matriz de dimensión $n \times p$ que contiene los datos originales, donde $n$ corresponde al número de observaciones y $p$ el número de variables.
 
 <br/>
 
-### <span style="color:#FF7F00">**Matriz de Varianzas-Covarianzas** </span> 
+### **Matriz de Varianzas-Covarianzas**  
 Matriz cuadrada de dimensión $p \times p$ que contiene las covarianzas entre pares de variables  $Cov[X_i,X_j]$ y su diagonal está conformada por las varianza de las variables $V[X_i]$ 
 
 <br/>
 
-### <span style="color:#FF7F00">**Autovalores y Autovectores** </span>
+### **Autovalores y Autovectores** 
 A parir de la matriz de varianza covarianzas son calculados sus valores propios que representan la cantidad de la varianza de la data explicada por cada componente principal,  mientras que los vectores propios de la misma matriz, indica la dirección y fuerza de la relación entre las variables y la de los componentes principales, 
 
 Con ellos se determina el porcentaje de la varianza de los datos que son explicados por dada uno de los componentes principales los cuales tienen como condición la ortogonalidad entre ellos. Estadísticamente significa que son independientes unos de otros.
 
 <br/>
 
-### <span style="color:#FF7F00">**Varianza explicada** </span>
+### **Varianza explicada** 
 Indica la cantidad de varianza en los datos originales que es explicada por cada componente principal. El total de la varianza explicada corresponde al 100% y abarca toda la varianza total de los datos originales.
 
 Estos valores nos permiten evaluar la relevancia de cada uno de los componentes principales
 
 <br/>
 
-### <span style="color:#FF7F00">**Carga de las variables** </span>: 
+### **Carga de las variables**  
 Indica la contribución de cada variable a cada componente principal. Dependiendo su valor puede sugerir un nombre para el componente que facilite la interpretación de los resultados obtenidos. Es decir que se trata de los diferentes pesos que tiene cada variables original como una convinación lineal. 
 
 <br/>
 
-### <span style="color:#FF7F00">**Gráfico de dispersión** </span>: 
+### **Gráfico de dispersión**  
 Representación visual de los datos transformados (componentes principales) en un nuevo espacio por lo general de $R^2$. Este gráfico permite identificar patrones o agrupaciones en los datos que pueden no haber sido evidentes en el espacio original de las variables.
 
 <br/><br/>

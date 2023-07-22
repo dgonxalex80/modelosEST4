@@ -12,7 +12,7 @@
 <meta name="author" content="Modelos Estadísticos para la toma de decisiones" />
 
 
-<title>Análisis de Componentes Principales</title>
+<title>Análisis de Conglomerados</title>
 
 <script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -314,205 +314,190 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore"><span
-style="color:#034a94"><strong>Análisis de Componentes
-Principales</strong></span></h1>
+style="color:#034a94"><strong>Análisis de
+Conglomerados</strong></span></h1>
 <h4 class="author">Modelos Estadísticos para la toma de decisiones</h4>
 
 </div>
 
 
+<div id="conceptos" class="section level1">
+<h1><strong>Conceptos</strong></h1>
 <p></br></br></p>
-<p><img src="img/acp12.png" width="100%" style="display: block; margin: auto;" />
-</br></br></p>
+</div>
 <div id="introducción" class="section level1">
 <h1><span
 style="color:#034a94"><strong>Introducción</strong></span></h1>
 <p></br></p>
-<p>Este análisis consiste en describir la variación producida por las
-observaciones de <span class="math inline">\(p\)</span> variables
-aleatorias, mediante un conjunto de nuevas variables que estan
-correlacionadas entre si, denominadas <strong>componentes</strong> y que
-estan conformadas por combinación lineal de las variables
-originales.</p>
-<p>Se utiliza como complemento de los análisis descriptivos y para
-contribución en modelos predictivos, reduciendo el número de variables
-empleadas en el modelo.</p>
-<p>Las nuevas variables (llamadas componentes principales) se obtienen
-en orden de contribución a la variabilidad total de los datos, de tal
-forma que el primer componente describe la mayor cantidad de la
-variación total del conjunto de variables originales. El segundo
-componente principal se elige de tal forma que explique la mayor
-cantidad de la variación total del conjunto de datos que resta sin
-explicar por el primer componente, bajo la condición de ser
-independiente de la primera componente y así sucesivamente.</p>
+<p>El análisis de conglomerados, también conocido como
+<strong>clustering</strong>, es un método estadístico usado para agrupar
+objetos similares en función de sus características. Mediante este
+análisis se logra identificar grupos muy parecidos (homogéneos) de
+objetos o individuos. Dentro de cada grupo los objetos son más similares
+entre sí que con los de otros grupos. El análisis de conglomerados
+implica la selección de un conjunto de variables para medir las
+características de los objetos o individuos, y luego aplicar un
+algoritmo de agrupamiento para clasificarlos en conglomerados. Los
+algoritmos de agrupamiento utilizados pueden ser jerárquicos o no
+jerárquicos, dependiendo de si los grupos se construyen de forma
+iterativa a partir de subgrupos más pequeños.</p>
 <p></br></br></p>
-<div id="conceptos" class="section level2">
-<h2><span style="color:#034a94"><strong>Conceptos</strong></span></h2>
-<p><br/></p>
-<div id="matriz-de-datos" class="section level3">
-<h3><strong>Matriz de datos</strong></h3>
-<p>Los datos conforman una matriz de dimensión <span
-class="math inline">\(n \times p\)</span> que contiene los datos
-originales, donde <span class="math inline">\(n\)</span> corresponde al
-número de observaciones y <span class="math inline">\(p\)</span> el
-número de variables.</p>
-<p><br/></p>
 </div>
-<div id="matriz-de-varianzas-covarianzas" class="section level3">
-<h3><strong>Matriz de Varianzas-Covarianzas</strong></h3>
-<p>Matriz cuadrada de dimensión <span class="math inline">\(p \times
-p\)</span> que contiene las covarianzas entre pares de variables <span
-class="math inline">\(Cov[X_i,X_j]\)</span> y su diagonal está
-conformada por las varianza de las variables <span
-class="math inline">\(V[X_i]\)</span></p>
-<p><br/></p>
+<div id="supuestos-y-requisitos" class="section level1">
+<h1><span style="color:#034a94"><strong>Supuestos y
+requisitos</strong></span></h1>
+<p></br></p>
+<p>El análisis de conglomerados se basa en calcular distancias entre los
+individuos metricas a partir de la matriz de datos <span
+class="math inline">\(X\)</span>. Una vez encontrados los conglomerados
+o grupos se procede a representarlos en un plano factorial. Supone por
+tanto el conocimiento previo de la presencia de conglomerados o por lo
+menos sospecha de presencia de grupos, aunque no se tenga claramente una
+distribución a priori.</p>
+<p></br></br></p>
 </div>
-<div id="autovalores-y-autovectores" class="section level3">
-<h3><strong>Autovalores y Autovectores</strong></h3>
-<p>A parir de la matriz de varianza covarianzas son calculados sus
-valores propios que representan la cantidad de la varianza de la data
-explicada por cada componente principal, mientras que los vectores
-propios de la misma matriz, indica la dirección y fuerza de la relación
-entre las variables y la de los componentes principales,</p>
-<p>Con ellos se determina el porcentaje de la varianza de los datos que
-son explicados por dada uno de los componentes principales los cuales
-tienen como condición la ortogonalidad entre ellos. Estadísticamente
-significa que son independientes unos de otros.</p>
-<p><br/></p>
+<div id="conceptos-asociados" class="section level1">
+<h1><span style="color:#034a94"><strong>Conceptos
+asociados</strong></span></h1>
+<p></br></p>
+<div id="estandarización" class="section level3">
+<h3><span
+style="color:#034a94"><strong>Estandarización</strong></span></h3>
+<p>Debido a la diferencias en las escalas de las variables empleadas en
+el análisis, es necesario colocarlas en una sola escala, para lo cual a
+cada variables se le resta el valor de su media y el resultado se divide
+por su desviación estandar. El producto de esta trasformación es una
+variable con media <span class="math inline">\(0\)</span> y varianza
+<span class="math inline">\(1\)</span>.</p>
+<p><span class="math display">\[
+z= \dfrac{x - \bar{x}}{\sigma}
+\]</span> </br></p>
 </div>
-<div id="varianza-explicada" class="section level3">
-<h3><strong>Varianza explicada</strong></h3>
-<p>Indica la cantidad de varianza en los datos originales que es
-explicada por cada componente principal. El total de la varianza
-explicada corresponde al 100% y abarca toda la varianza total de los
-datos originales.</p>
-<p>Estos valores nos permiten evaluar la relevancia de cada uno de los
-componentes principales</p>
-<p><br/></p>
-</div>
-<div id="carga-de-las-variables" class="section level3">
-<h3><strong>Carga de las variables</strong></h3>
-<p>Indica la contribución de cada variable a cada componente principal.
-Dependiendo su valor puede sugerir un nombre para el componente que
-facilite la interpretación de los resultados obtenidos. Es decir que se
-trata de los diferentes pesos que tiene cada variables original como una
-convinación lineal.</p>
-<p><br/></p>
-</div>
-<div id="gráfico-de-dispersión" class="section level3">
-<h3><strong>Gráfico de dispersión</strong></h3>
-<p>Representación visual de los datos transformados (componentes
-principales) en un nuevo espacio por lo general de <span
-class="math inline">\(R^2\)</span>. Este gráfico permite identificar
-patrones o agrupaciones en los datos que pueden no haber sido evidentes
-en el espacio original de las variables.</p>
-<p><br/><br/></p>
-<p>Las componente se pueden representar por <span
-class="math inline">\(CP1\)</span>, <span
-class="math inline">\(CP2\)</span>, <span
-class="math inline">\(CP3\)</span> <span
-class="math inline">\(\dots\)</span> construidas a partir de un conjunto
-de <span class="math inline">\(p\)</span> variables, de forma que:</p>
+<div id="distancia" class="section level3">
+<h3><span style="color:#034a94"><strong>Distancia</strong></span></h3>
+<p>La distancia entre dos observaciones es una medida de sus
+diferencias. El AC emplea varias medias de distancias como :</p>
 <ul>
-<li><span class="math inline">\(V[CP_1] &gt; V[CP_2] &gt; V[CP_3] &gt;
-\dots &gt; V[CP_p]\)</span> y</li>
-<li><span class="math inline">\(Cor[CP_i, CP_j] = 0\)</span> para todo
-para de componentes <span class="math inline">\(i \neq j\)</span></li>
+<li><span style="color:#034a94"><strong>Distancia
+euclidiana</strong></span></li>
+</ul>
+<p><span class="math display">\[
+D_{ij} = \sqrt{\sum_{p=1}^{k} (x_{ip}-x_{jp})^{2}}
+\]</span></p>
+<ul>
+<li><span style="color:#034a94"><strong>Distancia de
+Manhattan</strong></span></li>
+</ul>
+<p><span class="math display">\[
+D_{ij} = \sum_{p=1}^{k} \big|x_{ip}-x_{jp}\big|^{n}
+\]</span></p>
+<ul>
+<li><span style="color:#034a94"><strong>Distancia de
+Minkowski</strong></span></li>
+</ul>
+<p><span class="math display">\[
+D_{ij} =\Big[\big|x_{ip}-x_{jp}\big|^{n}  \Big]^{1/n}
+\]</span> </br></br></p>
+</div>
+<div id="agrupamiento" class="section level3">
+<h3><span
+style="color:#034a94"><strong>Agrupamiento</strong></span></h3>
+<p>Mediante este procedimiento son asignadas las observaciones a los
+grupos o conglomerados</p>
+<p></br></br></p>
+</div>
+<div id="criterios-de-calidad" class="section level3">
+<h3><span style="color:#034a94"><strong>Criterios de
+calidad</strong></span></h3>
+<p>Utilizados para evaluar la bondad del agrupamiento resultante del
+análisis. Algunos de los criterios más comunes incluyen:</p>
+<ul>
+<li><strong>Suma de cuadrados dentro del cluster</strong> (<span
+class="math inline">\(SSC\)</span>), que mide cuanto varían las
+observaciones dentro de cada conglomerado y se mide sumando las
+distancias entre cada observación y el centroide de su
+conglomerado.</li>
+</ul>
+<p></br></p>
+<ul>
+<li><strong>Suma de cuadrados entre clusters</strong> (<span
+class="math inline">\(SSB\)</span>), que mide la variavilidad entre los
+conglomerados,permitiendo valorar la calidad del agrupamiento.</li>
+</ul>
+<p></br></p>
+<ul>
+<li><strong>Indice de Rand ajustado</strong>, corresponde a un indicador
+para evaluar la calidad del agrupamiento. Este indice varia entre <span
+class="math inline">\(-1\)</span> y <span
+class="math inline">\(1\)</span>. Valores cercanos a <span
+class="math inline">\(1\)</span> indica alta similitud entre los grupos,
+mientras que valores cercanos a <span class="math inline">\(-1\)</span>
+indica que los grupos o conglomerados formados son muy diferentes.
+Valores cercanos a0 indican que los agrupamientos pueden ser productos
+del azar</li>
 </ul>
 <p></br></br></p>
-<p>El objetivo principal del <strong>ACP</strong> es poder ver si las
-dos o tres primeras componentes explican la mayor parte de la variación
-de las <span class="math inline">\(p\)</span> variables iniciales. Si es
-así, se pueden considerar estas dos componentes, reduciendo la dimensión
-de los datos a <span class="math inline">\(R^2\)</span> y considerar su
-representación gráfica en el plano cartesiano.</p>
+</div>
+<div id="centros-del-conglomerado" class="section level3">
+<h3><span style="color:#034a94"><strong>Centros del
+conglomerado</strong></span></h3>
+<p>Es la media de los valores de las variables de todos los objetos o
+casos de cada uno de los conglomerados</p>
 <p></br></br></p>
 </div>
-<div id="supuesto" class="section level3 content-box-gray">
-<h3><span style="color:#686868"><strong>Supuesto</strong></span></h3>
-<p>Las <span class="math inline">\(p\)</span> variables son una
-combinación lineal de un base que se desea encontrar.</p>
-</div>
-<p><br/><br/></p>
-</div>
-<div id="los-componentes-principales" class="section level2">
-<h2><span style="color:#034a94"><strong>Los componentes
-principales</strong></span></h2>
-<p><br/></p>
-<p>El <strong>primer componente</strong> tiene la forma :</p>
-<p><span class="math display">\[CP_{1}  = \beta_{11}X_1+ \beta_{12}X_2 +
-\dots + \beta_{1p}X_{p} = \displaystyle\sum_{i=1}^{p} \beta_{1i} X_{i} =
-b&#39;_{1}X\]</span> </br></p>
-<p>Donde <span class="math inline">\(b&#39;= (\beta_{11}, \beta_{12},
-\dots , \beta_{1p})\)</span> es el vector de coeficientes a estimar y
-<span class="math inline">\(X&#39;\)</span> el vector de variables <span
-class="math inline">\((X_1, X_2, \dots, X_p)\)</span> que conforma la
-data.</p>
-<p><br/></p>
-<p>Para determinar la porción de la varianza total de la data explicada
-por el componente se define <span class="math inline">\(\Sigma\)</span>
-<strong>matriz de Varianzas-covarianzas</strong> , que está conformada
-por las varianzas de las variables originales en su diagonal principal y
-por fuera de ellas las covarianzas entre pares de variables.</p>
+<div id="dendograma" class="section level3">
+<h3><span style="color:#034a94"><strong>Dendograma</strong></span></h3>
+<p>Corresponde a la representación grafica de los resultados obtenidos
+en el AC, en un plano donde el eje vertical indica las distancias en las
+que se unen o separan los conglomerados y en el eje horizontal los
+objetos o individuos.</p>
 <p></br></br></p>
+</div>
+<div id="matriz-de-coeficientes-de-semejanza-y-distancias"
+class="section level3">
+<h3><span style="color:#034a94"><strong>Matriz de coeficientes de
+semejanza y distancias</strong></span></h3>
+<p>Corresponde a una matriz diagonal inferior que contiene las
+distancias entre pares de objetos o casos.</p>
+<p></br></br></p>
+</div>
+<div id="modelo" class="section level2">
+<h2><span style="color:#034a94"><strong>Modelo</strong></span></h2>
+<p></br></p>
+<p>Existen dos tipos de clasificación automática: los <strong>métodos no
+jerárquicos</strong> los cuales se basan en encontrar la mejor partición
+del conjunto de individuos en <span class="math inline">\(q\)</span>
+clases, en donde sus centros de gravedad se eligen en un inicio de forma
+aleatoria. Por otra parte están los <strong>métodos jerárquicos</strong>
+en los cuales se construye un dendograma en el cual se forman los grupos
+de individuos más parecidos, esto permite determinar el número de clases
+que se usarán en el método no jerárquico.</p>
+<p></br></p>
+<p>Mediante el análisis de conglomerados se desea clasificar a los
+distintos individuos u observaciones en grupos muy homogéneos, pero
+heterogeneos entre ellos. Para realizar este objetivo se utilizan
+métricas que perminten calcular el grado de asociación (similitud o
+disimilitud) entre dos observaciones, dentro de las más usada está la
+<strong>distancia euclidiana</strong> entre los dos puntos, la cual está
+dado por:</p>
+<p></br></p>
 <p><span class="math display">\[
-\Sigma =
-\begin{equation}
-\left(
-\begin{array}{cccc}
-\sigma^2_1 &amp; \sigma_{12} &amp; \cdots &amp; \sigma_{1p} \\
-\sigma_{21} &amp; \sigma^2_2 &amp; \cdots &amp; \sigma_{2p} \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-\sigma_{p1} &amp; \sigma_{2p} &amp; \cdots &amp; \sigma^2_p
-\end{array}
-\right)
-\end{equation}
-\]</span></p>
-<p></br></br></p>
-<p>Enconces la varianza del primer componente será :</p>
-<p><span class="math display">\[V[CP_1] = V[b&#39;_1 X] = b&#39;_1
-\hspace{.1cm}\Sigma \hspace{.1cm} b_1\]</span> </br></p>
-<p>Bajo la restricción :</p>
-<p><span class="math display">\[\beta_{11}^2  + \beta_{12}^2 + \dots +
-\beta_{1p} = b&#39;_1 \hspace{.1cm}b_1= 1\]</span></p>
-<p></br></p>
-<p>La solución a este sistema se obtiene mediante el método matemático
-<strong>Multiplicadores de Lagrange</strong> que maximiza el valor <span
-class="math inline">\(\lambda_1\)</span> para la siguiente función :</p>
-<p><span class="math display">\[b&#39;_1 \hspace{.1cm}\Sigma
-\hspace{.1cm}b_1 - \lambda_1 (b&#39;_1 \hspace{.1cm} b_1-1)
+d(x_i, x_j) = \sqrt{\sum_{p=1}^{m} (x_{ip}-x_{jp})^{2}}
 \]</span></p>
 <p></br></p>
-<p>Dando como resultados:</p>
-<p><span class="math display">\[CP_1 = b&#39;_1 X\]</span> </br></p>
-<p>El <strong>segundo componenete</strong> estará determinado por una
-segunda ecuación de Lagrange con la que se obtiene:</p>
-<p><span class="math display">\[CP_2 = b&#39;_2X\]</span></p>
-<p></br></p>
-<p>La varianza total de las <span class="math inline">\(p\)</span>
-variables está dada por :</p>
-<p><span class="math display">\[\displaystyle\sum_{i=1}^p V[X_i] =
-\sum_{i=1}^p V[CP_i] = \displaystyle\sum_{i=1}^p \lambda_{i}\]</span>
-</br></p>
-<p>De tal forma que la contribución total por cada componente se estima
-como:</p>
-<p><span
-class="math display">\[\dfrac{\lambda_{i}}{\displaystyle\sum_{i=1}^p
-\lambda_{i}}\]</span></p>
-<p></br></p>
-<p>Ahora, la contribución de los primeros tres componentes estará dado
-por :</p>
-<p><span class="math display">\[\dfrac{\lambda_{1} + \lambda_2 +
-\lambda_3}{\displaystyle\sum_{i=1}^p \lambda_{i}}\]</span></p>
+<p>En donde <span class="math inline">\(x_i\)</span> y <span
+class="math inline">\(x_j\)</span> son individuos con <span
+class="math inline">\(m\)</span> variables, de esta forma podremos
+obtener los dos primeros individuos que más se parezcan entre sí,
+formarán el primer grupo. Sean entonces <span class="math inline">\(h =
+\{x_i, x_j\}\)</span> un grupo y <span
+class="math inline">\(x_k\)</span> un individuo, con los que se puede
+calcular la distancia entre el grupo y el individuo de la forma: <span
+class="math inline">\(d(h, x_k) = min\{d(x_i,x_k), d(x_j,
+x_k)\}\)</span>. Además de el método descrito, hay otras formas de medir
+la proximidad entre elementos como pueden ser el salto mínimo (single
+linkage), salto máximo, salto promedio y agregación de Ward.</p>
 <p></br></br></p>
-<p>Si los dos componentes principales explican un porcentaje grande de
-los datos nos permite representar los registros de la data en un plano
-cartesiano, pudiendo de esta forma identificar relaciones y patrones en
-los datos.</p>
-<p>Para darle sentido al gráfico obtenido debemos se analizan los pesos
-del grupo de variables en la convinación lineal que conforma cada
-componente principal acompañado de la visualización de puntos extremos
-que ayudan a identificar sus principales caracteristicas</p>
 </div>
 </div>
 
