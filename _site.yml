@@ -7,7 +7,7 @@ navbar:
       menu:
         - text: "Conceptos básicos"
           href: recurso010.html 
-        - text: "Matrices de datos y VC"
+        - text: "Tablas de contingencia"
           href: recurso020.html           
           
     - text: "ACPrincipales"

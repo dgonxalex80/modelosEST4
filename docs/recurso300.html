@@ -255,7 +255,7 @@ $(document).ready(function () {
       <a href="recurso010.html">Conceptos básicos</a>
     </li>
     <li>
-      <a href="recurso020.html">Matrices de datos y VC</a>
+      <a href="recurso020.html">Tablas de contingencia</a>
     </li>
   </ul>
 </li>
@@ -362,16 +362,17 @@ resultado de una encuesta que contenía dos preguntas: su actividad
 laboral y si habían sufrido o no de alguna enfermedad relacionadas con
 el estrés.</p>
 <center>
-<img src="img/tabla2.png" style="width:33.0%" />
+<img src="img/tabla2.png" style="width:28.0%" />
 </center>
+<p></br></br></p>
 <p>Con esta información podremos obtener una métrica que nos permita
 agrupar las profesiones conformando grupos semejantes</p>
 <center>
-<img src="img/tabla3.png" style="width:35.0%" />
+<img src="img/tabla3.png" style="width:30.0%" />
 </center>
 <p></br></br></p>
 <center>
-<img src="img/pocisiones.png" style="width:100.0%" />
+<img src="img/pocisiones.png" style="width:80.0%" />
 </center>
 <p></br></br></p>
 <p>La representación gráfica de estos valores permite visualizar que
@@ -384,7 +385,8 @@ estrés :</p>
 </ul>
 <p></br></br></p>
 <div id="análisis-de-correspondencia-simple" class="section level2">
-<h2><strong>Análisis de correspondencia simple</strong></h2>
+<h2><span style="color:#034a94"><strong>Análisis de correspondencia
+simple</strong></span></h2>
 <p></br></p>
 <p>Ahora utilicemos la métrica <span
 class="math inline">\(\lambda\)</span> de Pearson para identificar si
@@ -396,7 +398,7 @@ para todas las combinaciones posibles entre las categorías de ambas
 variables.</p>
 <p></br></br></p>
 <center>
-<img src="img/tablaAB.png" style="width:50.0%" />
+<img src="img/tablaAB.png" style="width:40.0%" />
 </center>
 <pre class="r"><code>library(tidyr)
 m &lt;- c(50,9,41,4,315,40,147,11,24,6,14,1,4012,459,1539,124) %&gt;%
@@ -409,6 +411,7 @@ a1 50 315 24 4012
 a2  9  40  6  459
 a3 41 147 14 1539
 a4  4  11  1  124</code></pre>
+<p></br></br></p>
 <p>Mediante la prueba chi.cuadrado se obtienen dos matrices con las que
 posteriormente se construirán las coordenadas que serán representadas en
 un plano cartesiano para permitir ver la cercania o no entre las
@@ -419,9 +422,11 @@ categorias de ambas variables</p>
 
 data:  m
 X-squared = 21.359, df = 9, p-value = 0.01115</code></pre>
+<p></br></br></p>
 <p>Los resultados de la prueba indican que las variables
 <strong>A</strong> y <strong>B</strong> no son independientes y que por
 tanto existen relaciones entre sus categorías.</p>
+<p></br></br></p>
 <p>Iniciaremos visualizando la matriz de valores observados</p>
 <pre class="r"><code>chisq.test(m)$observed</code></pre>
 <pre><code>   b1  b2 b3   b4
@@ -454,13 +459,13 @@ a1 4.4690890 0.89176239 0.90709633 0.39681979
 a2 0.1635436 0.03713929 1.98090454 0.05241317
 a3 7.7368635 1.84692881 0.53003214 0.66839920
 a4 1.6105686 0.01766092 0.00574605 0.04417225</code></pre>
-<p><br/></p>
+<p></br></br></p>
 <p>La suma total de los valores de la matriz de discrepancias constituye
 el valor del esta disco chi-cuadrado (<span
 class="math inline">\(\lambda = 21.359\)</span>)</p>
 <pre class="r"><code>sum(Discrepancias)</code></pre>
 <pre><code>[1] 21.35914</code></pre>
-<p><br/></p>
+<p></br></br></p>
 <p>Ahora fijaremos como propósito determinar las
 <strong>coordenadas</strong> para cada una de las clases de las dos
 variables (a1,a2,a3,a4,b1,b2,b3 y b4) a partir de la matriz de
@@ -540,6 +545,29 @@ coord_columnas</code></pre>
 <p>Finalmente se representa los resultados obtenidos en un plano
 cartesiano donde se pueden visualizar las relaciones entre las
 categorías de las dos variables</p>
+<p></br></br></p>
+<p><strong>Porcentaje de varianza explicado</strong></p>
+<p></br></p>
+<p>Con el fin de establecer el porcentaje explicado por los dos primeros
+ejes, llamados componentes o tambien dimensiones a tener en cuenta
+dentro del análisis se calculan los valores propios de la matriz
+obtenida en el análisis de correspondencia</p>
+<pre class="r"><code>library(ade4)
+library(FactoMineR)</code></pre>
+<pre><code>
+Attaching package: &#39;FactoMineR&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:ade4&#39;:
+
+    reconst</code></pre>
+<pre class="r"><code>library(factoextra)
+library(gridExtra)</code></pre>
+<pre><code>
+Attaching package: &#39;gridExtra&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:dplyr&#39;:
+
+    combine</code></pre>
+<pre class="r"><code>res.ac &lt;- CA(tabla)
+valores_prop &lt;-res.ac$eig </code></pre>
 </div>
 
 

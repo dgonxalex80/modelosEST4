@@ -12,7 +12,7 @@
 <meta name="author" content="Modelos Estadísticos para la toma de decisiones" />
 
 
-<title>Ejemplo - Análisis de Correspondencia</title>
+<title>Ejemplo</title>
 
 <script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -255,7 +255,7 @@ $(document).ready(function () {
       <a href="recurso010.html">Conceptos básicos</a>
     </li>
     <li>
-      <a href="recurso020.html">Matrices de datos y VC</a>
+      <a href="recurso020.html">Tablas de contingencia</a>
     </li>
   </ul>
 </li>
@@ -316,8 +316,8 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore"><strong>Ejemplo - Análisis de
-Correspondencia</strong></h1>
+<h1 class="title toc-ignore"><span
+style="color:#034a94"><strong>Ejemplo</strong></span></h1>
 <h4 class="author">Modelos Estadísticos para la toma de decisiones</h4>
 
 </div>
@@ -395,6 +395,18 @@ Norte</li>
 <li>El estrato 3 está presente en las Zonas Oriente y Centro</li>
 </ul>
 <p><br/><br/></p>
+<pre class="r"><code>valores_prop &lt;-resultados_ac$eig ; valores_prop</code></pre>
+<pre><code>      eigenvalue percentage of variance cumulative percentage of variance
+dim 1 0.32546174              69.642130                          69.64213
+dim 2 0.12761381              27.306734                          96.94886
+dim 3 0.01425901               3.051136                         100.00000</code></pre>
+<pre class="r"><code>fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle(&quot;&quot;)+
+  ylab(&quot;Porcentaje de varianza explicado&quot;) + xlab(&quot;Ejes&quot;)</code></pre>
+<p><img src="recurso310_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Los resultados indican que la primera componente resumen el 68.9% y
+los dos primeros componentes prepresentados en el plano factorial,
+mientras que los dos primeros ejes resumen un 96.4% de los datos.</p>
+<p><br/><br/></p>
 <div id="código" class="section level3">
 <h3><strong>Código</strong></h3>
 <pre class="r"><code>library(paqueteMOD)
@@ -410,7 +422,12 @@ library(mice)
 library(FactoMineR)
 vivienda.24 &lt;- na.omit(vivienda.24)
 tabla &lt;- table(vivienda.24$zona, vivienda.24$estrato)
-resultados_ac &lt;- CA(tabla)</code></pre>
+resultados_ac &lt;- CA(tabla)
+valores_prop &lt;-resultados.ac$eig 
+
+library(factoextra)
+fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle(&quot;&quot;)+
+  ylab(&quot;Porcentaje de varianza explicado&quot;) + xlab(&quot;Ejes&quot;)</code></pre>
 </div>
 
 

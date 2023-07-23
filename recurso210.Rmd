@@ -1,5 +1,5 @@
 ---
-title: <span style="color:#034a94">**Ejemplo - Análisis de Conglomerados**</span>
+title: <span style="color:#034a94">**Ejemplo**</span>
 author: "Modelos Estadísticos para la toma de decisiones"
 date: " "
 output: html_document
@@ -25,12 +25,7 @@ creditosZ= creditos[2:5] %>%
 scale()
 ```
 
-<br/>
-
-
-### <span style="color:#FF7F00"> **Ejemplo**</span> 
-
-</br>
+<br/></br>
 
 |id     | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   |
 |:------|:----|:----|:----|:----|:----|:----|:----|:----|

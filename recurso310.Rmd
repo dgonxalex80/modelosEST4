@@ -1,5 +1,5 @@
 ---
-title: "**Ejemplo - Análisis de Correspondencia**"
+title: <span style="color:#034a94">**Ejemplo**</span>
 author: "Modelos Estadísticos para la toma de decisiones"
 date: " "
 output: html_document
@@ -112,6 +112,22 @@ El gráfico nos permite establecer relaciones y validarlas como son:
 
 <br/><br/>
 
+```{r}
+valores_prop <-resultados_ac$eig ; valores_prop
+
+```
+
+
+```{r}
+fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle("")+
+  ylab("Porcentaje de varianza explicado") + xlab("Ejes")
+```
+
+Los resultados indican que la primera componente resumen el 68.9% y los dos primeros componentes prepresentados en el plano factorial, mientras que los dos primeros ejes resumen un 96.4% de los datos.
+
+
+<br/><br/>
+
 ### **Código**
 
 ```{r, eval=FALSE}
@@ -130,5 +146,9 @@ library(FactoMineR)
 vivienda.24 <- na.omit(vivienda.24)
 tabla <- table(vivienda.24$zona, vivienda.24$estrato)
 resultados_ac <- CA(tabla)
+valores_prop <-resultados.ac$eig 
 
+library(factoextra)
+fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle("")+
+  ylab("Porcentaje de varianza explicado") + xlab("Ejes")
 ```

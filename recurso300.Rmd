@@ -44,21 +44,23 @@ Supongamos que tenemos la siguiente tabla de contingencia, como resultado de una
 
 
 <center>
-![](img/tabla2.png){width=33%}
+![](img/tabla2.png){width=28%}
 </center>
+
+</br></br>
 
 Con esta información podremos obtener una métrica que nos permita agrupar las profesiones conformando grupos semejantes
 
 
 <center>
-![](img/tabla3.png){width=35%}
+![](img/tabla3.png){width=30%}
 </center>
 
 </br></br>
 
 <center>
 
-![](img/pocisiones.png){width=100%}
+![](img/pocisiones.png){width=80%}
 </center>
 
 </br></br>
@@ -71,7 +73,7 @@ La representación gráfica de estos valores permite visualizar que podrían exi
 
 </br></br>
 
-## **Análisis de correspondencia simple**
+## <span style="color:#034a94">**Análisis de correspondencia simple**</span>
 
 </br>
 
@@ -81,7 +83,7 @@ Ahora utilicemos la métrica $\lambda$ de Pearson para identificar si existe aso
 
 <center>
 
-![](img/tablaAB.png){width=50%}
+![](img/tablaAB.png){width=40%}
 </center>
 
 ```{r, warning=FALSE, message=FALSE}
@@ -93,6 +95,8 @@ rownames(m) <- c( "a1", "a2", "a3", "a4")
 m
 ```
 
+</br></br>
+
 Mediante la prueba chi.cuadrado se obtienen dos matrices con las que posteriormente se construirán las coordenadas que serán representadas en un plano cartesiano para permitir ver la cercania o no entre las categorias de ambas variables
 
 
@@ -100,8 +104,11 @@ Mediante la prueba chi.cuadrado se obtienen dos matrices con las que posteriorme
 chisq.test(m)
 ```
 
+</br></br>
+
 Los resultados de la prueba indican que las variables **A** y **B** no son independientes y que por tanto existen relaciones entre sus categorías. 
 
+</br></br>
 
 Iniciaremos visualizando la matriz de valores observados 
 
@@ -132,7 +139,7 @@ Discrepancias <- (Obs-Esp)^2/Esp
 Discrepancias
 ```
 
-<br/>
+</br></br>
 
 La suma total de los valores de la matriz de discrepancias constituye el valor del esta disco chi-cuadrado ($\lambda = 21.359$)
 
@@ -142,7 +149,7 @@ sum(Discrepancias)
 ```
 
 
-<br/>
+</br></br>
 
 Ahora fijaremos como propósito determinar las **coordenadas** para cada una de las clases de las dos variables (a1,a2,a3,a4,b1,b2,b3 y b4) a partir de la matriz de discrepancias que llamaremos **C**. Para ello se debe realizar la factorización de la matriz **C** como .
 
@@ -212,4 +219,23 @@ coord_columnas
 ```
 
 Finalmente se representa los resultados obtenidos en un plano cartesiano donde se pueden visualizar las relaciones entre las categorías de las dos variables
+
+</br></br> 
+
+**Porcentaje de varianza explicado**
+
+</br>
+
+Con el fin de establecer el porcentaje explicado por los dos primeros ejes, llamados componentes o tambien dimensiones a tener en cuenta dentro del análisis se calculan los valores propios de la matriz obtenida en el análisis de correspondencia
+
+
+
+```{r}
+library(ade4)
+library(FactoMineR)
+library(factoextra)
+library(gridExtra)
+res.ac <- CA(tabla)
+valores_prop <-res.ac$eig 
+```
 

@@ -12,7 +12,7 @@
 <meta name="author" content="Modelos Estadísticos para la toma de decisiones" />
 
 
-<title>En construcción</title>
+<title>Tablas de contingencia</title>
 
 <script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -255,7 +255,7 @@ $(document).ready(function () {
       <a href="recurso010.html">Conceptos básicos</a>
     </li>
     <li>
-      <a href="recurso020.html">Matrices de datos y VC</a>
+      <a href="recurso020.html">Tablas de contingencia</a>
     </li>
   </ul>
 </li>
@@ -316,13 +316,60 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore"><strong>En construcción</strong></h1>
+<h1 class="title toc-ignore"><span style="color:#034a94"><strong>Tablas
+de contingencia</strong></sapn></h1>
 <h4 class="author">Modelos Estadísticos para la toma de decisiones</h4>
 
 </div>
 
 
-<p><img src="img/enconstruccion.jpg" /></p>
+<p><br/><br/></p>
+<p>Estan conformadas por un arreglo de datos correspondientes a las
+frecuencias absolutas que resultan al contar las todas las posibles
+registros que contienen las caracteristicas (<span
+class="math inline">\(a_i,b_j\)</span>) correspondientes a las dos
+variables que son representadas por <span
+class="math inline">\(n_{ij}\)</span></p>
+<p><br/><br/></p>
+<center>
+<img src="img/tablaab.png" style="width:50.0%" />
+</center>
+<p><br/><br/></p>
+<p>Los valores <span class="math inline">\(n_{i.}\)</span> represdentan
+el total marginal de la variable <code>A</code>, mientras que <span
+class="math inline">\(n_{.j}\)</span> representa el total por columnas
+que corresponden a la variable <code>B</code>. La suma de todos los
+valores <span class="math inline">\(n_{ij}\)</span> es <span
+class="math inline">\(n\)</span></p>
+<p>La función <code>table()</code> en <code>R</code> permite contruir la
+tabla a partir de la información contenida en una base de datos
+(<code>table(data$A, data$B)</code>)</p>
+<p><br/><br/></p>
+<div id="prueba-chi-cuadrado-de-pearson" class="section level1">
+<h1><span style="color:#034a94"><strong>Prueba chi-cuadrado de
+Pearson</strong></span></h1>
+<p><br/></p>
+<p>Determina si las diferencias entre las frecuencias observadas en una
+tabla de contingencia y las frecuencias esperadas, suponiendo que las
+variables son independientes, son estadísticamente significativas. En
+caso de rechazarse Ho, se concluye que las variables son independientes,
+en caso contrario se asume que hay una relación entre ellas
+(dependencia).</p>
+<p><br/><br/></p>
+<p><strong>Pruebas</strong> :</p>
+<p><span class="math display">\[H_{o} : \text{la variables A es
+independiente de la variable B} \hspace{.8cm}\]</span> <span
+class="math display">\[H_{o} : \text{la variables A es NO independiente
+de la variable B}\]</span></p>
+<p><br/></p>
+<p><strong>Estadístico de prueba</strong>:</p>
+<p><span class="math display">\[\chi^{2} = \dfrac{\sum (Obs
+-Esp)^2}{Esp} \sim \chi^{2}_{v:(r-1)(c-1)}\]</span></p>
+<p><br/><br/></p>
+<p><strong>Región de rechazo</strong>:</p>
+<p><img src="img/rderchi2.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><br/><br/></p>
+</div>
 
 
 
