@@ -19,9 +19,13 @@ Para ilustrar los pasos para realizar un análisis de correspondencia se toma un
 
 <br/>
 
-```{r}
+```{r} 
 set.seed(1234)
-vivienda.24 <- sample_n(vivienda24, 4000) 
+vivienda.24 <- sample_n(vivienda24, 4000)
+```
+
+
+```{r, eval=FALSE} 
 vivienda.24$estrato <- as.factor(vivienda.24$estrato)
 ```
 
@@ -29,11 +33,17 @@ vivienda.24$estrato <- as.factor(vivienda.24$estrato)
 
 Inicialmente se revisa si la base tiene datos faltantes
 
-```{r}
+```{r, eval=FALSE}
 library(mice)
 md.pattern(vivienda.24, rotate.names = TRUE)
 
 ```
+
+```{r, echo=FALSE, out.width="50%", fig.align = "center"}
+knitr::include_graphics("img/vivienda24NA.png")
+```
+
+
 <br/>
 
 La muestra seleccionada contiene un registro con datos faltantes para ambas variables, de tal forma que se procede a eliminarlas, para posteriormente constatar que se han eliminado se utiliza la función  md.pattern del paquete mice
@@ -47,7 +57,7 @@ grafico <-md.pattern(vivienda.24, rotate.names = TRUE)
 ```
 
 
-```{r, echo=FALSE, out.width="70%", fig.align = "center"}
+```{r, echo=FALSE, out.width="60%", fig.align = "center"}
 knitr::include_graphics("img/vivienda24.png")
 ```
 

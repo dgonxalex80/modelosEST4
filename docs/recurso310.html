@@ -329,25 +329,13 @@ se toma una muestra de la base de datos vivienda contenida en
 paqueteMOD</p>
 <p><br/></p>
 <pre class="r"><code>set.seed(1234)
-vivienda.24 &lt;- sample_n(vivienda24, 4000) 
-vivienda.24$estrato &lt;- as.factor(vivienda.24$estrato)</code></pre>
+vivienda.24 &lt;- sample_n(vivienda24, 4000)</code></pre>
+<pre class="r"><code>vivienda.24$estrato &lt;- as.factor(vivienda.24$estrato)</code></pre>
 <p><br/><br/></p>
 <p>Inicialmente se revisa si la base tiene datos faltantes</p>
-<pre class="r"><code>library(mice)</code></pre>
-<pre><code>
-Attaching package: &#39;mice&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:stats&#39;:
-
-    filter</code></pre>
-<pre><code>The following objects are masked from &#39;package:base&#39;:
-
-    cbind, rbind</code></pre>
-<pre class="r"><code>md.pattern(vivienda.24, rotate.names = TRUE)</code></pre>
-<p><img src="recurso310_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre><code>     zona estrato  
-3999    1       1 0
-1       0       0 2
-        1       1 2</code></pre>
+<pre class="r"><code>library(mice)
+md.pattern(vivienda.24, rotate.names = TRUE)</code></pre>
+<p><img src="img/vivienda24NA.png" width="50%" style="display: block; margin: auto;" /></p>
 <p><br/></p>
 <p>La muestra seleccionada contiene un registro con datos faltantes para
 ambas variables, de tal forma que se procede a eliminarlas, para
@@ -357,7 +345,7 @@ md.pattern del paquete mice</p>
 <pre class="r"><code>library(mice)
 vivienda.24 &lt;- na.omit(vivienda.24)
 grafico &lt;-md.pattern(vivienda.24, rotate.names = TRUE)</code></pre>
-<p><img src="img/vivienda24.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="img/vivienda24.png" width="60%" style="display: block; margin: auto;" /></p>
 <p><br/></p>
 <p>Se construye entonces una tabla cruzada con las variables
 involucradas en el análisis :</p>
@@ -366,13 +354,8 @@ involucradas en el análisis :</p>
 <li>Estrato : 3,4,5,6</li>
 </ul>
 <p><br/></p>
-<pre class="r"><code>library(FactoMineR)</code></pre>
-<pre><code>
-Attaching package: &#39;FactoMineR&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:ade4&#39;:
-
-    reconst</code></pre>
-<pre class="r"><code>tabla &lt;- table(vivienda.24$zona, vivienda.24$estrato)
+<pre class="r"><code>library(FactoMineR)
+tabla &lt;- table(vivienda.24$zona, vivienda.24$estrato)
 tabla</code></pre>
 <pre><code>              
                  3   4   5   6
@@ -401,7 +384,7 @@ ambas variables y representarlas en un plano cartesiano</p>
 library(factoextra)
 library(gridExtra)
 resultados_ac &lt;- CA(tabla)</code></pre>
-<p><img src="recurso310_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="recurso310_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p><br/></p>
 <p>El gráfico nos permite establecer relaciones y validarlas como
 son:</p>
