@@ -36,13 +36,15 @@ Tomado de : Ciencias de Datos para Gente Sociable
 
 </br></br>
 
-Dependiendo el problema a ser abordado, se utiliza una herramienta estadística diferente para el proceso de modelación. Dentro de los modelos más utilizados se destacan: 
-el análisis de componentes principales, análisis de correspondencia, análisis discriminante, como parte de una herramientas estadiísticas que permiten el resumen de información, la clasificación de individuos y variables y la visualización de patrones.
+Dependiendo el problema a ser abordado, se utiliza una herramienta estadística diferente para el proceso de modelación. 
+
+Dentro de los modelos más utilizados se destacan: 
+El análisis de componentes principales, análisis de correspondencia, análisis discriminante, como parte de una herramientas estadiísticas que permiten el resumen de información, la clasificación de individuos y variables y la visualización de patrones.
 
 Para pronosticar y valorar la relación existente entre una variable y un grupo de variables se tienen los modelos de Regresión Lineal, la Regresión Logistica, el Modelo Lineal Generalizado, el Modelo Lineal Mixto Generalizado, el modelo de Regresión de Cox y el modelo de series de tiempo, entre otros.
 
 
 </br>
 
-En esta primera unidad empezaremos con los modelos clasificados como descriptivos
+En esta primera unidad empezaremos con los modelos clasificados como descriptivos : El análisis de componentes principales, análisis de correspondencia, análisis discriminante y posteriormente trataremos los modelo de regresión lineal y el modelo de regresión logistica.
 
