@@ -1,13 +1,15 @@
 ---
 title: <span style="color:#034a94">**Introducción**</span>
 author: "Modelos Estadísticos para la toma de decisiones"
-date: " "
-output: html_document
+output:
+  html_document:
+    code_folding: hide
+    css: style.css
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment = NA)
-
+library(paqueteMOD)
 library(psych)
 library(summarytools)
 # colores

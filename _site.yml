@@ -3,7 +3,7 @@ output_dir: "docs"
 navbar:
   title: "Modelos Estadísticos para la toma de decisiones"
   left:
-    - text: "Conceptos"
+    - text: "Conceptos Generales"
       menu:
         - text: "Conceptos básicos"
           href: recurso010.html 
@@ -12,19 +12,19 @@ navbar:
           
     - text: "ACPrincipales"
       menu:
-        - text: "Análisis de Componentes Principales"
+        - text: "Conceptos ACP"
           href: recurso100.html
         - text: "Ejemplo"
           href: recurso110.html
-    - text: "AConglomerados"
+    - text: "A. Conglomerados"
       menu:
-        - text: "Análisis de Conglomerados"
+        - text: "Conceptps ACong"
           href: recurso200.html
         - text: "Ejemplo"
           href: recurso210.html          
-    - text: "ACorrespondencia"
+    - text: "A. Correspondencia"
       menu:
-        - text: "Análisis de Correspondencia"
+        - text: "Conceptos ACorr"
           href: recurso300.html
         - text: "Ejemplo"
           href: recurso310.html          

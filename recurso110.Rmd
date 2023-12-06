@@ -1,8 +1,10 @@
 ---
 title: <span style="color:#034a94">**Ejemplo**</span>
 author: "Modelos Estadísticos para la toma de decisiones"
-date: " "
-output: html_document
+output:
+  html_document:
+    code_folding: hide
+    css: style.css
 ---
 
 ```{r setup, include=FALSE}
@@ -107,8 +109,8 @@ prcomp(creditosZ)
 
 </br>
 
-```{r, fig.align='center'}
-library(paqueteMOD)
+```{r, fig.align='center', message=FALSE, warning=FALSE}
+library(paqueteMODELOS)
 data("creditos")
 creditosZ= scale(creditos[,2:5]) 
 res.pca <- prcomp(creditosZ)

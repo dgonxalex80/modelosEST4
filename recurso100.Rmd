@@ -1,8 +1,10 @@
 ---
 title: <span style="color:#034a94">**Análisis de Componentes Principales**</span>
 author: "Modelos Estadísticos para la toma de decisiones"
-date: " "
-output: html_document
+output:
+  html_document:
+    code_folding: hide
+    css: style.css
 ---
 
 ```{r setup, include=FALSE}

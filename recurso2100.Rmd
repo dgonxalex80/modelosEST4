@@ -1,8 +1,10 @@
 ---
 title: "**Ejemplo - Análisis de Conglomerados**"
 author: "Modelos Estadísticos para la toma de decisiones"
-date: " "
-output: html_document
+output:
+  html_document:
+    code_folding: hide
+    css: style.css
 ---
 
 ```{r setup, include=FALSE}
@@ -331,7 +333,7 @@ p = ncol(data)
 
 ```{r,eval=FALSE}
 library(FactoClass)
-# plotFactoClass(Cluster,title="Análisis de conglomerados")
+plotFactoClass(Cluster,title="Análisis de conglomerados")
 ```
 
 </br></br>

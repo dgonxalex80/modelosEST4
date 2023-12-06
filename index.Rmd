@@ -48,3 +48,33 @@ Para pronosticar y valorar la relación existente entre una variable y un grupo 
 
 En esta primera unidad empezaremos con los modelos clasificados como descriptivos : El análisis de componentes principales, análisis de correspondencia, análisis discriminante y posteriormente trataremos los modelo de regresión lineal y el modelo de regresión logistica.
 
+</br></br>
+
+Contenido de la unidad
+
+</br>
+
+* **Conceptos generales**
+  * Conceptos básicos
+  * Tablas de contingencia
+
+</br>
+
+* **Análisis de Componentes Principales**
+  * Conceptos
+  * Ejemplo
+
+</br>
+
+* **Análisis de Conglomerados**
+  * Conceptos
+  * Ejemplo
+
+</br>
+
+* **Análisis de Correspondencia**
+  * Conceptos
+  * Ejemplo
+
+
+</br></br>

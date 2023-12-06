@@ -14,7 +14,7 @@
 
 <title>Ejemplo</title>
 
-<script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -31,6 +31,7 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
@@ -218,6 +219,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -246,7 +250,7 @@ $(document).ready(function () {
       <ul class="nav navbar-nav">
         <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Conceptos
+    Conceptos Generales
      
     <span class="caret"></span>
   </a>
@@ -267,7 +271,7 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="recurso100.html">Análisis de Componentes Principales</a>
+      <a href="recurso100.html">Conceptos ACP</a>
     </li>
     <li>
       <a href="recurso110.html">Ejemplo</a>
@@ -276,13 +280,13 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    AConglomerados
+    A. Conglomerados
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="recurso200.html">Análisis de Conglomerados</a>
+      <a href="recurso200.html">Conceptps ACong</a>
     </li>
     <li>
       <a href="recurso210.html">Ejemplo</a>
@@ -291,13 +295,13 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    ACorrespondencia
+    A. Correspondencia
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="recurso300.html">Análisis de Correspondencia</a>
+      <a href="recurso300.html">Conceptos ACorr</a>
     </li>
     <li>
       <a href="recurso310.html">Ejemplo</a>
@@ -314,6 +318,14 @@ $(document).ready(function () {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore"><span
@@ -328,11 +340,22 @@ style="color:#034a94"><strong>Ejemplo</strong></span></h1>
 se toma una muestra de la base de datos vivienda contenida en
 paqueteMOD</p>
 <p><br/></p>
+<ul>
+<li>Se toma una muestra de tamaño n=4000 de la base de datos
+<code>vivienda24</code> contenida en <code>paqueteMOD</code></li>
+</ul>
 <pre class="r"><code>set.seed(1234)
 vivienda.24 &lt;- sample_n(vivienda24, 4000)</code></pre>
+<ul>
+<li>Se convierte en variable tipo factor la variable
+<code>vivienda$estrato</code></li>
+</ul>
 <pre class="r"><code>vivienda.24$estrato &lt;- as.factor(vivienda.24$estrato)</code></pre>
 <p><br/><br/></p>
-<p>Inicialmente se revisa si la base tiene datos faltantes</p>
+<ul>
+<li>Se revisa si la base tiene datos faltantes (rectangulos de color
+rojo)</li>
+</ul>
 <pre class="r"><code>library(mice)
 md.pattern(vivienda.24, rotate.names = TRUE)</code></pre>
 <p><img src="img/vivienda24NA.png" width="50%" style="display: block; margin: auto;" /></p>
@@ -409,7 +432,7 @@ mientras que los dos primeros ejes resumen un 96.4% de los datos.</p>
 <p><br/><br/></p>
 <div id="código" class="section level3">
 <h3><strong>Código</strong></h3>
-<pre class="r"><code>library(paqueteMOD)
+<pre class="r"><code>library(paqueteMODELOS)
 data(vivienda)
 vivienda.24 &lt;- vivienda[, c(2,4)]
 
@@ -428,6 +451,29 @@ valores_prop &lt;-resultados.ac$eig
 library(factoextra)
 fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle(&quot;&quot;)+
   ylab(&quot;Porcentaje de varianza explicado&quot;) + xlab(&quot;Ejes&quot;)</code></pre>
+<pre>
+
+library(paqueteMODELOS)
+data(vivienda)
+vivienda.24 <- vivienda[, c(2,4)]
+
+library(dplyr)
+set.seed(1234)
+vivienda.24 <- sample_n(vivienda.24, 4000) 
+md.pattern(vivienda.24, rotate.names = TRUE)
+
+library(mice)
+library(FactoMineR)
+vivienda.24 <- na.omit(vivienda.24)
+tabla <- table(vivienda.24$zona, vivienda.24$estrato)
+resultados_ac <- CA(tabla)
+valores_prop <-resultados.ac$eig 
+
+library(factoextra)
+fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle("")+
+  ylab("Porcentaje de varianza explicado") + xlab("Ejes")
+
+</pre>
 </div>
 
 
@@ -463,6 +509,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

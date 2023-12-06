@@ -1,8 +1,10 @@
 ---
 title: <span style="color:#034a94">**Ejemplo**</span>
 author: "Modelos Estadísticos para la toma de decisiones"
-date: " "
-output: html_document
+output:
+  html_document:
+    code_folding: hide
+    css: style.css
 ---
 
 ```{r setup, include=FALSE}
@@ -19,7 +21,7 @@ library("factoextra") # visualizacion elegante en ggplot2
 par(mar = c(1,1,1,1) + 0.1)
 
 library(tidyverse)
-library(paqueteMOD)
+library(paqueteMODELOS)
 data("creditos") 
 creditosZ= creditos[2:5] %>%
 scale()

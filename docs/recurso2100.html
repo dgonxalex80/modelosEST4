@@ -14,7 +14,7 @@
 
 <title>Ejemplo - Análisis de Conglomerados</title>
 
-<script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -31,6 +31,7 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
@@ -218,6 +219,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -246,7 +250,7 @@ $(document).ready(function () {
       <ul class="nav navbar-nav">
         <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Conceptos
+    Conceptos Generales
      
     <span class="caret"></span>
   </a>
@@ -267,7 +271,7 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="recurso100.html">Análisis de Componentes Principales</a>
+      <a href="recurso100.html">Conceptos ACP</a>
     </li>
     <li>
       <a href="recurso110.html">Ejemplo</a>
@@ -276,13 +280,13 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    AConglomerados
+    A. Conglomerados
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="recurso200.html">Análisis de Conglomerados</a>
+      <a href="recurso200.html">Conceptps ACong</a>
     </li>
     <li>
       <a href="recurso210.html">Ejemplo</a>
@@ -291,13 +295,13 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    ACorrespondencia
+    A. Correspondencia
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="recurso300.html">Análisis de Correspondencia</a>
+      <a href="recurso300.html">Conceptos ACorr</a>
     </li>
     <li>
       <a href="recurso310.html">Ejemplo</a>
@@ -313,6 +317,14 @@ $(document).ready(function () {
 </div><!--/.navbar -->
 
 <div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
 
 
 
@@ -651,7 +663,7 @@ p = ncol(data)
 # Cluster &lt;- FactoClass(whisky, dudi.pca, nf = p, nfcl = p, k.clust = 2, scanFC = FALSE)</code></pre>
 <p></br></br></p>
 <pre class="r"><code>library(FactoClass)
-# plotFactoClass(Cluster,title=&quot;Análisis de conglomerados&quot;)</code></pre>
+plotFactoClass(Cluster,title=&quot;Análisis de conglomerados&quot;)</code></pre>
 <p></br></br></p>
 <p><img src="img/cluster1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p></br></br></p>
@@ -692,6 +704,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
