@@ -9,7 +9,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,comment = NA)
-library(paqueteMOD)
+library(paqueteMODELOS)
 library(ade4)
 library(ggrepel)
 library(xtable)
@@ -23,7 +23,7 @@ empresa_z =scale(empresa)
 empresa_z = as.data.frame(empresa_z)
 ```
 
-
+<br/><br/>
 
 # <span style="color:#FF7F00"> **Ejemplo**</span> 
 
@@ -130,7 +130,7 @@ rect.hclust(hc_emp, k = 2, border = 2:5)
 
 </br></br>
 
-En este diagrama se observa que al inicio los individuos que más se parecen (menor distancia euclidea) son los individuos $E7$, $E8$, $E3$ y $E4$ ($d(E7, E8) = 0.3863837$) $d(E3, E4) = 0.4350355$) , conformando estas cuatro empresas un primer cluster y el resto un segundo grupo o cluster a una distancia de 2.5.
+En este diagrama se observa que al inicio los individuos que más se parecen (menor distancia euclidea) son los individuos `E7`, `E8`, `E3`, `E4` ( `d(E7, E8) = 0.3863837`), `d(E3, E4) = 0.4350355`, conformando estas cuatro empresas un primer cluster y el resto un segundo grupo o cluster a una distancia de 2.5.
 
 En el caso de tener hipótesis de la existencia de de 4 grupos podemos reducir la distancia 1.0 y se obtienen cuarto conglomerados
 
@@ -191,7 +191,7 @@ barplot(sort(dendograma$height, decreasing = TRUE), horiz = TRUE,
 <!-- ``` -->
 
 
-Por último se mide el indice de Silhouette promedio con el fin de valorar la mejor alternativa para la elección del número de conglomerados
+Por último se mide el `indice de Silhouette` promedio con el fin de valorar la mejor alternativa para la elección del número de conglomerados
 
 
 ```{r , warning=FALSE,message=FALSE}
@@ -239,10 +239,10 @@ sil_avg <- mean(sil[,3])
 cat("Coeficiente de Silhouette promedio k=2 : ", sil_avg)
 
 ```
-Estos resultados indican una mejor agrupación cuando se eligen k=4 conglomerados. (valores más cercanos a 1 indican un agrupamiento más coherente)
 
+<br/>
 
-
+Estos resultados indican una mejor agrupación cuando se eligen `k=4` conglomerados. (valores más cercanos a 1 indican un agrupamiento más coherente)
 
 </br></br></br>
 
@@ -293,7 +293,7 @@ fviz_dend(dendograma, k=2, cex = 0.5,
 </br></br>
 
 ```{r, echo=FALSE, out.width="80%", fig.align = "center"}
-knitr::include_graphics("img/dendograma2.png")
+# knitr::include_graphics("img/dendograma2.png")
 ```
 
 </br>
@@ -324,8 +324,8 @@ La libreria `FactoClass` para representar los clusters en el primer plano factor
 </br></br>
 
 ```{r message = FALSE}
-library(FactoClass)
-p = ncol(data)
+# library(FactoClass)
+# p = ncol(data)
 # Cluster <- FactoClass(whisky, dudi.pca, nf = p, nfcl = p, k.clust = 2, scanFC = FALSE)
 ```
 

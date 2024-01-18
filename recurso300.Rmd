@@ -237,7 +237,7 @@ library(ade4)
 library(FactoMineR)
 library(factoextra)
 library(gridExtra)
-res.ac <- CA(tabla)
-valores_prop <-res.ac$eig 
+# res.ac <- CA(tabla)
+# valores_prop <-res.ac$eig 
 ```
 

@@ -335,6 +335,7 @@ Conglomerados</strong></h1>
 </div>
 
 
+<p><br/><br/></p>
 <div id="ejemplo" class="section level1">
 <h1><span style="color:#FF7F00"> <strong>Ejemplo</strong></span></h1>
 <p></br></p>
@@ -482,15 +483,11 @@ rect.hclust(hc_emp, k = 2, border = 2:5)</code></pre>
 <p><img src="recurso2100_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p></br></br></p>
 <p>En este diagrama se observa que al inicio los individuos que más se
-parecen (menor distancia euclidea) son los individuos <span
-class="math inline">\(E7\)</span>, <span
-class="math inline">\(E8\)</span>, <span
-class="math inline">\(E3\)</span> y <span
-class="math inline">\(E4\)</span> (<span class="math inline">\(d(E7, E8)
-= 0.3863837\)</span>) <span class="math inline">\(d(E3, E4) =
-0.4350355\)</span>) , conformando estas cuatro empresas un primer
-cluster y el resto un segundo grupo o cluster a una distancia de
-2.5.</p>
+parecen (menor distancia euclidea) son los individuos <code>E7</code>,
+<code>E8</code>, <code>E3</code>, <code>E4</code> (
+<code>d(E7, E8) = 0.3863837</code>), <code>d(E3, E4) = 0.4350355</code>,
+conformando estas cuatro empresas un primer cluster y el resto un
+segundo grupo o cluster a una distancia de 2.5.</p>
 <p>En el caso de tener hipótesis de la existencia de de 4 grupos podemos
 reducir la distancia 1.0 y se obtienen cuarto conglomerados</p>
 <p></br></p>
@@ -545,8 +542,8 @@ barplot(sort(dendograma$height, decreasing = TRUE), horiz = TRUE,
 <!-- sort(dist_euclidianas) -->
 <!-- dist_euclidianas[2:28]-dist_euclidianas[1:27] -->
 <!-- ``` -->
-<p>Por último se mide el indice de Silhouette promedio con el fin de
-valorar la mejor alternativa para la elección del número de
+<p>Por último se mide el <code>indice de Silhouette</code> promedio con
+el fin de valorar la mejor alternativa para la elección del número de
 conglomerados</p>
 <pre class="r"><code>library(tidyverse)
 library(cluster)
@@ -585,9 +582,10 @@ sil_avg &lt;- mean(sil[,3])
 # Imprimir el coeficiente de Silhouette promedio
 cat(&quot;Coeficiente de Silhouette promedio k=2 : &quot;, sil_avg)</code></pre>
 <pre><code>Coeficiente de Silhouette promedio k=2 :  0.3416799</code></pre>
-<p>Estos resultados indican una mejor agrupación cuando se eligen k=4
-conglomerados. (valores más cercanos a 1 indican un agrupamiento más
-coherente)</p>
+<p><br/></p>
+<p>Estos resultados indican una mejor agrupación cuando se eligen
+<code>k=4</code> conglomerados. (valores más cercanos a 1 indican un
+agrupamiento más coherente)</p>
 <p></br></br></br></p>
 </div>
 <div id="ejemplo-1" class="section level3">
@@ -635,7 +633,6 @@ dendograma, quedando:</p>
           rect=TRUE,
           main = &quot;Dendograma&quot;)</code></pre>
 <p></br></br></p>
-<p><img src="img/dendograma2.png" width="80%" style="display: block; margin: auto;" /></p>
 <p></br></p>
 <p>En este caso el número optimo de grupos o clusters será de 2. Con el
 siguiente código podemos ver en la primera fila los individuos y en la
@@ -658,8 +655,8 @@ clasificación, en este caso será igual a<code>nf=p</code>. <br></p></li>
 el dendograma elegimos dos clusters.</p></li>
 </ul>
 <p></br></br></p>
-<pre class="r"><code>library(FactoClass)
-p = ncol(data)
+<pre class="r"><code># library(FactoClass)
+# p = ncol(data)
 # Cluster &lt;- FactoClass(whisky, dudi.pca, nf = p, nfcl = p, k.clust = 2, scanFC = FALSE)</code></pre>
 <p></br></br></p>
 <pre class="r"><code>library(FactoClass)

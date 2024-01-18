@@ -21,7 +21,7 @@ library("factoextra") # visualizacion elegante en ggplot2
 par(mar = c(1,1,1,1) + 0.1)
 
 library(tidyverse)
-library(paqueteMOD)
+library(paqueteMODELOS)
 data("creditos") 
 creditosZ= creditos[2:5] %>%
 scale()

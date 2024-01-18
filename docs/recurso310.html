@@ -382,18 +382,18 @@ tabla &lt;- table(vivienda.24$zona, vivienda.24$estrato)
 tabla</code></pre>
 <pre><code>              
                  3   4   5   6
-  Zona Centro   46   8   2   1
-  Zona Norte   279 194 382  86
-  Zona Oeste    26  41 126 358
-  Zona Oriente 178   3   1   0
-  Zona Sur     186 798 781 503</code></pre>
+  Zona Centro   50   8   3   0
+  Zona Norte   265 168 393  82
+  Zona Oeste    24  38 147 377
+  Zona Oriente 170   0   1   0
+  Zona Sur     180 776 809 508</code></pre>
 <p><br/></p>
 <pre class="r"><code>chisq.test(tabla)</code></pre>
 <pre><code>
     Pearson&#39;s Chi-squared test
 
 data:  tabla
-X-squared = 1868.9, df = 12, p-value &lt; 2.2e-16</code></pre>
+X-squared = 1933.4, df = 12, p-value &lt; 2.2e-16</code></pre>
 <p><br/></p>
 <p>El resultado indica que se rechaza la hipótesis de independencia de
 las variables (p-value: 0.0000), indicando grado tipo de relación entre
@@ -420,9 +420,9 @@ Norte</li>
 <p><br/><br/></p>
 <pre class="r"><code>valores_prop &lt;-resultados_ac$eig ; valores_prop</code></pre>
 <pre><code>      eigenvalue percentage of variance cumulative percentage of variance
-dim 1 0.32546174              69.642130                          69.64213
-dim 2 0.12761381              27.306734                          96.94886
-dim 3 0.01425901               3.051136                         100.00000</code></pre>
+dim 1 0.33730884              69.767822                          69.76782
+dim 2 0.12866848              26.613355                          96.38118
+dim 3 0.01749605               3.618823                         100.00000</code></pre>
 <pre class="r"><code>fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle(&quot;&quot;)+
   ylab(&quot;Porcentaje de varianza explicado&quot;) + xlab(&quot;Ejes&quot;)</code></pre>
 <p><img src="recurso310_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
@@ -446,7 +446,7 @@ library(FactoMineR)
 vivienda.24 &lt;- na.omit(vivienda.24)
 tabla &lt;- table(vivienda.24$zona, vivienda.24$estrato)
 resultados_ac &lt;- CA(tabla)
-valores_prop &lt;-resultados.ac$eig 
+valores_prop &lt;-resultados_ac$eig 
 
 library(factoextra)
 fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle(&quot;&quot;)+

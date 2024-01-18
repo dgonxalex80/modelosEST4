@@ -12,7 +12,8 @@ knitr::opts_chunk$set(echo = TRUE, comment = NA)
 library(dplyr)
 library(readr)
 library(paqueteMODELOS)
-vivienda <- read_csv("~/Documentos/Javeriana/Ms Ciencia de Datos/recursos/data/vivienda.csv")
+data(vivienda)
+#vivienda <- read_csv("~/Documentos/Javeriana/Ms Ciencia de Datos/recursos/data/vivienda.csv")
 vivienda24 <- vivienda[, c(2,4)]
 ```
 
@@ -154,7 +155,7 @@ library(FactoMineR)
 vivienda.24 <- na.omit(vivienda.24)
 tabla <- table(vivienda.24$zona, vivienda.24$estrato)
 resultados_ac <- CA(tabla)
-valores_prop <-resultados.ac$eig 
+valores_prop <-resultados_ac$eig 
 
 library(factoextra)
 fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle("")+

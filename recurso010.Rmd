@@ -9,7 +9,8 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment = NA)
-library(paqueteMOD)
+
+library(paqueteMODELOS)
 library(psych)
 library(summarytools)
 # colores
@@ -231,26 +232,20 @@ Aunque este análisis es más amplio que los anteriores está menos difundido y 
 
 Los métodos multivariados pueden tener diferentes propósitos como: 
 
-<br/>
 
 * **resumir un conjunto datos con muchas variables en unas pocas** :  Análisis de Componentes Principales
 
-<br/>
-
 * **visualizar patrones** - **clasificar** :  Análisis de Conglomerados, 
 
-<br/>
-
 * **realizar predicciones** :  Regresión Lineal
-
-<br/>
 
 * **asociación entre variables** : Análisis de Correspondencia
 
 
-<br/><br/><br/>
+
 
 <br/> <br/>
+
 ```{r, echo=FALSE, out.width="110%", fig.align='center'}
 knitr::include_graphics("img/acp12.png")
 ```
