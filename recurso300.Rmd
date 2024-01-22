@@ -34,9 +34,20 @@ $$\lambda = \sum_{i=1}^{m} \sum_{j=1}^{n} \dfrac{(n_{ij} - n_{i.} n_{.j}/n)^2}{n
 
 Donde 
 
-<center>
-![](img/tablaab.png){width=50%}
-</center>
+
+|          |$\bf{B}$|$\bf{1}$     |$\bf{2}$     |$\bf{3}$     |$\ldots$ |$\bf{j}$     |$\ldots$|$\bf{b}$|                    |
+|:--------:|:------:|:-----------:|:-----------:|:-----------:|:-------:|:-----------:|:------:|:-----------:|:-------------:|
+|$\bf{A}$  |        |             |             |             |         |             |        |             |               |
+|$\bf{1}$  |        |$n_{11}$     |$n_{12}$     |$n_{13}$     |$\ldots$ |$n_{1j}$     |$\ldots$|$n_{1b}$     |$\bf{n_{1.}}$  |
+|$\bf{2}$  |        |$n_{21}$     |$n_{22}$     |$n_{23}$     |$\ldots$ |$n_{2j}$     |$\ldots$|$n_{2b}$     |$\bf{n_{2.}}$  |
+|$\bf{3}$  |        |$n_{31}$     |$n_{32}$     |$n_{33}$     |$\ldots$ |$n_{3j}$     |$\ldots$|$n_{3b}$     |$\bf{n_{3.}}$  |
+|          |        |$\vdots$     |$\vdots$     |$\vdots$     |$\vdots$ |$\vdots$     |$\vdots$|$\vdots$     |$\vdots$       |
+|$\bf{i}$  |        |$n_{i1}$     |$n_{i2}$     |$n_{i3}$     |$\ldots$ |$n_{ij}$     |$\ldots$|$n_{ib}$     |$\bf{n_{i.}}$  |
+|          |        |$\vdots$     |$\vdots$     |$\vdots$     |$\vdots$ |$\vdots$     |$\vdots$|$\vdots$     |$\vdots$       |
+|$\bf{a}$  |        |$n_{a1}$     |$n_{a2}$     |$n_{a3}$     |$\ldots$ |$n_{aj}$     |$\ldots$|$n_{ab}$     |$\bf{n_{a.}}$  |
+|          |        |$\bf{n_{.1}}$|$\bf{n_{.2}}$|$\bf{n_{.3}}$|$\ldots$ |$\bf{n_{.j}}$|$\ldots$|$\bf{n_{.b}}$|$\bf{n}$       |
+
+
 
 </br></br>
 
@@ -44,34 +55,49 @@ Donde
 Supongamos que tenemos la siguiente tabla de contingencia, como resultado de una  encuesta que contenía dos preguntas: su actividad laboral y si habían sufrido o no de alguna enfermedad relacionadas con el estrés. 
 
 
+```{r, warning=FALSE, message=FALSE}
+x= c(4,1,3,4,1,4,9,6,20,25)
+m=matrix(x, nrow = 5)
+rownames(m) = c("Empleado bancario", "Empleado estatal", "Docente", "Ama de casa", "Empleado público")
+colnames(m) = c("Si", "No")
+m
+```
 
-<center>
-![](img/tabla2.png){width=28%}
-</center>
+
+
 
 </br></br>
 
 Con esta información podremos obtener una métrica que nos permita agrupar las profesiones conformando grupos semejantes
 
 
-<center>
-![](img/tabla3.png){width=30%}
-</center>
+```{r, warning=FALSE, message=FALSE}
+x <- c(4, 1, 3, 4, 1, 4, 9, 6, 20, 25)
+m <- matrix(x, nrow = 5, byrow = TRUE, 
+            dimnames = list(c("Empleado bancario", "Empleado privado", "Docente", "Ama de casa", "Empleado público"), c("Si", "No")))
+df <- as.data.frame(m)
+indicador <- df$Si / rowSums(df)
+indicador
+
+```
+
 
 </br></br>
+
 
 <center>
 
 ![](img/pocisiones.png){width=80%}
 </center>
 
+
 </br></br>
 
 La representación gráfica de estos valores permite visualizar que podrían existir tres grupos en cuanto a enfermedades relacionadas con el estrés :
 
-* Empleado público, empleado estatal y ama de casa
-* Docente
-* Empleado bancario
+* **Grupo 1** : Empleado público, empleado estatal y ama de casa
+* **Grupo 2** : Docente
+* **Grupo 3** : Empleado bancario
 
 </br></br>
 
@@ -83,10 +109,6 @@ Ahora utilicemos la métrica $\lambda$ de Pearson para identificar si existe aso
 
 </br></br>
 
-<center>
-
-![](img/tablaAB.png){width=40%}
-</center>
 
 ```{r, warning=FALSE, message=FALSE}
 library(tidyr)
@@ -102,7 +124,7 @@ m
 Mediante la prueba chi.cuadrado se obtienen dos matrices con las que posteriormente se construirán las coordenadas que serán representadas en un plano cartesiano para permitir ver la cercania o no entre las categorias de ambas variables
 
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, message=FALSE}
 chisq.test(m)
 ```
 
@@ -114,7 +136,10 @@ Los resultados de la prueba indican que las variables **A** y **B** no son indep
 
 Iniciaremos visualizando la matriz de valores observados 
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, message=FALSE}
+cat("Matriz de valores observados", "\n")
+cat("\n")
+
 chisq.test(m)$observed
 ```
 
@@ -125,7 +150,10 @@ Y la matriz de valores esperados. Estos valores corresponde a los valores espera
 $$n_{11} = \dfrac{n_{.1} \times n_{1.} }{n} = \dfrac{4401 \times 104}{6796} = 67.34903$$
 
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, message=FALSE}
+cat("Matriz de valores esperados", "\n")
+cat("\n")
+
 chisq.test(m)$expected
 ```
 
@@ -134,7 +162,9 @@ A partir de los valores observados y los valores esperados se calcula la matriz 
 $$ d_{11} = \dfrac{(50-67.349029)^2}{67.349029} = 4.469089$$
 
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, message=FALSE}
+cat("Matriz de discrepancias", "\n")
+cat("\n")
 Obs <- chisq.test(m)$observed
 Esp <- chisq.test(m)$expected
 Discrepancias <- (Obs-Esp)^2/Esp
@@ -146,7 +176,10 @@ Discrepancias
 La suma total de los valores de la matriz de discrepancias constituye el valor del esta disco chi-cuadrado ($\lambda = 21.359$)
 
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
+cat("Suma total de discrepancias", "\n")
+cat("\n")
+
 sum(Discrepancias)
 ```
 
@@ -159,66 +192,80 @@ Ahora fijaremos como propósito determinar las **coordenadas** para cada una de 
 $$C = U \hspace{.2cm} D \hspace{.2cm} V^{t}$$
 
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
+cat("Matriz U obtenidad en la factorización de la matriz de discrepancias C", "\n")
+cat("\n")
+
 C <- Discrepancias
 U <- eigen(C%*%t(C))$vectors
 U
 ```
 
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
+cat("Matriz V obtenida en la factorizacion de la matriz de discremancias", "\n")
+cat("\n")
+
 V <- eigen(t(C) %*% C)$vectors
 V
 ```
 
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 a <- sqrt(eigen(C%*%t(C))$values)
 a
 ```
 
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 D <- diag(a)
 D
 ```
 
 
 
-```{r}
+```{r,message=FALSE, warning=FALSE}
 -U%*%D%*%t(V)
 C
 ```
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 udvt=svd(Discrepancias)
 U <-udvt$u
 D <-udvt$d
 V <-udvt$v
 ```
 
-```{r}
+```{r,warning=FALSE,message=FALSE}
 U
 ```
 
-```{r}
+```{r,warning=FALSE, message=FALSE}
 D
 ```
 
-```{r}
+```{r, warning=FALSE,message=FALSE}
 V
 ```
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
+cat("Matriz de cooordenadas filas", "\n")
+cat("\n")
+
 coord_filas <- U %*% sqrt(D)
 coord_filas
 ```
 
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
+cat("Matriz de coordenadas columas", "\n")
+cat("\n")
+
 coord_columnas <- t(V) %*% sqrt(D)
 coord_columnas
 ```
+
+<br/>
 
 Finalmente se representa los resultados obtenidos en un plano cartesiano donde se pueden visualizar las relaciones entre las categorías de las dos variables
 
@@ -232,12 +279,35 @@ Con el fin de establecer el porcentaje explicado por los dos primeros ejes, llam
 
 
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(ade4)
 library(FactoMineR)
 library(factoextra)
 library(gridExtra)
-# res.ac <- CA(tabla)
-# valores_prop <-res.ac$eig 
+library(tidyr)
+m <- c(50,9,41,4,315,40,147,11,24,6,14,1,4012,459,1539,124) %>%
+matrix(., ncol=4) 
+colnames(m) <- c( "b1", "b2", "b3", "b4")
+rownames(m) <- c( "a1", "a2", "a3", "a4")
+m
+
+
+res.ac <- CA(m)
+valores_prop <-res.ac$eig 
 ```
+
+El mapa permite visualizar la cercania o no entre las categorías de las variables. Se observa varios grupos:
+
+* a1, b4
+* a3,a4, b2
+* a2
+* b1
+* b3
+
+Este tipo de cercanias permite asociar las categorías
+
+
+
+
+
 

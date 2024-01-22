@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Modelos Estadísticos para la toma de decisiones" />
+
+
+<title>Matriz de Varianza-Covarianzas</title>
+
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Modelos Estadísticos para la toma de decisiones</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Conceptos Generales
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="recurso010.html">Conceptos básicos</a>
+    </li>
+    <li>
+      <a href="recurso020.html">Tablas de contingencia</a>
+    </li>
+    <li>
+      <a href="recurso030.html">Matriz de Varianza-Covarianza</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    A.Componentes Principales
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="recurso100.html">Conceptos ACP</a>
+    </li>
+    <li>
+      <a href="recurso110.html">Ejemplo</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    A. de Conglomerados
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="recurso200.html">Conceptps A.de Conglomerados</a>
+    </li>
+    <li>
+      <a href="recurso210.html">Ejemplo</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    A. de Correspondencia
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="recurso300.html">Conceptos A.de Correspondencia</a>
+    </li>
+    <li>
+      <a href="recurso310.html">Ejemplo</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore"><span style="color:#034a94"><strong>Matriz
+de Varianza-Covarianzas</strong></sapn></h1>
+<h4 class="author">Modelos Estadísticos para la toma de decisiones</h4>
+
+</div>
+
+
+<p><br/><br/></p>
+<div id="matriz-de-varianzas-covarianzas" class="section level1">
+<h1><span style="color:#034a94"><strong>Matriz de
+Varianzas-Covarianzas</strong></span></h1>
+<p>La matriz de <strong>varianzas-covarianzas</strong> <span
+class="math inline">\(\Sigma\)</span> es utilizada en el análisis
+multivariado de datos para describir la variabilidad conjunta entre dos
+o más variables. Esta matriz proporciona información sobre la dispersión
+y las relaciones lineales entre las variables en un conjunto de
+datos.</p>
+<div class="content-box-blue">
+<p><span class="math display">\[
+\Sigma =
+\begin{bmatrix}
+    Var[x_{1}] &amp; Cov[x_{1},x_{2}] &amp; Cov[x_{1},x_{3}] &amp;
+\ldots &amp; Cov[x_{1},x_{m}] \\
+    Cov[x_{2},x_{1}] &amp; Var[x_{2}] &amp; Cov[x_{2},x_{3}] &amp;
+\ldots &amp; Cov[x_{2},x_{m}] \\
+    Cov[x_{3},x_{1}] &amp; Cov[x_{3},x_{2}] &amp; Var[x_{3}] &amp;
+\ldots &amp; Cov[x_{3},x_{m}] \\
+    \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+    Cov[x_{m},x_{1}] &amp; Cov[x_{m},x_{2}] &amp; Cov[x_{m},x_{3}] &amp;
+\ldots &amp; Var[x_{m}] \\
+\end{bmatrix}
+\]</span></p>
+</div>
+<p><br/></p>
+<p>Incluye las varianzas de cada variable en la diagonal principal y las
+covarianzas entre pares de variables en las entradas fuera de la
+diagonal. La varianza (<span class="math inline">\(Var[x_{i}]\)</span>)
+mide cuánto varía una variable individualmente, mientras que la
+covarianza (<span class="math inline">\(Cov[x_{i},x_{j}]\)</span>)
+indica cómo dos variables cambian juntas.</p>
+<p><br/></p>
+<p>Cuando se trata de análisis estadístico, la matriz <span
+class="math inline">\(\Sigma\)</span> es esencial para comprender la
+estructura de dependencia entre variables. Se utiliza comúnmente en
+técnicas como el análisis de componentes principales, el análisis
+factorial y la regresión multivariante y es fundamental para entender la
+dispersión conjunta y las relaciones entre variables en un conjunto de
+datos.</p>
+<p><br/><br/></p>
+<div id="usos" class="section level2">
+<h2><span style="color:#034a94"><strong>Usos</strong></span></h2>
+<p><br/></p>
+<div id="medición-de-la-variabilidad-conjunta" class="section level3">
+<h3><span style="color:#034a94"><strong>Medición de la Variabilidad
+Conjunta</strong></span></h3>
+<p>La matriz de varianzas-covarianzas cuantifica la variabilidad
+conjunta entre variables en un conjunto de datos, proporcionando
+información sobre cómo cambian en relación entre sí.</p>
+<p><br/></p>
+</div>
+<div id="análisis-multivariado" class="section level3">
+<h3><span style="color:#034a94"><strong>Análisis
+Multivariado</strong></span></h3>
+<p>Es esencial en técnicas como el <strong>análisis de componentes
+principales</strong> y el <strong>análisis factorial</strong>, donde se
+buscan patrones y estructuras en datos multivariados.</p>
+<p><br/></p>
+</div>
+<div id="regresión-multivariante" class="section level3">
+<h3><span style="color:#034a94"><strong>Regresión
+Multivariante</strong></span></h3>
+<p>En modelos de <strong>regresión multivariante</strong>, la matriz de
+covarianzas se utiliza para estimar los coeficientes y sus errores
+estándar, lo que ayuda a comprender las relaciones entre variables
+dependientes e independientes.</p>
+<p><br/><br/></p>
+</div>
+</div>
+</div>
+<div id="matriz-de-correlaciones" class="section level1">
+<h1><span style="color:#034a94"><strong>Matriz de
+correlaciones</strong></span></h1>
+<p>La <strong>matriz de correlaciones</strong> (<span
+class="math inline">\(R\)</span>) muestra las relaciones lineales entre
+todas las combinaciones posibles de variables en un conjunto de datos. A
+diferencia de la matriz de varianzas-covarianzas, la matriz de
+correlaciones se centra en las relaciones proporcionando coeficientes de
+correlación en lugar de covarianzas.</p>
+<div class="content-box-blue">
+<p><span class="math display">\[
+R =
+\begin{bmatrix}
+    1 &amp; r_{12} &amp; r_{13} &amp; \ldots &amp; r_{1m} \\
+    r_{21} &amp; 1 &amp; r_{23} &amp; \ldots &amp; r_{2m} \\
+    r_{31} &amp; r_{32} &amp; 1 &amp; \ldots &amp; r_{3m} \\
+    \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+    r_{m1} &amp; r_{m2} &amp; \rho_{m3} &amp; \ldots &amp; 1 \\
+\end{bmatrix}
+\]</span></p>
+</div>
+<p><br/></p>
+<p>A partir de la matriz <span class="math inline">\(\Sigma\)</span> se
+optiene la matriz de correlaciones</p>
+<p><span class="math display">\[
+R = D^{-1/2}\hspace{.2cm} \Sigma \hspace{.2cm}D^{-1/2}
+\]</span> donde :</p>
+<p><span class="math inline">\(R\)</span> : matriz de correlaciones
+<span class="math inline">\(\Sigma\)</span> : matriz de varianzas -
+covarianzas <span class="math inline">\(D\)</span> : matriz diagonal con
+las varianzas en la diagonal principal para <span
+class="math inline">\(x_1\)</span>, <span
+class="math inline">\(x_2\)</span>, <span
+class="math inline">\(x_3\)</span>,<br />
+</p>
+<p>Cada elemento de la matriz <span class="math inline">\(R\)</span>,
+<span class="math inline">\(r_{ij}\)</span>, <span
+class="math inline">\(\ldots\)</span>, <span
+class="math inline">\(x_m\)</span></p>
+<p><span class="math display">\[
+r_{ij} = \frac{Cov[x_i,x_j]}{\sqrt{Var[x_i] Var[x_j]}}
+\]</span></p>
+<p><br/></p>
+<p>Este indicador estadístico cuantifica la fuerza y la dirección de la
+<strong>relación lineal</strong> (en forma de línea recta) entre dos
+variables. El rango típico para el coeficiente de correlación va de
+<span class="math inline">\(-1\)</span> a <span
+class="math inline">\(1\)</span>, donde:</p>
+<p><br/></p>
+<ul>
+<li><p><span class="math inline">\(1\)</span> indica una correlación
+perfecta positiva - cuando una variable aumenta, la otra tambien
+aumenta.</p></li>
+<li><p><span class="math inline">\(-1\)</span> indica una correlación
+perfecta negativa cuando una variable aumenta, la otra
+disminuye.</p></li>
+<li><p><span class="math inline">\(0\)</span> indica ausencia de
+correlación lineal - no se presenta una relación en forma de línea
+recta.</p></li>
+</ul>
+<p><br/></p>
+<p>Los elementos fuera de la diagonal principal son los coeficientes de
+correlación, mientras que en la diagonal principal de la matriz toma
+valores de <span class="math inline">\(1\)</span>.</p>
+<p>Esta matriz es útil para identificar patrones y relaciones entre
+variables, especialmente en contextos como el análisis exploratorio de
+datos y la selección de variables en modelos estadísticos.</p>
+<p><br/><br/></p>
+<div id="usos-1" class="section level2">
+<h2><span style="color:#034a94"><strong>Usos</strong></span></h2>
+<p><br/></p>
+<div id="identificación-de-patrones-de-asociación"
+class="section level3">
+<h3><span style="color:#034a94"><strong>Identificación de Patrones de
+Asociación</strong></span></h3>
+<p>La matriz de correlaciones revela patrones de asociación lineal entre
+variables. Esto es útil para entender cómo las variables se mueven
+juntas y si existe alguna relación significativa entre ellas.</p>
+<p><br/></p>
+</div>
+<div id="selección-de-variables" class="section level3">
+<h3><span style="color:#034a94"><strong>Selección de
+Variables</strong></span></h3>
+<p>En problemas de selección de variables, la matriz de correlaciones
+puede ayudar a identificar variables altamente correlacionadas, lo que
+puede influir en la elección de variables predictoras en modelos.</p>
+<p><br/></p>
+</div>
+<div id="diagnóstico-de-colinealidad" class="section level3">
+<h3><span style="color:#034a94"><strong>Diagnóstico de
+Colinealidad</strong></span></h3>
+<p>La colinealidad entre variables predictoras puede afectar la
+estabilidad de los <strong>modelos de regresión</strong>. La matriz de
+correlaciones es útil para diagnosticar la presencia de
+colinealidad.</p>
+<p><br/></p>
+</div>
+<div id="preprocesamiento-de-datos" class="section level3">
+<h3><span style="color:#034a94"><strong>Preprocesamiento de
+Datos</strong></span></h3>
+<p>Antes de aplicar ciertos algoritmos de <strong>aprendizaje
+automático</strong>, como la <strong>regresión lineal</strong>, es
+frecuente analizar la matriz de correlaciones para comprender las
+relaciones entre las variables y realizar ajustes si es necesario.</p>
+<p><br/><br/></p>
+</div>
+<div id="ejemplo" class="section level3">
+<h3><span style="color:#FF7F00"><strong>Ejemplo</strong></span></h3>
+<p>Para las variables de la data rotacion contenida en paqueteMODELOS
+fueron seleccionadas las siguientes variables:</p>
+<ul>
+<li><strong>Edad</strong><br />
+</li>
+<li><strong>Distancia Casa</strong><br />
+</li>
+<li><strong>Ingreso Mensual</strong><br />
+</li>
+<li><strong>Antigüedad</strong><br />
+</li>
+<li><strong>Antigüedad Cargo</strong><br />
+</li>
+<li><strong>Años última promoción</strong><br />
+</li>
+<li><strong>Años acargo con mismo jefe</strong></li>
+</ul>
+<p>La matriz de varianzas-covarianzas</p>
+<pre class="r"><code>library(paqueteMODELOS)
+data(&quot;rotacion&quot;)
+data = rotacion[, c(2,5,13,21,22,23,24)]
+names(data) = c(&quot;X1&quot;,&quot;X2&quot;,&quot;X3&quot;,&quot;X4&quot;, &quot;X5&quot;, &quot;X6&quot;,&quot;X7&quot;)
+# matriz de varianzas-covarianzas
+Mcov &lt;-cov(data)
+round(Mcov,3)</code></pre>
+<pre><code>          X1       X2           X3        X4       X5       X6       X7
+X1    83.465   -0.115    21409.162    17.421    7.045    6.373    6.586
+X2    -0.115   65.721     -649.386     0.472    0.554    0.262    0.417
+X3 21409.162 -649.386 22164857.072 14833.731 6205.846 5233.677 5780.054
+X4    17.421    0.472    14833.731    37.534   16.842   12.209   16.815
+X5     7.045    0.554     6205.846    16.842   13.127    6.399    9.235
+X6     6.373    0.262     5233.677    12.209    6.399   10.384    5.867
+X7     6.586    0.417     5780.054    16.815    9.235    5.867   12.732</code></pre>
+<pre class="r"><code>corrplot::corrplot.mixed(cor(data), lower=&quot;ellipse&quot;, upper=&quot;number&quot;, order=&quot;hclust&quot;)</code></pre>
+<p><img src="recurso030_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>La matriz de correlaciones correspondientes</p>
+<pre class="r"><code>library(paqueteMODELOS)
+data(&quot;rotacion&quot;)
+data = rotacion[, c(2,5,13,21,22,23,24)]
+names(data) = c(&quot;X1&quot;,&quot;X2&quot;,&quot;X3&quot;,&quot;X4&quot;, &quot;X5&quot;, &quot;X6&quot;,&quot;X7&quot;)
+# matriz de varianzas-covarianzas
+Mcor &lt;-cor(data)
+round(Mcor,3)</code></pre>
+<pre><code>       X1     X2     X3    X4    X5    X6    X7
+X1  1.000 -0.002  0.498 0.311 0.213 0.216 0.202
+X2 -0.002  1.000 -0.017 0.010 0.019 0.010 0.014
+X3  0.498 -0.017  1.000 0.514 0.364 0.345 0.344
+X4  0.311  0.010  0.514 1.000 0.759 0.618 0.769
+X5  0.213  0.019  0.364 0.759 1.000 0.548 0.714
+X6  0.216  0.010  0.345 0.618 0.548 1.000 0.510
+X7  0.202  0.014  0.344 0.769 0.714 0.510 1.000</code></pre>
+<p><br/><br/></p>
+</div>
+<div id="reto" class="section level3 content-box-yellow">
+<h3><span style="color:#034A94"><strong>Reto</strong></span></h3>
+<ul>
+<li>¿Qué variables están altamente correlacionadas?</li>
+<li>¿Positiva o negativamente?</li>
+<li>¿Tienen sentido practico estas relaciones?</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

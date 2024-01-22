@@ -261,11 +261,14 @@ $(document).ready(function () {
     <li>
       <a href="recurso020.html">Tablas de contingencia</a>
     </li>
+    <li>
+      <a href="recurso030.html">Matriz de Varianza-Covarianza</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    ACPrincipales
+    A.Componentes Principales
      
     <span class="caret"></span>
   </a>
@@ -280,13 +283,13 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    A. Conglomerados
+    A. de Conglomerados
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="recurso200.html">Conceptps ACong</a>
+      <a href="recurso200.html">Conceptps A.de Conglomerados</a>
     </li>
     <li>
       <a href="recurso210.html">Ejemplo</a>
@@ -295,13 +298,13 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    A. Correspondencia
+    A. de Correspondencia
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="recurso300.html">Conceptos ACorr</a>
+      <a href="recurso300.html">Conceptos A.de Correspondencia</a>
     </li>
     <li>
       <a href="recurso310.html">Ejemplo</a>
@@ -365,23 +368,173 @@ llamada también distancia de Pearson :</p>
 <p><span class="math display">\[\lambda = \sum_{i=1}^{m} \sum_{j=1}^{n}
 \dfrac{(n_{ij} - n_{i.} n_{.j}/n)^2}{n_{i.}n_{.j}/n}\]</span> </br></p>
 <p>Donde</p>
-<center>
-<img src="img/tablaab.png" style="width:50.0%" />
-</center>
+<table>
+<colgroup>
+<col width="8%" />
+<col width="6%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="7%" />
+<col width="11%" />
+<col width="6%" />
+<col width="11%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center"><span class="math inline">\(\bf{B}\)</span></th>
+<th align="center"><span class="math inline">\(\bf{1}\)</span></th>
+<th align="center"><span class="math inline">\(\bf{2}\)</span></th>
+<th align="center"><span class="math inline">\(\bf{3}\)</span></th>
+<th align="center"><span class="math inline">\(\ldots\)</span></th>
+<th align="center"><span class="math inline">\(\bf{j}\)</span></th>
+<th align="center"><span class="math inline">\(\ldots\)</span></th>
+<th align="center"><span class="math inline">\(\bf{b}\)</span></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\bf{A}\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\bf{1}\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(n_{11}\)</span></td>
+<td align="center"><span class="math inline">\(n_{12}\)</span></td>
+<td align="center"><span class="math inline">\(n_{13}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{1j}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{1b}\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n_{1.}}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\bf{2}\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(n_{21}\)</span></td>
+<td align="center"><span class="math inline">\(n_{22}\)</span></td>
+<td align="center"><span class="math inline">\(n_{23}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{2j}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{2b}\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n_{2.}}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\bf{3}\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(n_{31}\)</span></td>
+<td align="center"><span class="math inline">\(n_{32}\)</span></td>
+<td align="center"><span class="math inline">\(n_{33}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{3j}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{3b}\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n_{3.}}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\bf{i}\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(n_{i1}\)</span></td>
+<td align="center"><span class="math inline">\(n_{i2}\)</span></td>
+<td align="center"><span class="math inline">\(n_{i3}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{ij}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{ib}\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n_{i.}}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\bf{a}\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(n_{a1}\)</span></td>
+<td align="center"><span class="math inline">\(n_{a2}\)</span></td>
+<td align="center"><span class="math inline">\(n_{a3}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{aj}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{ab}\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n_{a.}}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\bf{n_{.1}}\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n_{.2}}\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n_{.3}}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n_{.j}}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n_{.b}}\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n}\)</span></td>
+</tr>
+</tbody>
+</table>
 <p></br></br></p>
 <p>Supongamos que tenemos la siguiente tabla de contingencia, como
 resultado de una encuesta que contenía dos preguntas: su actividad
 laboral y si habían sufrido o no de alguna enfermedad relacionadas con
 el estrés.</p>
-<center>
-<img src="img/tabla2.png" style="width:28.0%" />
-</center>
+<pre class="r"><code>x= c(4,1,3,4,1,4,9,6,20,25)
+m=matrix(x, nrow = 5)
+rownames(m) = c(&quot;Empleado bancario&quot;, &quot;Empleado estatal&quot;, &quot;Docente&quot;, &quot;Ama de casa&quot;, &quot;Empleado público&quot;)
+colnames(m) = c(&quot;Si&quot;, &quot;No&quot;)
+m</code></pre>
+<pre><code>                  Si No
+Empleado bancario  4  4
+Empleado estatal   1  9
+Docente            3  6
+Ama de casa        4 20
+Empleado público   1 25</code></pre>
 <p></br></br></p>
 <p>Con esta información podremos obtener una métrica que nos permita
 agrupar las profesiones conformando grupos semejantes</p>
-<center>
-<img src="img/tabla3.png" style="width:30.0%" />
-</center>
+<pre class="r"><code>x &lt;- c(4, 1, 3, 4, 1, 4, 9, 6, 20, 25)
+m &lt;- matrix(x, nrow = 5, byrow = TRUE, 
+            dimnames = list(c(&quot;Empleado bancario&quot;, &quot;Empleado privado&quot;, &quot;Docente&quot;, &quot;Ama de casa&quot;, &quot;Empleado público&quot;), c(&quot;Si&quot;, &quot;No&quot;)))
+df &lt;- as.data.frame(m)
+indicador &lt;- df$Si / rowSums(df)
+indicador</code></pre>
+<pre><code>Empleado bancario  Empleado privado           Docente       Ama de casa 
+        0.8000000         0.4285714         0.2000000         0.6000000 
+ Empleado público 
+        0.4444444 </code></pre>
 <p></br></br></p>
 <center>
 <img src="img/pocisiones.png" style="width:80.0%" />
@@ -391,9 +544,10 @@ agrupar las profesiones conformando grupos semejantes</p>
 podrían existir tres grupos en cuanto a enfermedades relacionadas con el
 estrés :</p>
 <ul>
-<li>Empleado público, empleado estatal y ama de casa</li>
-<li>Docente</li>
-<li>Empleado bancario</li>
+<li><strong>Grupo 1</strong> : Empleado público, empleado estatal y ama
+de casa</li>
+<li><strong>Grupo 2</strong> : Docente</li>
+<li><strong>Grupo 3</strong> : Empleado bancario</li>
 </ul>
 <p></br></br></p>
 <div id="análisis-de-correspondencia-simple" class="section level2">
@@ -409,9 +563,6 @@ cruzada o de doble entrada donde se visializan las frecuencias conjuntas
 para todas las combinaciones posibles entre las categorías de ambas
 variables.</p>
 <p></br></br></p>
-<center>
-<img src="img/tablaAB.png" style="width:40.0%" />
-</center>
 <pre class="r"><code>library(tidyr)
 m &lt;- c(50,9,41,4,315,40,147,11,24,6,14,1,4012,459,1539,124) %&gt;%
 matrix(., ncol=4) 
@@ -440,6 +591,9 @@ X-squared = 21.359, df = 9, p-value = 0.01115</code></pre>
 tanto existen relaciones entre sus categorías.</p>
 <p></br></br></p>
 <p>Iniciaremos visualizando la matriz de valores observados</p>
+<pre class="r"><code>cat(&quot;Matriz de valores observados&quot;, &quot;\n&quot;)</code></pre>
+<pre><code>Matriz de valores observados </code></pre>
+<pre class="r"><code>cat(&quot;\n&quot;)</code></pre>
 <pre class="r"><code>chisq.test(m)$observed</code></pre>
 <pre><code>   b1  b2 b3   b4
 a1 50 315 24 4012
@@ -452,6 +606,9 @@ que las dos variables son independientes haciendo que se cumpla que
 :</p>
 <p><span class="math display">\[n_{11} = \dfrac{n_{.1} \times n_{1.}
 }{n} = \dfrac{4401 \times 104}{6796} = 67.34903\]</span></p>
+<pre class="r"><code>cat(&quot;Matriz de valores esperados&quot;, &quot;\n&quot;)</code></pre>
+<pre><code>Matriz de valores esperados </code></pre>
+<pre class="r"><code>cat(&quot;\n&quot;)</code></pre>
 <pre class="r"><code>chisq.test(m)$expected</code></pre>
 <pre><code>          b1        b2         b3        b4
 a1 67.349029 332.21204 29.1414067 3972.2975
@@ -462,6 +619,9 @@ a4  2.142437  10.56798  0.9270159  126.3626</code></pre>
 la matriz de discrepancias</p>
 <p><span class="math display">\[ d_{11} =
 \dfrac{(50-67.349029)^2}{67.349029} = 4.469089\]</span></p>
+<pre class="r"><code>cat(&quot;Matriz de discrepancias&quot;, &quot;\n&quot;)</code></pre>
+<pre><code>Matriz de discrepancias </code></pre>
+<pre class="r"><code>cat(&quot;\n&quot;)</code></pre>
 <pre class="r"><code>Obs &lt;- chisq.test(m)$observed
 Esp &lt;- chisq.test(m)$expected
 Discrepancias &lt;- (Obs-Esp)^2/Esp
@@ -475,6 +635,9 @@ a4 1.6105686 0.01766092 0.00574605 0.04417225</code></pre>
 <p>La suma total de los valores de la matriz de discrepancias constituye
 el valor del esta disco chi-cuadrado (<span
 class="math inline">\(\lambda = 21.359\)</span>)</p>
+<pre class="r"><code>cat(&quot;Suma total de discrepancias&quot;, &quot;\n&quot;)</code></pre>
+<pre><code>Suma total de discrepancias </code></pre>
+<pre class="r"><code>cat(&quot;\n&quot;)</code></pre>
 <pre class="r"><code>sum(Discrepancias)</code></pre>
 <pre><code>[1] 21.35914</code></pre>
 <p></br></br></p>
@@ -485,6 +648,9 @@ discrepancias que llamaremos <strong>C</strong>. Para ello se debe
 realizar la factorización de la matriz <strong>C</strong> como .</p>
 <p><span class="math display">\[C = U \hspace{.2cm} D \hspace{.2cm}
 V^{t}\]</span></p>
+<pre class="r"><code>cat(&quot;Matriz U obtenidad en la factorización de la matriz de discrepancias C&quot;, &quot;\n&quot;)</code></pre>
+<pre><code>Matriz U obtenidad en la factorización de la matriz de discrepancias C </code></pre>
+<pre class="r"><code>cat(&quot;\n&quot;)</code></pre>
 <pre class="r"><code>C &lt;- Discrepancias
 U &lt;- eigen(C%*%t(C))$vectors
 U</code></pre>
@@ -493,6 +659,9 @@ U</code></pre>
 [2,] -0.04024879  0.96276950 -0.03063301 -0.2655495
 [3,] -0.85185428 -0.15185194 -0.32185800 -0.3843081
 [4,] -0.16691535 -0.07826375  0.91305983 -0.3637799</code></pre>
+<pre class="r"><code>cat(&quot;Matriz V obtenida en la factorizacion de la matriz de discremancias&quot;, &quot;\n&quot;)</code></pre>
+<pre><code>Matriz V obtenida en la factorizacion de la matriz de discremancias </code></pre>
+<pre class="r"><code>cat(&quot;\n&quot;)</code></pre>
 <pre class="r"><code>V &lt;- eigen(t(C) %*% C)$vectors
 V</code></pre>
 <pre><code>           [,1]        [,2]         [,3]        [,4]
@@ -540,6 +709,9 @@ V &lt;-udvt$v</code></pre>
 [2,] -0.21517830  0.02922188 -0.951134440  0.21951688
 [3,] -0.10455668 -0.99423843 -0.001451151  0.02357428
 [4,] -0.08261924 -0.01412327 -0.206722109 -0.97480283</code></pre>
+<pre class="r"><code>cat(&quot;Matriz de cooordenadas filas&quot;, &quot;\n&quot;)</code></pre>
+<pre><code>Matriz de cooordenadas filas </code></pre>
+<pre class="r"><code>cat(&quot;\n&quot;)</code></pre>
 <pre class="r"><code>coord_filas &lt;- U %*% sqrt(D)
 coord_filas</code></pre>
 <pre><code>           [,1]
@@ -547,6 +719,9 @@ coord_filas</code></pre>
 [2,] -1.4643068
 [3,] -2.5199033
 [4,]  0.2270303</code></pre>
+<pre class="r"><code>cat(&quot;Matriz de coordenadas columas&quot;, &quot;\n&quot;)</code></pre>
+<pre><code>Matriz de coordenadas columas </code></pre>
+<pre class="r"><code>cat(&quot;\n&quot;)</code></pre>
 <pre class="r"><code>coord_columnas &lt;- t(V) %*% sqrt(D)
 coord_columnas</code></pre>
 <pre><code>           [,1]
@@ -554,6 +729,7 @@ coord_columnas</code></pre>
 [2,] -0.2578431
 [3,] -0.6907786
 [4,]  0.2455275</code></pre>
+<p><br/></p>
 <p>Finalmente se representa los resultados obtenidos en un plano
 cartesiano donde se pueden visualizar las relaciones entre las
 categorías de las dos variables</p>
@@ -565,16 +741,33 @@ ejes, llamados componentes o tambien dimensiones a tener en cuenta
 dentro del análisis se calculan los valores propios de la matriz
 obtenida en el análisis de correspondencia</p>
 <pre class="r"><code>library(ade4)
-library(FactoMineR)</code></pre>
-<pre><code>
-Attaching package: &#39;FactoMineR&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:ade4&#39;:
-
-    reconst</code></pre>
-<pre class="r"><code>library(factoextra)
+library(FactoMineR)
+library(factoextra)
 library(gridExtra)
-# res.ac &lt;- CA(tabla)
-# valores_prop &lt;-res.ac$eig </code></pre>
+library(tidyr)
+m &lt;- c(50,9,41,4,315,40,147,11,24,6,14,1,4012,459,1539,124) %&gt;%
+matrix(., ncol=4) 
+colnames(m) &lt;- c( &quot;b1&quot;, &quot;b2&quot;, &quot;b3&quot;, &quot;b4&quot;)
+rownames(m) &lt;- c( &quot;a1&quot;, &quot;a2&quot;, &quot;a3&quot;, &quot;a4&quot;)
+m</code></pre>
+<pre><code>   b1  b2 b3   b4
+a1 50 315 24 4012
+a2  9  40  6  459
+a3 41 147 14 1539
+a4  4  11  1  124</code></pre>
+<pre class="r"><code>res.ac &lt;- CA(m)</code></pre>
+<p><img src="recurso300_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<pre class="r"><code>valores_prop &lt;-res.ac$eig </code></pre>
+<p>El mapa permite visualizar la cercania o no entre las categorías de
+las variables. Se observa varios grupos:</p>
+<ul>
+<li>a1, b4</li>
+<li>a3,a4, b2</li>
+<li>a2</li>
+<li>b1</li>
+<li>b3</li>
+</ul>
+<p>Este tipo de cercanias permite asociar las categorías</p>
 </div>
 
 

@@ -205,4 +205,18 @@ Estos resultados indican una mejor agrupación cuando se eligen k=4 conglomerado
 
 
 
+<div class="content-box-yellow">
+### <span style="color:#034A94">**Reto**</span> 
+
+Para la variables contenidas en la base de datos `rotacion` de `paqueteMODELOS`, determine si puede existir una forma de agrupar a los empleados de la empresa que permita identificar segmentos.
+
+```{r, eval=FALSE}
+library(paqueteMODELOS)
+data(rotacion)
+```
+</div>
+
+
+
+
 

@@ -253,4 +253,3 @@ knitr::include_graphics("img/acp12.png")
 
 En esta unidad se tratan algunos de estos métodos
 
-

@@ -83,6 +83,7 @@ Se construye entonces una tabla cruzada con las variables involucradas en el an�
 ```{r}
 library(FactoMineR)
 tabla <- table(vivienda.24$zona, vivienda.24$estrato)
+colnames(tabla) <- c("Estrato3", "Estrato4", "Estrato5", "Estrato6" )
 tabla
 ```
 
@@ -121,6 +122,9 @@ El gráfico nos permite establecer relaciones y validarlas como son:
 
 <br/><br/>
 
+Para medir el grado de representatividad del proceso calculas los valores de la varianza acumulada, utilizando para ellos los valores propios de la matriz de discrepancias
+
+
 ```{r}
 valores_prop <-resultados_ac$eig ; valores_prop
 
@@ -136,6 +140,7 @@ Los resultados indican que la primera componente resumen el 68.9% y los dos prim
 
 
 <br/><br/>
+
 
 ### **Código**
 
@@ -186,3 +191,27 @@ fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle("")+
   ylab("Porcentaje de varianza explicado") + xlab("Ejes")
 
 </pre>
+
+
+
+<div class="content-box-yellow">
+### <span style="color:#034A94">**Reto**</span> 
+
+Para la variables contenidas en la base de datos `rotacion` de `paqueteMODELOS`, determine la asociación que puede existir entre los niveles de las siguientes:
+
+* Educacion - Departamento
+* Satisfacción laboral - Equilibrio Trabajo-Vida
+
+
+```{r, eval=FALSE}
+library(paqueteMODELOS)
+data(rotacion)
+
+```
+</div>
+
+
+
+
+
+

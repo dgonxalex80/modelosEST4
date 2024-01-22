@@ -8,23 +8,26 @@ navbar:
         - text: "Conceptos básicos"
           href: recurso010.html 
         - text: "Tablas de contingencia"
-          href: recurso020.html           
+          href: recurso020.html  
+        - text: "Matriz de Varianza-Covarianza"
+          href: recurso030.html            
           
-    - text: "ACPrincipales"
+          
+    - text: "A.Componentes Principales"
       menu:
         - text: "Conceptos ACP"
           href: recurso100.html
         - text: "Ejemplo"
           href: recurso110.html
-    - text: "A. Conglomerados"
+    - text: "A. de Conglomerados"
       menu:
-        - text: "Conceptps ACong"
+        - text: "Conceptps A.de Conglomerados"
           href: recurso200.html
         - text: "Ejemplo"
           href: recurso210.html          
-    - text: "A. Correspondencia"
+    - text: "A. de Correspondencia"
       menu:
-        - text: "Conceptos ACorr"
+        - text: "Conceptos A.de Correspondencia"
           href: recurso300.html
         - text: "Ejemplo"
           href: recurso310.html          

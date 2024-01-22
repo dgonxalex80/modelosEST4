@@ -261,11 +261,14 @@ $(document).ready(function () {
     <li>
       <a href="recurso020.html">Tablas de contingencia</a>
     </li>
+    <li>
+      <a href="recurso030.html">Matriz de Varianza-Covarianza</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    ACPrincipales
+    A.Componentes Principales
      
     <span class="caret"></span>
   </a>
@@ -280,13 +283,13 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    A. Conglomerados
+    A. de Conglomerados
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="recurso200.html">Conceptps ACong</a>
+      <a href="recurso200.html">Conceptps A.de Conglomerados</a>
     </li>
     <li>
       <a href="recurso210.html">Ejemplo</a>
@@ -295,13 +298,13 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    A. Correspondencia
+    A. de Correspondencia
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="recurso300.html">Conceptos ACorr</a>
+      <a href="recurso300.html">Conceptos A.de Correspondencia</a>
     </li>
     <li>
       <a href="recurso310.html">Ejemplo</a>
@@ -508,6 +511,16 @@ nos permite observar la relación existente entre las variables : edad y
 antigüedad, formando un grupo que presenta un mayor efecto sobre el
 primer componente, mientras que la variable cuota presenta un mayor
 efecto sobre el segundo componente.</p>
+<p><br/><br/></p>
+<div id="reto" class="section level3 content-box-yellow">
+<h3><span style="color:#034A94"><strong>Reto</strong></span></h3>
+<p>Para la variables contenidas en la base de datos
+<code>rotacion</code> de <code>paqueteMODELOS</code>, determine es
+pisible contruir dos variables (componentes principales) que permitan
+reducir un grupo de variables sin perder información.</p>
+<pre class="r"><code>library(paqueteMODELOS)
+data(rotacion)</code></pre>
+</div>
 </div>
 
 

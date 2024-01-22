@@ -224,3 +224,22 @@ col.ind = c("#DEDEDE", "#034A94")  # Individuals color
 La representación gráfica de los dos primeros componentes principales nos permite observar la relación existente entre las variables :  edad y antigüedad, formando un grupo que presenta un mayor efecto sobre el primer componente, mientras que la variable cuota presenta un mayor efecto sobre el segundo componente.
 
 
+<br/><br/>
+
+
+<div class="content-box-yellow">
+### <span style="color:#034A94">**Reto**</span> 
+
+Para la variables contenidas en la base de datos `rotacion` de `paqueteMODELOS`, determine es pisible contruir dos variables (componentes principales) que permitan reducir un grupo de variables sin perder información.
+
+
+
+```{r, eval=FALSE}
+library(paqueteMODELOS)
+data(rotacion)
+
+```
+</div>
+
+
+

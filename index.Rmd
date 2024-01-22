@@ -24,7 +24,7 @@ La **modelación** forma parte principal del proceso de análisis de datos y per
 <br/>
 
 ```{r, echo=FALSE, out.width="80%", fig.align = "center"}
-knitr::include_graphics("img/proceso_cd.png")
+knitr::include_graphics("img/modelar.png")
 ```
 
 <center>
@@ -124,6 +124,7 @@ Contenido de la unidad
 * **Conceptos generales**
   * Conceptos básicos
   * Tablas de contingencia
+  * Matrices de Varianza-Covarianza y de Correlaciones
 
 </br>
 

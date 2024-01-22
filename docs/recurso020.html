@@ -261,11 +261,14 @@ $(document).ready(function () {
     <li>
       <a href="recurso020.html">Tablas de contingencia</a>
     </li>
+    <li>
+      <a href="recurso030.html">Matriz de Varianza-Covarianza</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    ACPrincipales
+    A.Componentes Principales
      
     <span class="caret"></span>
   </a>
@@ -280,13 +283,13 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    A. Conglomerados
+    A. de Conglomerados
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="recurso200.html">Conceptps ACong</a>
+      <a href="recurso200.html">Conceptps A.de Conglomerados</a>
     </li>
     <li>
       <a href="recurso210.html">Ejemplo</a>
@@ -295,13 +298,13 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    A. Correspondencia
+    A. de Correspondencia
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="recurso300.html">Conceptos ACorr</a>
+      <a href="recurso300.html">Conceptos A.de Correspondencia</a>
     </li>
     <li>
       <a href="recurso310.html">Ejemplo</a>
@@ -343,16 +346,152 @@ class="math inline">\(a_i,b_j\)</span>) correspondientes a las dos
 variables que son representadas por <span
 class="math inline">\(n_{ij}\)</span></p>
 <p><br/><br/></p>
-<center>
-<img src="img/tablaab.png" style="width:50.0%" />
-</center>
+<table>
+<colgroup>
+<col width="8%" />
+<col width="6%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="7%" />
+<col width="11%" />
+<col width="6%" />
+<col width="11%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center"><span class="math inline">\(\bf{B}\)</span></th>
+<th align="center"><span class="math inline">\(\bf{1}\)</span></th>
+<th align="center"><span class="math inline">\(\bf{2}\)</span></th>
+<th align="center"><span class="math inline">\(\bf{3}\)</span></th>
+<th align="center"><span class="math inline">\(\ldots\)</span></th>
+<th align="center"><span class="math inline">\(\bf{j}\)</span></th>
+<th align="center"><span class="math inline">\(\ldots\)</span></th>
+<th align="center"><span class="math inline">\(\bf{b}\)</span></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\bf{A}\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\bf{1}\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(n_{11}\)</span></td>
+<td align="center"><span class="math inline">\(n_{12}\)</span></td>
+<td align="center"><span class="math inline">\(n_{13}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{1j}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{1b}\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n_{1.}}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\bf{2}\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(n_{21}\)</span></td>
+<td align="center"><span class="math inline">\(n_{22}\)</span></td>
+<td align="center"><span class="math inline">\(n_{23}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{2j}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{2b}\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n_{2.}}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\bf{3}\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(n_{31}\)</span></td>
+<td align="center"><span class="math inline">\(n_{32}\)</span></td>
+<td align="center"><span class="math inline">\(n_{33}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{3j}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{3b}\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n_{3.}}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\bf{i}\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(n_{i1}\)</span></td>
+<td align="center"><span class="math inline">\(n_{i2}\)</span></td>
+<td align="center"><span class="math inline">\(n_{i3}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{ij}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{ib}\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n_{i.}}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\bf{a}\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(n_{a1}\)</span></td>
+<td align="center"><span class="math inline">\(n_{a2}\)</span></td>
+<td align="center"><span class="math inline">\(n_{a3}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{aj}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(n_{ab}\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n_{a.}}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\bf{n_{.1}}\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n_{.2}}\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n_{.3}}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n_{.j}}\)</span></td>
+<td align="center"><span class="math inline">\(\ldots\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n_{.b}}\)</span></td>
+<td align="center"><span class="math inline">\(\bf{n}\)</span></td>
+</tr>
+</tbody>
+</table>
 <p><br/><br/></p>
-<p>Los valores <span class="math inline">\(n_{i.}\)</span> represdentan
-el total marginal de la variable <code>A</code>, mientras que <span
-class="math inline">\(n_{.j}\)</span> representa el total por columnas
-que corresponden a la variable <code>B</code>. La suma de todos los
-valores <span class="math inline">\(n_{ij}\)</span> es <span
-class="math inline">\(n\)</span></p>
+<p>Los valores <span class="math inline">\(\bf{n_{i.}}\)</span>
+represdentan el total marginal de la variable <span
+class="math inline">\(\bf{A}\)</span>, mientras que <span
+class="math inline">\(\bf{n_{.j}}\)</span> representa el total por
+columnas que corresponden a la variable <code>B</code>. La suma de todos
+los valores <span class="math inline">\(\bf{n_{ij}}\)</span> es <span
+class="math inline">\(\bf{n}\)</span></p>
 <p>La función <code>table()</code> en <code>R</code> permite contruir la
 tabla a partir de la información contenida en una base de datos
 (<code>table(data$A, data$B)</code>)</p>
@@ -370,17 +509,107 @@ en caso contrario se asume que hay una relación entre ellas
 <p><br/><br/></p>
 <p><strong>Pruebas</strong> :</p>
 <p><span class="math display">\[H_{o} : \text{la variables A es
-independiente de la variable B} \hspace{.8cm}\]</span> <span
-class="math display">\[H_{o} : \text{la variables A es NO independiente
-de la variable B}\]</span></p>
+independiente de la variable B} \hspace{.8cm}\]</span></p>
+<p><span class="math display">\[H_{a} : \text{la variables A es NO
+independiente de la variable B}\]</span></p>
 <p><br/></p>
 <p><strong>Estadístico de prueba</strong>:</p>
 <p><span class="math display">\[\chi^{2} = \dfrac{\sum (Obs
 -Esp)^2}{Esp} \sim \chi^{2}_{v:(r-1)(c-1)}\]</span></p>
 <p><br/><br/></p>
 <p><strong>Región de rechazo</strong>:</p>
-<p><img src="img/rderchi2.png" width="60%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># install.packages(&#39;ggfortify&#39;)
+library(ggfortify)
+pRdeR=qchisq(c(0.025,0.975),9)
+p=ggdistribution(dchisq, seq(0, 30, 0.1), df = 9, colour = &#39;blue&#39;)
+p=ggdistribution(dchisq, seq(pRdeR[2], 30, 0.1), df = 9, colour = &#39;blue&#39;, fill=&quot;blue&quot;, p=p)+
+       ggtitle(&quot;Región de rechazo:   (19.0, Inf) &quot;)
+p</code></pre>
+<p><img src="recurso020_files/figure-html/unnamed-chunk-1-1.png" width="960" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>pRdeR</code></pre>
+<pre><code>[1]  2.700389 19.022768</code></pre>
 <p><br/><br/></p>
+<div id="ejemplo" class="section level3">
+<h3><span style="color:#FF7F00"><strong>Ejemplo</strong></span></h3>
+<p>Para las variables</p>
+<pre class="r"><code>library(paqueteMODELOS)
+data(&quot;vivienda&quot;)
+t_est_zon = table(vivienda$estrato,vivienda$zona)
+chisq.test(t_est_zon)</code></pre>
+<pre><code>
+    Pearson&#39;s Chi-squared test
+
+data:  t_est_zon
+X-squared = 3830.4, df = 12, p-value &lt; 2.2e-16</code></pre>
+<p><br/><br/></p>
+</div>
+<div id="reto" class="section level3 content-box-yellow">
+<h3><span style="color:#034A94"><strong>Reto</strong></span></h3>
+<p>Los resultados anteriores indican que hay o no relación entre las
+variables estrato y zona de ubicación de las viviendas en Cali.</p>
+</div>
+<p><br/><br/></p>
+<div id="uso" class="section level3">
+<h3><span style="color:#034A94"><strong>Uso</strong></span></h3>
+<p><br/></p>
+<p>Las <strong>tablas de contingencia</strong> son empleadas en ciencia
+de datos y el análisis estadístico cuando se trabaja con variables
+categóricas (cualitativas - escala nominal u ordinal). Estas tablas
+resumen la distribución conjunta de dos o más variables categóricas,
+permitiendo analizar patrones, relaciones y asociaciones entre
+ellas.</p>
+<p><br/></p>
+</div>
+<div id="análisis-exploratorio-de-datos-eda" class="section level3">
+<h3><span style="color:#034A94"><strong>Análisis exploratorio de datos
+(EDA)</strong></span></h3>
+<p>Las tablas de contingencia son una parte esencial del análisis
+exploratorio de datos. Proporcionan una visión rápida y clara de cómo se
+distribuyen las variables categóricas en conjunto.</p>
+<p><br/></p>
+</div>
+<div id="análisis-de-frecuencias" class="section level3">
+<h3><span style="color:#034A94"><strong>Análisis de
+frecuencias:</strong></span></h3>
+<p>Las tablas de contingencia resumen las frecuencias de ocurrencia
+conjunta de las categorías de dos o más variables. Esto es útil para
+entender la distribución y proporciones en los datos.</p>
+<p><br/></p>
+</div>
+<div id="pruebas-de-independencia" class="section level3">
+<h3><span style="color:#034A94"><strong>Pruebas de
+independencia:</strong></span></h3>
+<p>Se utilizan para realizar pruebas de independencia entre dos
+variables categóricas. Las pruebas de chi-cuadrado son comúnmente
+aplicadas en este contexto para evaluar si las dos variables son
+independientes o si hay alguna asociación significativa entre ellas.</p>
+<p><br/></p>
+</div>
+<div id="visualización-de-asociaciones" class="section level3">
+<h3><span style="color:#034A94"><strong>Visualización de
+asociaciones:</strong></span></h3>
+<p>Puedes visualizar las asociaciones entre variables categóricas
+utilizando gráficos como gráficos de barras apiladas, mapas de calor
+(heatmap) o diagramas de mosaico, que muestran la proporción de
+observaciones en cada combinación de categorías.</p>
+<p><br/></p>
+</div>
+<div id="análisis-de-subconjuntos" class="section level3">
+<h3><span style="color:#034A94"><strong>Análisis de
+subconjuntos:</strong></span></h3>
+<p>Al dividir la tabla de contingencia en subconjuntos, puedes examinar
+las relaciones en segmentos específicos de los datos, lo que puede ser
+útil para entender patrones más detallados.</p>
+<p><br/></p>
+</div>
+<div id="preprocesamiento-de-datos" class="section level3">
+<h3><span style="color:#034A94"><strong>Preprocesamiento de
+datos:</strong></span></h3>
+<p>Las tablas de contingencia también son útiles durante el
+preprocesamiento de datos, especialmente cuando se trata de manejar
+valores faltantes o identificar posibles relaciones entre variables
+antes de aplicar modelos de aprendizaje automático.</p>
+</div>
 </div>
 
 

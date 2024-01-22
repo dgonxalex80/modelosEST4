@@ -261,11 +261,14 @@ $(document).ready(function () {
     <li>
       <a href="recurso020.html">Tablas de contingencia</a>
     </li>
+    <li>
+      <a href="recurso030.html">Matriz de Varianza-Covarianza</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    ACPrincipales
+    A.Componentes Principales
      
     <span class="caret"></span>
   </a>
@@ -280,13 +283,13 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    A. Conglomerados
+    A. de Conglomerados
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="recurso200.html">Conceptps ACong</a>
+      <a href="recurso200.html">Conceptps A.de Conglomerados</a>
     </li>
     <li>
       <a href="recurso210.html">Ejemplo</a>
@@ -295,13 +298,13 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    A. Correspondencia
+    A. de Correspondencia
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="recurso300.html">Conceptos ACorr</a>
+      <a href="recurso300.html">Conceptos A.de Correspondencia</a>
     </li>
     <li>
       <a href="recurso310.html">Ejemplo</a>
@@ -379,14 +382,15 @@ involucradas en el análisis :</p>
 <p><br/></p>
 <pre class="r"><code>library(FactoMineR)
 tabla &lt;- table(vivienda.24$zona, vivienda.24$estrato)
+colnames(tabla) &lt;- c(&quot;Estrato3&quot;, &quot;Estrato4&quot;, &quot;Estrato5&quot;, &quot;Estrato6&quot; )
 tabla</code></pre>
 <pre><code>              
-                 3   4   5   6
-  Zona Centro   50   8   3   0
-  Zona Norte   265 168 393  82
-  Zona Oeste    24  38 147 377
-  Zona Oriente 170   0   1   0
-  Zona Sur     180 776 809 508</code></pre>
+               Estrato3 Estrato4 Estrato5 Estrato6
+  Zona Centro        50        8        3        0
+  Zona Norte        265      168      393       82
+  Zona Oeste         24       38      147      377
+  Zona Oriente      170        0        1        0
+  Zona Sur          180      776      809      508</code></pre>
 <p><br/></p>
 <pre class="r"><code>chisq.test(tabla)</code></pre>
 <pre><code>
@@ -418,6 +422,9 @@ Norte</li>
 <li>El estrato 3 está presente en las Zonas Oriente y Centro</li>
 </ul>
 <p><br/><br/></p>
+<p>Para medir el grado de representatividad del proceso calculas los
+valores de la varianza acumulada, utilizando para ellos los valores
+propios de la matriz de discrepancias</p>
 <pre class="r"><code>valores_prop &lt;-resultados_ac$eig ; valores_prop</code></pre>
 <pre><code>      eigenvalue percentage of variance cumulative percentage of variance
 dim 1 0.33730884              69.767822                          69.76782
@@ -474,6 +481,18 @@ fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle("")+
   ylab("Porcentaje de varianza explicado") + xlab("Ejes")
 
 </pre>
+</div>
+<div id="reto" class="section level3 content-box-yellow">
+<h3><span style="color:#034A94"><strong>Reto</strong></span></h3>
+<p>Para la variables contenidas en la base de datos
+<code>rotacion</code> de <code>paqueteMODELOS</code>, determine la
+asociación que puede existir entre los niveles de las siguientes:</p>
+<ul>
+<li>Educacion - Departamento</li>
+<li>Satisfacción laboral - Equilibrio Trabajo-Vida</li>
+</ul>
+<pre class="r"><code>library(paqueteMODELOS)
+data(rotacion)</code></pre>
 </div>
 
 
