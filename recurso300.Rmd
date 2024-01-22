@@ -109,8 +109,15 @@ Ahora utilicemos la métrica $\lambda$ de Pearson para identificar si existe aso
 
 </br></br>
 
+<pre>
+   b1  b2 b3   b4
+a1 50 315 24 4012
+a2  9  40  6  459
+a3 41 147 14 1539
+a4  4  11  1  124
+</pre>
 
-```{r, warning=FALSE, message=FALSE}
+```{r, eval=FALSE}
 library(tidyr)
 m <- c(50,9,41,4,315,40,147,11,24,6,14,1,4012,459,1539,124) %>%
 matrix(., ncol=4) 
@@ -124,7 +131,14 @@ m
 Mediante la prueba chi.cuadrado se obtienen dos matrices con las que posteriormente se construirán las coordenadas que serán representadas en un plano cartesiano para permitir ver la cercania o no entre las categorias de ambas variables
 
 
-```{r, warning=FALSE, message=FALSE}
+<pre>
+	Pearson's Chi-squared test
+
+data:  m
+X-squared = 21.359, df = 9, p-value = 0.01115
+</pre>
+
+```{r, eval=FALSE}
 chisq.test(m)
 ```
 
@@ -136,10 +150,17 @@ Los resultados de la prueba indican que las variables **A** y **B** no son indep
 
 Iniciaremos visualizando la matriz de valores observados 
 
-```{r, warning=FALSE, message=FALSE}
-cat("Matriz de valores observados", "\n")
-cat("\n")
+<pre>
+Matriz de valores observados 
 
+   b1  b2 b3   b4
+a1 50 315 24 4012
+a2  9  40  6  459
+a3 41 147 14 1539
+a4  4  11  1  124
+</pre>
+
+```{r, eval=FALSE}
 chisq.test(m)$observed
 ```
 
@@ -149,11 +170,17 @@ Y la matriz de valores esperados. Estos valores corresponde a los valores espera
 
 $$n_{11} = \dfrac{n_{.1} \times n_{1.} }{n} = \dfrac{4401 \times 104}{6796} = 67.34903$$
 
+<pre>
+Matriz de valores esperados 
 
-```{r, warning=FALSE, message=FALSE}
-cat("Matriz de valores esperados", "\n")
-cat("\n")
+          b1        b2         b3        b4
+a1 67.349029 332.21204 29.1414067 3972.2975
+a2  7.865803  38.79959  3.4034726  463.9311
+a3 26.642731 131.42039 11.5281048 1571.4088
+a4  2.142437  10.56798  0.9270159  126.3626
+</pre>
 
+```{r, eval=FALSE}
 chisq.test(m)$expected
 ```
 
@@ -161,10 +188,18 @@ A partir de los valores observados y los valores esperados se calcula la matriz 
 
 $$ d_{11} = \dfrac{(50-67.349029)^2}{67.349029} = 4.469089$$
 
+<pre>
+Matriz de discrepancias 
 
-```{r, warning=FALSE, message=FALSE}
-cat("Matriz de discrepancias", "\n")
-cat("\n")
+          b1         b2         b3         b4
+a1 4.4690890 0.89176239 0.90709633 0.39681979
+a2 0.1635436 0.03713929 1.98090454 0.05241317
+a3 7.7368635 1.84692881 0.53003214 0.66839920
+a4 1.6105686 0.01766092 0.00574605 0.04417225
+</pre>
+
+
+```{r, eval=FALSE}
 Obs <- chisq.test(m)$observed
 Esp <- chisq.test(m)$expected
 Discrepancias <- (Obs-Esp)^2/Esp
@@ -175,11 +210,13 @@ Discrepancias
 
 La suma total de los valores de la matriz de discrepancias constituye el valor del esta disco chi-cuadrado ($\lambda = 21.359$)
 
+<pre>
+Suma total de discrepancias 
 
-```{r, warning=FALSE, message=FALSE}
-cat("Suma total de discrepancias", "\n")
-cat("\n")
+[1] 21.35914
+</pre>
 
+```{r, eval=FALSE}
 sum(Discrepancias)
 ```
 
@@ -191,76 +228,155 @@ Ahora fijaremos como propósito determinar las **coordenadas** para cada una de 
 
 $$C = U \hspace{.2cm} D \hspace{.2cm} V^{t}$$
 
+<pre>
+Factorización de la matriz U 
 
-```{r, warning=FALSE, message=FALSE}
-cat("Matriz U obtenidad en la factorización de la matriz de discrepancias C", "\n")
-cat("\n")
+            [,1]        [,2]        [,3]       [,4]
+[1,] -0.49483693  0.20950101  0.24857755  0.8058877
+[2,] -0.04024879  0.96276950 -0.03063301 -0.2655495
+[3,] -0.85185428 -0.15185194 -0.32185800 -0.3843081
+[4,] -0.16691535 -0.07826375  0.91305983 -0.3637799
+</pre>
 
+```{r, eval=FALSE}
 C <- Discrepancias
 U <- eigen(C%*%t(C))$vectors
 U
 ```
 
 
-```{r, message=FALSE, warning=FALSE}
-cat("Matriz V obtenida en la factorizacion de la matriz de discremancias", "\n")
-cat("\n")
+<pre>
+Matriz V obtenida en la factorizacion de la matriz de discremancias 
 
+           [,1]        [,2]         [,3]        [,4]
+[1,] 0.96744006  0.10215951  0.229362467 -0.03187520
+[2,] 0.21517830  0.02922188 -0.951134440 -0.21951688
+[3,] 0.10455668 -0.99423843 -0.001451151 -0.02357428
+[4,] 0.08261924 -0.01412327 -0.206722109  0.97480283
+</pre>
+
+```{r, eval=FALSE}
 V <- eigen(t(C) %*% C)$vectors
 V
 ```
 
+<pre>
+[1] 9.38307393 2.02794007 0.37617070 0.03378498
+</pre>
 
-```{r, message=FALSE, warning=FALSE}
+```{r,eval=FALSE}
 a <- sqrt(eigen(C%*%t(C))$values)
 a
 ```
 
+<pre>
+         [,1]    [,2]      [,3]       [,4]
+[1,] 9.383074 0.00000 0.0000000 0.00000000
+[2,] 0.000000 2.02794 0.0000000 0.00000000
+[3,] 0.000000 0.00000 0.3761707 0.00000000
+[4,] 0.000000 0.00000 0.0000000 0.03378498
+</pre>
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE}
 D <- diag(a)
 D
 ```
 
+<pre>
+Comparación de resultados 
+          [,1]       [,2]        [,3]       [,4]
+[1,] 4.4279304 1.08159250 0.908651422 0.38239826
+[2,] 0.1682577 0.01128016 1.980448096 0.06514001
+[3,] 7.7915752 1.61091402 0.529068579 0.64365541
+[4,] 1.4522285 0.66563043 0.006163424 0.21013766
 
 
-```{r,message=FALSE, warning=FALSE}
+          b1         b2         b3         b4
+a1 4.4690890 0.89176239 0.90709633 0.39681979
+a2 0.1635436 0.03713929 1.98090454 0.05241317
+a3 7.7368635 1.84692881 0.53003214 0.66839920
+a4 1.6105686 0.01766092 0.00574605 0.04417225
+
+</pre>
+```{r, eval=FALSE}
 -U%*%D%*%t(V)
 C
 ```
 
-```{r, message=FALSE, warning=FALSE}
+Descomposición de la matriz de discrepancia
+
+```{r,eval=FALSE}
 udvt=svd(Discrepancias)
 U <-udvt$u
 D <-udvt$d
 V <-udvt$v
 ```
 
-```{r,warning=FALSE,message=FALSE}
+<pre>
+U
+            [,1]        [,2]        [,3]       [,4]
+[1,] -0.49483693  0.20950101  0.24857755  0.8058877
+[2,] -0.04024879  0.96276950 -0.03063301 -0.2655495
+[3,] -0.85185428 -0.15185194 -0.32185800 -0.3843081
+[4,] -0.16691535 -0.07826375  0.91305983 -0.3637799
+</pre>
+
+```{r,eval=FALSE}
 U
 ```
 
-```{r,warning=FALSE, message=FALSE}
+<pre>
+D
+         [,1]    [,2]      [,3]       [,4]
+[1,] 9.383074 0.00000 0.0000000 0.00000000
+[2,] 0.000000 2.02794 0.0000000 0.00000000
+[3,] 0.000000 0.00000 0.3761707 0.00000000
+[4,] 0.000000 0.00000 0.0000000 0.03378498
+</pre>
+
+```{r, eval=FALSE}
 D
 ```
 
-```{r, warning=FALSE,message=FALSE}
+<pre>
+V
+            [,1]        [,2]         [,3]        [,4]
+[1,] -0.96744006  0.10215951  0.229362467  0.03187520
+[2,] -0.21517830  0.02922188 -0.951134440  0.21951688
+[3,] -0.10455668 -0.99423843 -0.001451151  0.02357428
+[4,] -0.08261924 -0.01412327 -0.206722109 -0.97480283
+</pre>
+
+```{r, eval=FALSE}
 V
 ```
 
-```{r, message=FALSE, warning=FALSE}
-cat("Matriz de cooordenadas filas", "\n")
-cat("\n")
+<pre>
+Vector de cooordenadas filas 
 
+           [,1]
+[1,] -1.8097845
+[2,] -1.4643068
+[3,] -2.5199033
+[4,]  0.2270303
+</pre>
+
+```{r, eval=FALSE}
 coord_filas <- U %*% sqrt(D)
 coord_filas
 ```
 
+<pre>
+Matriz de coordenadas columas 
 
-```{r, message=FALSE, warning=FALSE}
-cat("Matriz de coordenadas columas", "\n")
-cat("\n")
+           [,1]
+[1,] -3.3491832
+[2,] -0.2578431
+[3,] -0.6907786
+[4,]  0.2455275
+</pre>
 
+```{r, eval=FALSE}
 coord_columnas <- t(V) %*% sqrt(D)
 coord_columnas
 ```

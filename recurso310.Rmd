@@ -80,7 +80,7 @@ Se construye entonces una tabla cruzada con las variables involucradas en el an√
 
 <br/>
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(FactoMineR)
 tabla <- table(vivienda.24$zona, vivienda.24$estrato)
 colnames(tabla) <- c("Estrato3", "Estrato4", "Estrato5", "Estrato6" )
@@ -192,7 +192,7 @@ fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle("")+
 
 </pre>
 
-
+<br/><br/>
 
 <div class="content-box-yellow">
 ### <span style="color:#034A94">**Reto**</span> 

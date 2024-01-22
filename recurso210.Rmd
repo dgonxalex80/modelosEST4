@@ -203,7 +203,7 @@ cat("Coeficiente de Silhouette promedio k=4 : ", sil_avg)
 Estos resultados indican una mejor agrupación cuando se eligen k=4 conglomerados. (valores más cercanos a 1 indican un agrupamiento más coherente)
 
 
-
+</br></br>
 
 <div class="content-box-yellow">
 ### <span style="color:#034A94">**Reto**</span> 
