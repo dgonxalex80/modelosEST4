@@ -21,7 +21,7 @@ navbar:
           href: recurso110.html
     - text: "A. de Conglomerados"
       menu:
-        - text: "Conceptps A.de Conglomerados"
+        - text: "ConceptOs A.de Conglomerados"
           href: recurso200.html
         - text: "Ejemplo"
           href: recurso210.html          
