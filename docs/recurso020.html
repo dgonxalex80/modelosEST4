@@ -31,7 +31,6 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
@@ -219,9 +218,6 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
-<style type="text/css">
-.code-folding-btn { margin-bottom: 4px; }
-</style>
 
 
 
@@ -321,14 +317,6 @@ $(document).ready(function () {
 
 <div id="header">
 
-<div class="btn-group pull-right float-right">
-<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
-<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
-<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
-</ul>
-</div>
-
 
 
 <h1 class="title toc-ignore"><span style="color:#034a94"><strong>Tablas
@@ -339,9 +327,9 @@ de contingencia</strong></sapn></h1>
 
 
 <p><br/><br/></p>
-<p>Estan conformadas por un arreglo de datos correspondientes a las
+<p>Están conformadas por un arreglo de datos correspondientes a las
 frecuencias absolutas que resultan al contar las todas las posibles
-registros que contienen las caracteristicas (<span
+registros que contienen las características (<span
 class="math inline">\(a_i,b_j\)</span>) correspondientes a las dos
 variables que son representadas por <span
 class="math inline">\(n_{ij}\)</span></p>
@@ -486,14 +474,14 @@ class="math inline">\(n_{ij}\)</span></p>
 </table>
 <p><br/><br/></p>
 <p>Los valores <span class="math inline">\(\bf{n_{i.}}\)</span>
-represdentan el total marginal de la variable <span
+representan el total marginal de la variable <span
 class="math inline">\(\bf{A}\)</span>, mientras que <span
 class="math inline">\(\bf{n_{.j}}\)</span> representa el total por
 columnas que corresponden a la variable <code>B</code>. La suma de todos
 los valores <span class="math inline">\(\bf{n_{ij}}\)</span> es <span
 class="math inline">\(\bf{n}\)</span></p>
-<p>La función <code>table()</code> en <code>R</code> permite contruir la
-tabla a partir de la información contenida en una base de datos
+<p>La función <code>table()</code> en <code>R</code> permite construir
+la tabla a partir de la información contenida en una base de datos
 (<code>table(data$A, data$B)</code>)</p>
 <p><br/><br/></p>
 <div id="prueba-chi-cuadrado-de-pearson" class="section level1">
@@ -523,7 +511,7 @@ library(ggfortify)
 pRdeR=qchisq(c(0.025,0.975),9)
 p=ggdistribution(dchisq, seq(0, 30, 0.1), df = 9, colour = &#39;blue&#39;)
 p=ggdistribution(dchisq, seq(pRdeR[2], 30, 0.1), df = 9, colour = &#39;blue&#39;, fill=&quot;blue&quot;, p=p)+
-       ggtitle(&quot;Región de rechazo:   (19.0, Inf) &quot;)
+ggtitle(&quot;Región de rechazo:   (19.0, Inf) &quot;)
 p</code></pre>
 <p><img src="recurso020_files/figure-html/unnamed-chunk-1-1.png" width="960" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>pRdeR</code></pre>
@@ -645,11 +633,6 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-<script>
-$(document).ready(function () {
-  window.initializeCodeFolding("hide" === "show");
-});
-</script>
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

@@ -2,9 +2,9 @@
 title: <span style="color:#034a94">**Ejemplo**</span>
 author: "Modelos Estadísticos para la toma de decisiones"
 output:
-  html_document:
-    code_folding: hide
-    css: style.css
+html_document:
+code_folding: hide
+css: style.css
 ---
 
 ```{r setup, include=FALSE}
@@ -40,7 +40,7 @@ vivienda.24$estrato <- as.factor(vivienda.24$estrato)
 
 <br/><br/>
 
-* Se revisa si la base tiene datos faltantes (rectangulos de color rojo)
+* Se revisa si la base tiene datos faltantes (rectángulos de color rojo)
 
 ```{r, eval=FALSE}
 library(mice)
@@ -55,7 +55,7 @@ knitr::include_graphics("img/vivienda24NA.png")
 
 <br/>
 
-La muestra seleccionada contiene un registro con datos faltantes para ambas variables, de tal forma que se procede a eliminarlas, para posteriormente constatar que se han eliminado se utiliza la función  md.pattern del paquete mice
+La muestra seleccionada contiene un registro con datos faltantes para ambas variables, de tal forma que se procede a eliminarlas, para posteriormente constatar que se han eliminado se utiliza la función  `md.pattern` del paquete `mice`.
 
 <br/>
 
@@ -133,7 +133,7 @@ valores_prop <-resultados_ac$eig ; valores_prop
 
 ```{r}
 fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle("")+
-  ylab("Porcentaje de varianza explicado") + xlab("Ejes")
+ylab("Porcentaje de varianza explicado") + xlab("Ejes")
 ```
 
 Los resultados indican que la primera componente resumen el 68.9% y los dos primeros componentes prepresentados en el plano factorial, mientras que los dos primeros ejes resumen un 96.4% de los datos.
@@ -164,7 +164,7 @@ valores_prop <-resultados_ac$eig
 
 library(factoextra)
 fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle("")+
-  ylab("Porcentaje de varianza explicado") + xlab("Ejes")
+ylab("Porcentaje de varianza explicado") + xlab("Ejes")
 ```
 
 
@@ -188,7 +188,7 @@ valores_prop <-resultados.ac$eig
 
 library(factoextra)
 fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle("")+
-  ylab("Porcentaje de varianza explicado") + xlab("Ejes")
+ylab("Porcentaje de varianza explicado") + xlab("Ejes")
 
 </pre>
 
@@ -199,7 +199,7 @@ fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle("")+
 
 Para la variables contenidas en la base de datos `rotacion` de `paqueteMODELOS`, determine la asociación que puede existir entre los niveles de las siguientes:
 
-* Educacion - Departamento
+* Educación - Departamento
 * Satisfacción laboral - Equilibrio Trabajo-Vida
 
 

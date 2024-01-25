@@ -2,9 +2,9 @@
 title: <span style="color:#034a94">**Introducción**</span>
 author: "Modelos Estadísticos para la toma de decisiones"
 output:
-  html_document:
-    code_folding: hide
-    css: style.css
+html_document:
+code_folding: hide
+css: style.css
 ---
 
 ```{r setup, include=FALSE}
@@ -38,7 +38,7 @@ t(tabla)
 <br/><br/>
 
 
-Por los general en el aprendizaje de las Estadística se trabaja con datos en una sola dimensión (univariado), se revisan tanto indicadores como la representación gráfica de las variables una a una. En ocaciones se pasa a estudiar grupos de variables de manera bivariada. Para ello se construyen tablas cruzadas y se construye una gráfica de  las dos variables en un plano de tal forma que permite identificar relaciones entre ellas.  
+Por los general en el aprendizaje de las Estadística se trabaja con datos en una sola dimensión (univariado), se revisan tanto indicadores como la representación gráfica de las variables una a una. En ocasiones se pasa a estudiar grupos de variables de manera bivariada. Para ello se construyen tablas cruzadas y se construye una gráfica de  las dos variables en un plano de tal forma que permite identificar relaciones entre ellas.  
 
 En esta unidad trataremos el caso multivariado que consiste en tomar la información contenida en un grupo de variables  (m>2) que permita dar valor a un conjunto de variables y registros, pudiendo identificar patrones y realizar agrupaciones.
 
@@ -118,7 +118,7 @@ En este caso se emplean las tablas de contingencia o de doble entrada, las cuale
 ::: {}
 
 <pre>
-              Apart.  Casa
+Apart.  Casa
 Zona Centro       3      6
 Zona Norte      118     90
 Zona Oeste      135     19

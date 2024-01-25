@@ -2,9 +2,9 @@
 title: <span style="color:#034a94">**Ejemplo**</span>
 author: "Modelos Estadísticos para la toma de decisiones"
 output:
-  html_document:
-    code_folding: hide
-    css: style.css
+html_document:
+code_folding: hide
+css: style.css
 ---
 
 ```{r setup, include=FALSE}
@@ -16,7 +16,7 @@ c2="#=EB0C6"
 c3="#034A94"
 c4="#686868"
 
-# devtools::install_github("kassambara/factoextra") # ultima version
+# devtools::install_github("kassambara/factoextra") # ultima versión
 library("factoextra") # visualizacion elegante en ggplot2
 par(mar = c(1,1,1,1) + 0.1)
 
@@ -230,7 +230,7 @@ La representación gráfica de los dos primeros componentes principales nos perm
 <div class="content-box-yellow">
 ### <span style="color:#034A94">**Reto**</span> 
 
-Para la variables contenidas en la base de datos `rotacion` de `paqueteMODELOS`, determine es pisible contruir dos variables (componentes principales) que permitan reducir un grupo de variables sin perder información.
+Para la variables contenidas en la base de datos `rotacion` de `paqueteMODELOS`, determine si es posible construir dos variables (componentes principales) que permitan reducir un grupo de variables sin perder información.
 
 
 

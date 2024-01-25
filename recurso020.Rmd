@@ -2,9 +2,9 @@
 title: <span style="color:#034a94">**Tablas de contingencia**</sapn>
 author: "Modelos Estadísticos para la toma de decisiones"
 output:
-  html_document:
-    code_folding: hide
-    css: style.css
+html_document:
+code_folding: hide
+css: style.css
 ---
 
 ```{r setup, include=FALSE}
@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE, comment = NA)
 
 <br/><br/>
 
-Estan conformadas por un arreglo de datos correspondientes a las frecuencias absolutas que resultan al contar las todas las posibles registros que contienen las caracteristicas  ($a_i,b_j$) correspondientes a las dos variables que son representadas por $n_{ij}$
+Están conformadas por un arreglo de datos correspondientes a las frecuencias absolutas que resultan al contar las todas las posibles registros que contienen las características  ($a_i,b_j$) correspondientes a las dos variables que son representadas por $n_{ij}$
 
 <br/><br/>
 
@@ -32,9 +32,9 @@ Estan conformadas por un arreglo de datos correspondientes a las frecuencias abs
 
 <br/><br/>
 
-Los valores  $\bf{n_{i.}}$ represdentan el total marginal de la variable $\bf{A}$, mientras que $\bf{n_{.j}}$ representa el total por columnas que corresponden a la variable `B`. La suma de todos los valores $\bf{n_{ij}}$ es $\bf{n}$ 
+Los valores  $\bf{n_{i.}}$ representan el total marginal de la variable $\bf{A}$, mientras que $\bf{n_{.j}}$ representa el total por columnas que corresponden a la variable `B`. La suma de todos los valores $\bf{n_{ij}}$ es $\bf{n}$ 
 
-La función `table()` en `R` permite contruir la tabla a partir de la información contenida en una base de datos (`table(data$A, data$B)`)
+La función `table()` en `R` permite construir la tabla a partir de la información contenida en una base de datos (`table(data$A, data$B)`)
 
 <br/><br/>
 
@@ -69,7 +69,7 @@ library(ggfortify)
 pRdeR=qchisq(c(0.025,0.975),9)
 p=ggdistribution(dchisq, seq(0, 30, 0.1), df = 9, colour = 'blue')
 p=ggdistribution(dchisq, seq(pRdeR[2], 30, 0.1), df = 9, colour = 'blue', fill="blue", p=p)+
-       ggtitle("Región de rechazo:   (19.0, Inf) ")
+ggtitle("Región de rechazo:   (19.0, Inf) ")
 p
 pRdeR
 ```

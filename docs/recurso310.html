@@ -31,7 +31,6 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
@@ -219,9 +218,6 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
-<style type="text/css">
-.code-folding-btn { margin-bottom: 4px; }
-</style>
 
 
 
@@ -321,14 +317,6 @@ $(document).ready(function () {
 
 <div id="header">
 
-<div class="btn-group pull-right float-right">
-<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
-<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
-<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
-</ul>
-</div>
-
 
 
 <h1 class="title toc-ignore"><span
@@ -356,7 +344,7 @@ vivienda.24 &lt;- sample_n(vivienda24, 4000)</code></pre>
 <pre class="r"><code>vivienda.24$estrato &lt;- as.factor(vivienda.24$estrato)</code></pre>
 <p><br/><br/></p>
 <ul>
-<li>Se revisa si la base tiene datos faltantes (rectangulos de color
+<li>Se revisa si la base tiene datos faltantes (rectángulos de color
 rojo)</li>
 </ul>
 <pre class="r"><code>library(mice)
@@ -366,7 +354,7 @@ md.pattern(vivienda.24, rotate.names = TRUE)</code></pre>
 <p>La muestra seleccionada contiene un registro con datos faltantes para
 ambas variables, de tal forma que se procede a eliminarlas, para
 posteriormente constatar que se han eliminado se utiliza la función
-md.pattern del paquete mice</p>
+<code>md.pattern</code> del paquete <code>mice</code>.</p>
 <p><br/></p>
 <pre class="r"><code>library(mice)
 vivienda.24 &lt;- na.omit(vivienda.24)
@@ -431,7 +419,7 @@ dim 1 0.33730884              69.767822                          69.76782
 dim 2 0.12866848              26.613355                          96.38118
 dim 3 0.01749605               3.618823                         100.00000</code></pre>
 <pre class="r"><code>fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle(&quot;&quot;)+
-  ylab(&quot;Porcentaje de varianza explicado&quot;) + xlab(&quot;Ejes&quot;)</code></pre>
+ylab(&quot;Porcentaje de varianza explicado&quot;) + xlab(&quot;Ejes&quot;)</code></pre>
 <p><img src="recurso310_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>Los resultados indican que la primera componente resumen el 68.9% y
 los dos primeros componentes prepresentados en el plano factorial,
@@ -457,7 +445,7 @@ valores_prop &lt;-resultados_ac$eig
 
 library(factoextra)
 fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle(&quot;&quot;)+
-  ylab(&quot;Porcentaje de varianza explicado&quot;) + xlab(&quot;Ejes&quot;)</code></pre>
+ylab(&quot;Porcentaje de varianza explicado&quot;) + xlab(&quot;Ejes&quot;)</code></pre>
 <pre>
 
 library(paqueteMODELOS)
@@ -478,7 +466,7 @@ valores_prop <-resultados.ac$eig
 
 library(factoextra)
 fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle("")+
-  ylab("Porcentaje de varianza explicado") + xlab("Ejes")
+ylab("Porcentaje de varianza explicado") + xlab("Ejes")
 
 </pre>
 <p><br/><br/></p>
@@ -489,7 +477,7 @@ fviz_screeplot(resultados_ac, addlabels = TRUE, ylim = c(0, 80))+ggtitle("")+
 <code>rotacion</code> de <code>paqueteMODELOS</code>, determine la
 asociación que puede existir entre los niveles de las siguientes:</p>
 <ul>
-<li>Educacion - Departamento</li>
+<li>Educación - Departamento</li>
 <li>Satisfacción laboral - Equilibrio Trabajo-Vida</li>
 </ul>
 <pre class="r"><code>library(paqueteMODELOS)
@@ -529,11 +517,6 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-<script>
-$(document).ready(function () {
-  window.initializeCodeFolding("hide" === "show");
-});
-</script>
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
