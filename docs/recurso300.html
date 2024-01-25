@@ -525,6 +525,12 @@ Empleado público   1 25</code></pre>
 <p></br></br></p>
 <p>Con esta información podremos obtener una métrica que nos permita
 agrupar las profesiones conformando grupos semejantes</p>
+<pre>
+Empleado bancario  Empleado privado   Docente     Ama de casa   Empleado público
+0.800000 0         0.4285714          0.2000000   0.6000000     0.4444444 
+  
+        
+</pre>
 <pre class="r"><code>x &lt;- c(4, 1, 3, 4, 1, 4, 9, 6, 20, 25)
 m &lt;- matrix(x, nrow = 5, byrow = TRUE, 
             dimnames = list(c(&quot;Empleado bancario&quot;, &quot;Empleado privado&quot;, &quot;Docente&quot;, &quot;Ama de casa&quot;, &quot;Empleado público&quot;), c(&quot;Si&quot;, &quot;No&quot;)))

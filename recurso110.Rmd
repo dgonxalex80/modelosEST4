@@ -36,7 +36,7 @@ Se requiere resumir las variables cuantitativas (antigüedad, edad, cuota e ingr
 <br/>
 
 ```{r, eval=FALSE}
-library(paqueteMOD)
+library(paqueteMODELOS)
 data("creditos")                # base de datos
 creditosZ= scale(creditos)      # datos estandarizados
 

@@ -29,6 +29,10 @@ data("vivienda")
 ids <-sample(1:8322, 1000)
 vivienda1 <-vivienda[ids,]
 
+
+tabla <-table(vivienda1$tipo, vivienda1$zona)
+t(tabla)
+
 ```
 
 <br/><br/>
@@ -59,31 +63,27 @@ Supongamos que tenemos información de un grupo de 1000 viviendas de las cuales 
 
 
 <pre>
-
-
-
 Descriptive Statistics  
 vivienda1$preciom  
 N: 1000  
 
 preciom
------------------ ---------
-Mean    457.38
-Std.Dev    348.37
-Min     65.00
-Q1    220.00
+------------------
+Mean      457.38
+Std.Dev   348.37
+Min        65.00
+Q1        220.00
 Median    340.00
-Q3    580.00
-Max   1950.00
-MAD    237.22
-IQR    360.00
-CV      0.76
-Skewness      1.67
-SE.Skewness      0.08
-Kurtosis      2.72
-N.Valid   1000.00
-Pct.Valid    100.00
-
+Q3        580.00
+Max      1950.00
+MAD       237.22
+IQR       360.00
+CV          0.76
+Skewness    1.67
+SE.Skewness 0.08
+Kurtosis    2.72
+N.Valid  1000.00
+Pct.Valid 100.00
 </pre>
 
 :::
@@ -117,7 +117,16 @@ En este caso se emplean las tablas de contingencia o de doble entrada, las cuale
 :::: {style="display: flex;"}
 ::: {}
 
-```{r, echo=FALSE}
+<pre>
+              Apart.  Casa
+Zona Centro       3      6
+Zona Norte      118     90
+Zona Oeste      135     19
+Zona Oriente      7     39
+Zona Sur        348    235
+</pre>
+
+```{r, eval =FALSE}
 tabla <-table(vivienda1$tipo, vivienda1$zona)
 t(tabla)
 ```

@@ -368,31 +368,27 @@ comportamiento de los precios de las viviendas.</p>
 <!-- summarytools::descr(vivienda1$preciom) -->
 <!-- ``` -->
 <pre>
-
-
-
 Descriptive Statistics  
 vivienda1$preciom  
 N: 1000  
 
 preciom
------------------ ---------
-Mean    457.38
-Std.Dev    348.37
-Min     65.00
-Q1    220.00
+------------------
+Mean      457.38
+Std.Dev   348.37
+Min        65.00
+Q1        220.00
 Median    340.00
-Q3    580.00
-Max   1950.00
-MAD    237.22
-IQR    360.00
-CV      0.76
-Skewness      1.67
-SE.Skewness      0.08
-Kurtosis      2.72
-N.Valid   1000.00
-Pct.Valid    100.00
-
+Q3        580.00
+Max      1950.00
+MAD       237.22
+IQR       360.00
+CV          0.76
+Skewness    1.67
+SE.Skewness 0.08
+Kurtosis    2.72
+N.Valid  1000.00
+Pct.Valid 100.00
 </pre>
 </div>
 <div>
@@ -422,13 +418,16 @@ se utiliza una prueba de hipótesis Chi-cuadrado para tablas de
 contingencia.</p>
 <div style="display: flex;">
 <div>
-<pre><code>              
-               Apartamento Casa
-  Zona Centro            3    6
-  Zona Norte           118   90
-  Zona Oeste           135   19
-  Zona Oriente           7   39
-  Zona Sur             348  235</code></pre>
+<pre>
+              Apart.  Casa
+Zona Centro       3      6
+Zona Norte      118     90
+Zona Oeste      135     19
+Zona Oriente      7     39
+Zona Sur        348    235
+</pre>
+<pre class="r"><code>tabla &lt;-table(vivienda1$tipo, vivienda1$zona)
+t(tabla)</code></pre>
 </div>
 <div>
 
