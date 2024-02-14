@@ -19,7 +19,7 @@ knitr::include_graphics("img/banner_presentacion.png")
 ```
 </br></br>
 
-La **modelación** forma parte principal del proceso de análisis de datos y permite avanzar hacia la toma de decisiones infomadas 
+La **modelación** forma parte principal del proceso de análisis de datos y permite avanzar hacia la toma de decisiones informadas 
 
 <br/>
 
@@ -39,7 +39,7 @@ Tomado de : Ciencias de Datos para Gente Sociable
 
 Dependiendo el problema a ser abordado, se utiliza una herramienta estadística diferente para el proceso de modelación. 
 
-Estos modelos permiten explorar tanto relaciones entre variables como entre individuos y la identificación  patrones entre multiples variables de manera simultanea.
+Estos modelos permiten explorar tanto relaciones entre variables como entre individuos y la identificación  patrones entre múltiples variables de manera simultanea.
 
 Dentro de los modelos más utilizados se destacan: 
 
@@ -53,7 +53,7 @@ Dentro de los modelos más utilizados se destacan:
 Para pronosticar y valorar la relación existente entre una variable y un grupo de variables algunos de los modelos  más utilizados son: 
 
 * Regresión Lineal, 
-* Regresión Logistica, 
+* Regresión Logística, 
 * Modelo Lineal Generalizado, 
 * Modelo Lineal Mixto Generalizado, 
 * Regresión de Cox 
@@ -61,36 +61,42 @@ Para pronosticar y valorar la relación existente entre una variable y un grupo 
 
 <br/>
 
-Dentro de las aplicaciones más destacadas estan :
+Dentro de las aplicaciones más destacadas están :
 
 <br/>
 
 ### <span style="color:#034a94">**Segmentación de Clientes**</span> 
 
+<br/>
+
 En marketing, los métodos multivariados pueden ayudar a segmentar clientes en grupos homogéneos para adaptar estrategias de marketing específicas.
 
-  * compradores y no compradores
-  * cumplidos y morosos
-  * enfermo / sano
-  * culpable/ inocente
-  * cliente fiel / deserta
-  * identificar que factores inciden sobre una variable de interés
+* compradores y no compradores
+* cumplidos y morosos
+* enfermo / sano
+* culpable/ inocente
+* cliente fiel / deserta
+* identificar que factores inciden sobre una variable de interés
 
 <br/><br/>
 
 ### <span style="color:#034a94">**Análisis de Sentimiento**</span> 
 
+<br/>
+
 En procesamiento de lenguaje natural, los métodos multivariados pueden analizar simultáneamente varias características lingüísticas para comprender el sentimiento en el texto.
 
-  * favorables / no favorables
-  * amor / odio
-  * identificación de patrones de combinación de palabras
-  
+* favorables / no favorables
+* amor / odio
+* identificación de patrones de combinación de palabras
+
 <br/><br/>
 
 ### <span style="color:#034a94">**Biología y Genómica**</span> 
 
-Para analizar conjuntos de datos biológicos que pueden contener información de múltiples genes y características.
+<br/>
+
+Para analizar conjuntos de datos biológicos que pueden contener información genética de múltiples  características.
 
 * determinación de una nueva especie
 * clasificación de individuos
@@ -98,6 +104,8 @@ Para analizar conjuntos de datos biológicos que pueden contener información de
 <br/><br/>
 
 ### <span style="color:#034a94">**Finanzas**</span> 
+
+<br/>
 
 Para evaluar riesgos y rendimientos en carteras de inversiones que involucran múltiples instrumentos financieros.
 
@@ -107,6 +115,8 @@ Para evaluar riesgos y rendimientos en carteras de inversiones que involucran m�
 <br/><br/>
 
 ### <span style="color:#034a94">**Imagen y Reconocimiento de Patrones**</span> 
+
+<br/>
 
 En procesamiento de imágenes, los métodos multivariados pueden extraer características y patrones a partir de imágenes complejas.
 
@@ -122,27 +132,27 @@ Contenido de la unidad
 </br>
 
 * **Conceptos generales**
-  * Conceptos básicos
-  * Tablas de contingencia
-  * Matrices de Varianza-Covarianza y de Correlaciones
+* Conceptos básicos
+* Tablas de contingencia
+* Matrices de Varianza-Covarianza y de Correlaciones
 
 </br>
 
 * **Análisis de Componentes Principales**
-  * Conceptos
-  * Ejemplo
+* Conceptos
+* Ejemplo
 
 </br>
 
 * **Análisis de Conglomerados**
-  * Conceptos
-  * Ejemplo
+* Conceptos
+* Ejemplo
 
 </br>
 
 * **Análisis de Correspondencia**
-  * Conceptos
-  * Ejemplo
+* Conceptos
+* Ejemplo
 
 
 </br></br>
