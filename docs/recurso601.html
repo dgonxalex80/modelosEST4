@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Modelos Estadísticos para la toma de decisiones" />
+
+
+<title>Ejemplos</title>
+
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Modelos Estadísticos para la toma de decisiones</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Conceptos Generales
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="recurso010.html">Conceptos básicos</a>
+    </li>
+    <li>
+      <a href="recurso020.html">Tablas de contingencia</a>
+    </li>
+    <li>
+      <a href="recurso030.html">Matriz de Varianza-Covarianza</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    A.Componentes Principales
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="recurso100.html">Conceptos ACP</a>
+    </li>
+    <li>
+      <a href="recurso110.html">Ejemplo</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    A. de Conglomerados
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="recurso200.html">ConceptOs A.de Conglomerados</a>
+    </li>
+    <li>
+      <a href="recurso210.html">Ejemplo</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    A. de Correspondencia
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="recurso300.html">Conceptos A.de Correspondencia</a>
+    </li>
+    <li>
+      <a href="recurso310.html">Ejemplo</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore"><strong>Ejemplos</strong></h1>
+<h4 class="author">Modelos Estadísticos para la toma de decisiones</h4>
+
+</div>
+
+
+<p></br></p>
+<div id="ejemplo-1" class="section level1">
+<h1><strong>Ejemplo 1</strong></h1>
+<div id="análisis-de-componentes-principales" class="section level2">
+<h2><strong>Análisis de Componentes Principales</strong></h2>
+<p>Objetivo : Reducción de dimensión de la base de datos (reducir
+variables). Pasar de m variables a 2 o 3 variables independientes
+llamadas <strong>componentes</strong> sin perder información.</p>
+<p>Este proceso genera nuevas variables como una combinación lineal de
+las variables originales. Para la construcción de estos componentes se
+parte de la matriz de varianzas-covarianzas, que en su diagonal
+concentra las varianza de todas las variables incluidas en el analisis.
+La suma de estas varianzas conforman la variacion total de la data.</p>
+<p>El primer componente captura la mayor parte de esta variación total,
+el segundo una menor parte y así sucesivamente hasta el último
+componente. Por lo general los dos primeros componentes captran un gran
+porcentaje de la variación total (80% o mas).</p>
+<p>De esta forma se pueden graficar los observaciones (filas) en un
+plano carteciano (2D). Si se puede dar nombre a los ejes (CP1 y CP2)
+teniendo en cuenta los mayores pesos de las variables, el análisis
+permitirá explicar y analizar esta transformación.</p>
+<pre class="r"><code>library(paqueteMODELOS)
+data(&quot;rotacion&quot;)
+str(rotacion)</code></pre>
+<pre><code>tibble [1,470 × 24] (S3: tbl_df/tbl/data.frame)
+ $ Rotación                   : chr [1:1470] &quot;Si&quot; &quot;No&quot; &quot;Si&quot; &quot;No&quot; ...
+ $ Edad                       : num [1:1470] 41 49 37 33 27 32 59 30 38 36 ...
+ $ Viaje de Negocios          : chr [1:1470] &quot;Raramente&quot; &quot;Frecuentemente&quot; &quot;Raramente&quot; &quot;Frecuentemente&quot; ...
+ $ Departamento               : chr [1:1470] &quot;Ventas&quot; &quot;IyD&quot; &quot;IyD&quot; &quot;IyD&quot; ...
+ $ Distancia_Casa             : num [1:1470] 1 8 2 3 2 2 3 24 23 27 ...
+ $ Educación                  : num [1:1470] 2 1 2 4 1 2 3 1 3 3 ...
+ $ Campo_Educación            : chr [1:1470] &quot;Ciencias&quot; &quot;Ciencias&quot; &quot;Otra&quot; &quot;Ciencias&quot; ...
+ $ Satisfacción_Ambiental     : num [1:1470] 2 3 4 4 1 4 3 4 4 3 ...
+ $ Genero                     : chr [1:1470] &quot;F&quot; &quot;M&quot; &quot;M&quot; &quot;F&quot; ...
+ $ Cargo                      : chr [1:1470] &quot;Ejecutivo_Ventas&quot; &quot;Investigador_Cientifico&quot; &quot;Tecnico_Laboratorio&quot; &quot;Investigador_Cientifico&quot; ...
+ $ Satisfación_Laboral        : num [1:1470] 4 2 3 3 2 4 1 3 3 3 ...
+ $ Estado_Civil               : chr [1:1470] &quot;Soltero&quot; &quot;Casado&quot; &quot;Soltero&quot; &quot;Casado&quot; ...
+ $ Ingreso_Mensual            : num [1:1470] 5993 5130 2090 2909 3468 ...
+ $ Trabajos_Anteriores        : num [1:1470] 8 1 6 1 9 0 4 1 0 6 ...
+ $ Horas_Extra                : chr [1:1470] &quot;Si&quot; &quot;No&quot; &quot;Si&quot; &quot;Si&quot; ...
+ $ Porcentaje_aumento_salarial: num [1:1470] 11 23 15 11 12 13 20 22 21 13 ...
+ $ Rendimiento_Laboral        : num [1:1470] 3 4 3 3 3 3 4 4 4 3 ...
+ $ Años_Experiencia           : num [1:1470] 8 10 7 8 6 8 12 1 10 17 ...
+ $ Capacitaciones             : num [1:1470] 0 3 3 3 3 2 3 2 2 3 ...
+ $ Equilibrio_Trabajo_Vida    : num [1:1470] 1 3 3 3 3 2 2 3 3 2 ...
+ $ Antigüedad                 : num [1:1470] 6 10 0 8 2 7 1 1 9 7 ...
+ $ Antigüedad_Cargo           : num [1:1470] 4 7 0 7 2 7 0 0 7 7 ...
+ $ Años_ultima_promoción      : num [1:1470] 0 1 0 3 2 3 0 0 1 7 ...
+ $ Años_acargo_con_mismo_jefe : num [1:1470] 5 7 0 0 2 6 0 0 8 7 ...</code></pre>
+<pre class="r"><code>rotacion1 &lt;-rotacion[,c(2,5,14,18,21,22,23,24)]
+str(rotacion1)</code></pre>
+<pre><code>tibble [1,470 × 8] (S3: tbl_df/tbl/data.frame)
+ $ Edad                      : num [1:1470] 41 49 37 33 27 32 59 30 38 36 ...
+ $ Distancia_Casa            : num [1:1470] 1 8 2 3 2 2 3 24 23 27 ...
+ $ Trabajos_Anteriores       : num [1:1470] 8 1 6 1 9 0 4 1 0 6 ...
+ $ Años_Experiencia          : num [1:1470] 8 10 7 8 6 8 12 1 10 17 ...
+ $ Antigüedad                : num [1:1470] 6 10 0 8 2 7 1 1 9 7 ...
+ $ Antigüedad_Cargo          : num [1:1470] 4 7 0 7 2 7 0 0 7 7 ...
+ $ Años_ultima_promoción     : num [1:1470] 0 1 0 3 2 3 0 0 1 7 ...
+ $ Años_acargo_con_mismo_jefe: num [1:1470] 5 7 0 0 2 6 0 0 8 7 ...</code></pre>
+<pre class="r"><code># install.packages(&quot;VIM&quot;)
+VIM::aggr(rotacion1, cex.axis = 0.5, cex.lab= 0.8)  # graficos de datos faltantes</code></pre>
+<p><img src="recurso601_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>library(factoextra)
+res.pca &lt;- prcomp(rotacion1)
+fviz_eig(res.pca, addlabels = TRUE)</code></pre>
+<p><img src="recurso601_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>library(factoextra)
+rotacionZ &lt;- scale(rotacion1) 
+res.pcaZ &lt;- prcomp(rotacionZ)
+fviz_eig(res.pcaZ, addlabels = TRUE)</code></pre>
+<p><img src="recurso601_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>fviz_pca_var(res.pca,
+col.var = &quot;contrib&quot;, # Color by contributions to the PC
+gradient.cols = c(&quot;#FF7F00&quot;,  &quot;#034D94&quot;),
+repel = TRUE     # Avoid text overlapping
+)</code></pre>
+<p><img src="recurso601_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>summary(res.pca)</code></pre>
+<pre><code>Importance of components:
+                           PC1    PC2    PC3     PC4     PC5     PC6     PC7
+Standard deviation     11.8798 8.1096 6.9978 3.85655 2.45137 2.29795 2.02692
+Proportion of Variance  0.4871 0.2270 0.1690 0.05133 0.02074 0.01822 0.01418
+Cumulative Proportion   0.4871 0.7141 0.8831 0.93440 0.95514 0.97336 0.98754
+                           PC8
+Standard deviation     1.89976
+Proportion of Variance 0.01246
+Cumulative Proportion  1.00000</code></pre>
+<pre class="r"><code>plot(res.pca$x)</code></pre>
+<p><img src="recurso601_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+</div>
+<div id="analisis-de-correspondencia" class="section level1">
+<h1>Analisis de correspondencia</h1>
+<pre class="r"><code>library(FactoMineR)
+t =table(rotacion$Cargo, rotacion$Departamento)
+t</code></pre>
+<pre><code>                         
+                          IyD  RH Ventas
+  Director_Investigación   80   0      0
+  Director_Manofactura    145   0      0
+  Ejecutivo_Ventas          0   0    326
+  Gerente                  54  11     37
+  Investigador_Cientifico 292   0      0
+  Recursos_Humanos          0  52      0
+  Representante_Salud     131   0      0
+  Representante_Ventas      0   0     83
+  Tecnico_Laboratorio     259   0      0</code></pre>
+<pre class="r"><code>chisq.test</code></pre>
+<pre><code>function (x, y = NULL, correct = TRUE, p = rep(1/length(x), length(x)), 
+    rescale.p = FALSE, simulate.p.value = FALSE, B = 2000) 
+{
+    DNAME &lt;- deparse(substitute(x))
+    if (is.data.frame(x)) 
+        x &lt;- as.matrix(x)
+    if (is.matrix(x)) {
+        if (min(dim(x)) == 1L) 
+            x &lt;- as.vector(x)
+    }
+    if (!is.matrix(x) &amp;&amp; !is.null(y)) {
+        if (length(x) != length(y)) 
+            stop(&quot;&#39;x&#39; and &#39;y&#39; must have the same length&quot;)
+        DNAME2 &lt;- deparse(substitute(y))
+        xname &lt;- if (length(DNAME) &gt; 1L || nchar(DNAME, &quot;w&quot;) &gt; 
+            30) 
+            &quot;&quot;
+        else DNAME
+        yname &lt;- if (length(DNAME2) &gt; 1L || nchar(DNAME2, &quot;w&quot;) &gt; 
+            30) 
+            &quot;&quot;
+        else DNAME2
+        OK &lt;- complete.cases(x, y)
+        x &lt;- factor(x[OK])
+        y &lt;- factor(y[OK])
+        if ((nlevels(x) &lt; 2L) || (nlevels(y) &lt; 2L)) 
+            stop(&quot;&#39;x&#39; and &#39;y&#39; must have at least 2 levels&quot;)
+        x &lt;- table(x, y)
+        names(dimnames(x)) &lt;- c(xname, yname)
+        DNAME &lt;- paste(paste(DNAME, collapse = &quot;\n&quot;), &quot;and&quot;, 
+            paste(DNAME2, collapse = &quot;\n&quot;))
+    }
+    if (any(x &lt; 0) || anyNA(x)) 
+        stop(&quot;all entries of &#39;x&#39; must be nonnegative and finite&quot;)
+    if ((n &lt;- sum(x)) == 0) 
+        stop(&quot;at least one entry of &#39;x&#39; must be positive&quot;)
+    if (simulate.p.value) {
+        setMETH &lt;- function() METHOD &lt;&lt;- paste(METHOD, &quot;with simulated p-value\n\t (based on&quot;, 
+            B, &quot;replicates)&quot;)
+        almost.1 &lt;- 1 - 64 * .Machine$double.eps
+    }
+    if (is.matrix(x)) {
+        METHOD &lt;- &quot;Pearson&#39;s Chi-squared test&quot;
+        nr &lt;- as.integer(nrow(x))
+        nc &lt;- as.integer(ncol(x))
+        if (is.na(nr) || is.na(nc) || is.na(nr * nc)) 
+            stop(&quot;invalid nrow(x) or ncol(x)&quot;, domain = NA)
+        sr &lt;- rowSums(x)
+        sc &lt;- colSums(x)
+        E &lt;- outer(sr, sc)/n
+        v &lt;- function(r, c, n) c * r * (n - r) * (n - c)/n^3
+        V &lt;- outer(sr, sc, v, n)
+        dimnames(E) &lt;- dimnames(x)
+        if (simulate.p.value &amp;&amp; all(sr &gt; 0) &amp;&amp; all(sc &gt; 0)) {
+            setMETH()
+            tmp &lt;- .Call(C_chisq_sim, sr, sc, B, E)
+            STATISTIC &lt;- sum(sort((x - E)^2/E, decreasing = TRUE))
+            PARAMETER &lt;- NA
+            PVAL &lt;- (1 + sum(tmp &gt;= almost.1 * STATISTIC))/(B + 
+                1)
+        }
+        else {
+            if (simulate.p.value) 
+                warning(&quot;cannot compute simulated p-value with zero marginals&quot;)
+            if (correct &amp;&amp; nrow(x) == 2L &amp;&amp; ncol(x) == 2L) {
+                YATES &lt;- min(0.5, abs(x - E))
+                if (YATES &gt; 0) 
+                  METHOD &lt;- paste(METHOD, &quot;with Yates&#39; continuity correction&quot;)
+            }
+            else YATES &lt;- 0
+            STATISTIC &lt;- sum((abs(x - E) - YATES)^2/E)
+            PARAMETER &lt;- (nr - 1L) * (nc - 1L)
+            PVAL &lt;- pchisq(STATISTIC, PARAMETER, lower.tail = FALSE)
+        }
+    }
+    else {
+        if (length(dim(x)) &gt; 2L) 
+            stop(&quot;invalid &#39;x&#39;&quot;)
+        if (length(x) == 1L) 
+            stop(&quot;&#39;x&#39; must at least have 2 elements&quot;)
+        if (length(x) != length(p)) 
+            stop(&quot;&#39;x&#39; and &#39;p&#39; must have the same number of elements&quot;)
+        if (any(p &lt; 0)) 
+            stop(&quot;probabilities must be non-negative.&quot;)
+        if (abs(sum(p) - 1) &gt; sqrt(.Machine$double.eps)) {
+            if (rescale.p) 
+                p &lt;- p/sum(p)
+            else stop(&quot;probabilities must sum to 1.&quot;)
+        }
+        METHOD &lt;- &quot;Chi-squared test for given probabilities&quot;
+        E &lt;- n * p
+        V &lt;- n * p * (1 - p)
+        STATISTIC &lt;- sum((x - E)^2/E)
+        names(E) &lt;- names(x)
+        if (simulate.p.value) {
+            setMETH()
+            nx &lt;- length(x)
+            sm &lt;- matrix(sample.int(nx, B * n, TRUE, prob = p), 
+                nrow = n)
+            ss &lt;- apply(sm, 2L, function(x, E, k) {
+                sum((table(factor(x, levels = 1L:k)) - E)^2/E)
+            }, E = E, k = nx)
+            PARAMETER &lt;- NA
+            PVAL &lt;- (1 + sum(ss &gt;= almost.1 * STATISTIC))/(B + 
+                1)
+        }
+        else {
+            PARAMETER &lt;- length(x) - 1
+            PVAL &lt;- pchisq(STATISTIC, PARAMETER, lower.tail = FALSE)
+        }
+    }
+    names(STATISTIC) &lt;- &quot;X-squared&quot;
+    names(PARAMETER) &lt;- &quot;df&quot;
+    if (any(E &lt; 5) &amp;&amp; is.finite(PARAMETER)) 
+        warning(&quot;Chi-squared approximation may be incorrect&quot;)
+    structure(list(statistic = STATISTIC, parameter = PARAMETER, 
+        p.value = PVAL, method = METHOD, data.name = DNAME, observed = x, 
+        expected = E, residuals = (x - E)/sqrt(E), stdres = (x - 
+            E)/sqrt(V)), class = &quot;htest&quot;)
+}
+&lt;bytecode: 0x561c499cfd30&gt;
+&lt;environment: namespace:stats&gt;</code></pre>
+<pre class="r"><code>library(factoextra)
+library(gridExtra)
+resultados_ac &lt;- CA(t)</code></pre>
+<pre><code>Warning: ggrepel: 6 unlabeled data points (too many overlaps). Consider
+increasing max.overlaps</code></pre>
+<p><img src="recurso601_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>```</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

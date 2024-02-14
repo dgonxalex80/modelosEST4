@@ -337,16 +337,26 @@ principales) y poder así adicionar elementos al análisis</p>
 data(&quot;creditos&quot;)                # base de datos
 creditosZ= scale(creditos)      # datos estandarizados
 
-str(creditos)</code></pre>
+summary(creditos)
+cat(&quot;-----------------------------------------------------------------------&quot;, &quot;\n&quot;)
+summary(creditosZ)</code></pre>
 <pre>
-Show in New Window
-tibble [780 × 5] (S3: tbl_df/tbl/data.frame)
-$ default   : num [1:780] 1 1 1 1 1 1 1 1 1 1 ...
-$ antiguedad: num [1:780] 37.32 37.32 30.98 9.73 8.44 ...
-$ edad      : num [1:780] 77 73.8 78.9 51.5 39 ...
-$ cuota     : num [1:780] 3020519 1766552 1673786 668479 1223559 ...
-$ ingresos  : num [1:780] 8155593 6181263 4328075 5290910 5333818 ...
-
+     default       antiguedad           edad           cuota            ingresos       
+ Min.   :0.00   Min.   : 0.2548   Min.   :26.61   Min.   :    387   Min.   :  633825  
+ 1st Qu.:0.00   1st Qu.: 7.3767   1st Qu.:48.18   1st Qu.: 328516   1st Qu.: 3583324  
+ Median :0.00   Median :15.1192   Median :57.92   Median : 694460   Median : 5038962  
+ Mean   :0.05   Mean   :18.0353   Mean   :56.99   Mean   : 885206   Mean   : 5366430  
+ 3rd Qu.:0.00   3rd Qu.:30.6637   3rd Qu.:66.19   3rd Qu.:1244126   3rd Qu.: 6844098  
+ Max.   :1.00   Max.   :37.3178   Max.   :92.43   Max.   :6664588   Max.   :22197021  
+----------------------------------------------------------------------- 
+    default          antiguedad           edad             cuota            ingresos      
+ Min.   :-0.2293   Min.   :-1.4892   Min.   :-2.4287   Min.   :-1.1954   Min.   :-1.7844  
+ 1st Qu.:-0.2293   1st Qu.:-0.8927   1st Qu.:-0.7038   1st Qu.:-0.7521   1st Qu.:-0.6723  
+ Median :-0.2293   Median :-0.2442   Median : 0.0747   Median :-0.2577   Median :-0.1235  
+ Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000  
+ 3rd Qu.:-0.2293   3rd Qu.: 1.0577   3rd Qu.: 0.7364   3rd Qu.: 0.4849   3rd Qu.: 0.5572  
+ Max.   : 4.3561   Max.   : 1.6150   Max.   : 2.8346   Max.   : 7.8077   Max.   : 6.3459  
+ 
 </pre>
 <p></br></br></p>
 <p>Inicialmente revisemos si existen datos faltantes</p>
@@ -359,21 +369,8 @@ md.pattern(creditos)</code></pre>
 valores más grandes afecten las estimaciones realizadas (sesgos) se
 realiza la estandarización de las variables antes de proceder a realizar
 el proceso de estimación de los componentes principales.</p>
-<pre class="r"><code>library(tidyverse)
-creditosZ= creditos[2:5] %&gt;%
-scale()
+<pre class="r"><code>creditosZ= scale(creditos[,2:5])
 head(creditosZ) # primeros 6 registros</code></pre>
-<p></br></br></p>
-<pre>
-antiguedad         edad        cuota      ingresos
-[1,]    1.6150493    1.5992045    2.8847306    1.05164674
-[2,]    1.6150493    1.3426559    1.1906667    0.30723062
-[3,]    1.0840529    1.7554121    1.0653432   -0.39150920
-[4,]   -0.6957258   -0.4363146   -0.2927901   -0.02847471
-[5,]   -0.8033479   -1.4406004    0.4571028   -0.01229636
-[6,]   -0.9573230   -0.9680340    3.5564797   -1.00132277
-
-</pre>
 <p></br></br></p>
 <pre class="r"><code>prcomp(creditosZ)</code></pre>
 <pre><code>Standard deviations (1, .., p=4):

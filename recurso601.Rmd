@@ -1,0 +1,107 @@
+---
+title: "**Ejemplos**"
+author: "Modelos Estadísticos para la toma de decisiones"
+output:
+  html_document:
+    code_folding: hide
+    css: style.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment = NA)
+library(paqueteMODELOS)
+library(ade4)
+library(ggrepel)
+library(xtable)
+library(scatterplot3d)
+
+
+
+```
+
+</br>
+
+
+# **Ejemplo 1**
+
+## **Análisis de Componentes Principales**
+
+Objetivo : Reducción de dimensión de la base de datos (reducir variables). Pasar de m variables a 2 o 3 variables independientes llamadas **componentes** sin perder información.
+
+
+Este proceso genera nuevas variables como una combinación lineal de las variables originales.
+Para la construcción de estos componentes se parte de la matriz de varianzas-covarianzas, que en su diagonal concentra las varianza de todas las variables incluidas en el analisis. La suma de estas varianzas conforman la variacion total de la data.  
+
+El primer componente captura la mayor parte de esta variación total, el segundo una menor parte y así sucesivamente hasta el último componente. Por lo general los dos primeros componentes captran un gran porcentaje de la variación total (80% o mas).
+
+
+De esta forma se pueden graficar los observaciones (filas) en un plano carteciano (2D). Si se puede dar nombre a los ejes (CP1 y CP2) teniendo en cuenta los mayores pesos de las variables, el análisis permitirá explicar y analizar esta transformación. 
+
+
+```{r}
+library(paqueteMODELOS)
+data("rotacion")
+str(rotacion)
+```
+
+```{r}
+rotacion1 <-rotacion[,c(2,5,14,18,21,22,23,24)]
+str(rotacion1)
+
+```
+
+
+```{r}
+# install.packages("VIM")
+VIM::aggr(rotacion1, cex.axis = 0.5, cex.lab= 0.8)  # graficos de datos faltantes
+
+
+```
+
+```{r}
+library(factoextra)
+res.pca <- prcomp(rotacion1)
+fviz_eig(res.pca, addlabels = TRUE)
+```
+
+```{r}
+library(factoextra)
+rotacionZ <- scale(rotacion1) 
+res.pcaZ <- prcomp(rotacionZ)
+fviz_eig(res.pcaZ, addlabels = TRUE)
+```
+```{r}
+fviz_pca_var(res.pca,
+col.var = "contrib", # Color by contributions to the PC
+gradient.cols = c("#FF7F00",  "#034D94"),
+repel = TRUE     # Avoid text overlapping
+)
+```
+
+
+```{r}
+summary(res.pca)
+```
+
+```{r}
+plot(res.pca$x)
+```
+
+
+# Analisis de correspondencia
+
+```{r}
+library(FactoMineR)
+t =table(rotacion$Cargo, rotacion$Departamento)
+t
+chisq.test
+
+library(factoextra)
+library(gridExtra)
+resultados_ac <- CA(t)
+```
+
+```
+
+
+

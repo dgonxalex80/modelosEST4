@@ -10,4 +10,14 @@ knitr::opts_chunk$set(echo = TRUE, comment = NA)
 ```
 
 
-![](img/enconstruccion.jpg)
+
+```{r}
+# Instalar el paquete si aún no lo tienes instalado
+# install.packages("factoextra")
+
+# Cargar librerías
+
+# No es necesario realizar transformaciones significativas para este ejemplo
+
+```
+

@@ -434,7 +434,8 @@ vivienda.24 &lt;- vivienda[, c(2,4)]
 library(dplyr)
 set.seed(1234)
 vivienda.24 &lt;- sample_n(vivienda.24, 4000) 
-md.pattern(vivienda.24, rotate.names = TRUE)
+md.pattern(vivienda.24, rotate.names = TRUE)     zona estrato  
+
 
 library(mice)
 library(FactoMineR)

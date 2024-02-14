@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE, comment = NA)
 
 </br>
 
-El Análisis de Correspondencia es un método estadístico utilizado para representar posibles asociaciones entre  variables categóricas, es decir la asociación entre sus cagarías, con el fin establecer si existe, patrones o estructuras en los datos 
+El Análisis de Correspondencia es un método estadístico utilizado para representar posibles asociaciones entre  variables categóricas, es decir la asociación entre sus categorías, con el fin establecer si existe, patrones o estructuras en los datos 
 
 </br>
 
