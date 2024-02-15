@@ -43,21 +43,21 @@ Estos modelos permiten explorar tanto relaciones entre variables como entre indi
 
 Dentro de los modelos más utilizados se destacan: 
 
-* Análisis de componentes principales, 
-* Análisis de correspondencia, 
-* Análisis discriminante,
-* Análisis factorial 
-* Análisis de correlación canónica
+* Análisis de componentes principales.
+* Análisis de correspondencia.
+* Análisis discriminante.
+* Análisis factorial.
+* Análisis de correlación canónica.
 
 
 Para pronosticar y valorar la relación existente entre una variable y un grupo de variables algunos de los modelos  más utilizados son: 
 
-* Regresión Lineal, 
-* Regresión Logística, 
-* Modelo Lineal Generalizado, 
-* Modelo Lineal Mixto Generalizado, 
-* Regresión de Cox 
-* Series de tiempo
+* Regresión Lineal.
+* Regresión Logística.
+* Modelo Lineal Generalizado.
+* Modelo Lineal Mixto Generalizado.
+* Regresión de Cox.
+* Series de tiempo.
 
 <br/>
 
@@ -71,12 +71,12 @@ Dentro de las aplicaciones más destacadas están :
 
 En marketing, los métodos multivariados pueden ayudar a segmentar clientes en grupos homogéneos para adaptar estrategias de marketing específicas.
 
-* compradores y no compradores
-* cumplidos y morosos
-* enfermo / sano
-* culpable/ inocente
-* cliente fiel / deserta
-* identificar que factores inciden sobre una variable de interés
+* Compradores /  No compradores.
+* Cumplidos / Morosos.
+* Enfermo / Sano.
+* Culpable/ Inocente.
+* Cliente fiel / Deserta.
+* Identificar que factores inciden sobre una variable de interés.
 
 <br/><br/>
 
@@ -86,9 +86,9 @@ En marketing, los métodos multivariados pueden ayudar a segmentar clientes en g
 
 En procesamiento de lenguaje natural, los métodos multivariados pueden analizar simultáneamente varias características lingüísticas para comprender el sentimiento en el texto.
 
-* favorables / no favorables
-* amor / odio
-* identificación de patrones de combinación de palabras
+* Favorables / No favorables.
+* Amor / Odio.
+* Identificación de patrones de combinación de palabras.
 
 <br/><br/>
 
@@ -98,8 +98,8 @@ En procesamiento de lenguaje natural, los métodos multivariados pueden analizar
 
 Para analizar conjuntos de datos biológicos que pueden contener información genética de múltiples  características.
 
-* determinación de una nueva especie
-* clasificación de individuos
+* Determinación de una nueva especie.
+* Clasificación de individuos.
 
 <br/><br/>
 
@@ -109,8 +109,8 @@ Para analizar conjuntos de datos biológicos que pueden contener información ge
 
 Para evaluar riesgos y rendimientos en carteras de inversiones que involucran múltiples instrumentos financieros.
 
-* estimación o pronosticar del valor de un documento financiero
-* estimación del riesgo de inversión
+* Estimación o pronosticar del valor de un documento financiero.
+* Estimación del riesgo de inversión.
 
 <br/><br/>
 
@@ -132,27 +132,31 @@ Contenido de la unidad
 </br>
 
 * **Conceptos generales**
-* Conceptos básicos
-* Tablas de contingencia
-* Matrices de Varianza-Covarianza y de Correlaciones
+
+  * Conceptos básicos.
+  * Tablas de contingencia.
+  * Matrices de Varianza-Covarianza y de Correlaciones.
 
 </br>
 
 * **Análisis de Componentes Principales**
-* Conceptos
-* Ejemplo
+
+  * Conceptos.
+  * Ejemplo.
 
 </br>
 
 * **Análisis de Conglomerados**
-* Conceptos
-* Ejemplo
+
+  * Conceptos.
+  * Ejemplo.
 
 </br>
 
 * **Análisis de Correspondencia**
-* Conceptos
-* Ejemplo
+
+  * Conceptos.
+  * Ejemplo.
 
 
 </br></br>
